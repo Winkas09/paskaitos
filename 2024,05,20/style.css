@@ -20,13 +20,21 @@ a {
   text-decoration: none;
   color: rgb(196, 189, 189);
   font-size: 0.9em;
+  position: relative;
 }
 
 li {
   list-style-type: circle;
   font-size: 0.9em;
   color: rgb(204, 199, 199);
+  transition: background-color 0.3s ease;
 }
+
+li:hover {
+  background-color: transparent;
+  color: red;
+}
+
 p {
   font-size: 1.5em;
 }
