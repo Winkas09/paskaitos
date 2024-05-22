@@ -1,0 +1,277 @@
+.Logo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.facts {
+  background: linear-gradient(to right, #f3f3f3, #8a8989);
+  color: #050505;
+  padding: 30px 30px;
+  font-weight: bold;
+}
+
+div.button {
+  display: inline-block;
+  padding: 10px 15px;
+  color: #ffffff; /* Adjust this to change the color of the text */
+  background-color: rgb(
+    48,
+    45,
+    45
+  ); /* Adjust this to change the background color */
+  border: none;
+  border-radius: 5px; /* Adjust this to change the roundness of the button */
+  text-decoration: none;
+  font-size: 16px; /* Adjust this to make the text larger or smaller */
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin: 20px;
+}
+div.button a {
+  color: #fff; /* Change to the color you want */
+}
+
+.example {
+  width: 450px;
+  height: auto;
+  padding: 25px;
+}
+.social-links img {
+  width: 40px;
+  height: auto;
+}
+
+.Logo img {
+  display: block;
+  margin: 0 auto;
+}
+
+.Logo span {
+  display: block;
+  margin-top: 10px;
+  color: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(to right, #f3f3f3, #6dd5ed, #2193b0);
+}
+
+header {
+  background: linear-gradient(
+    to right,
+    #0f2027,
+    #203a43,
+    #2c5364,
+    #4a6e70,
+    #6190e8,
+    #a7a2a2,
+    #333333,
+    #2b2b2b,
+    #1c262f,
+    #16334a,
+    #1e4a68,
+    #23627e,
+    #2a7ab9,
+    #3292f0,
+    #3da5f4,
+    #47b8f7,
+    #52ccfa,
+    #5ee0fd
+  );
+  color: #fffafa;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.Logo img {
+  width: 450px;
+  height: auto;
+  margin-top: 10px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+header nav a {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+header nav a:hover {
+  color: #ff6347;
+}
+
+section {
+  background: linear-gradient(to right, #f3f3f3, #8a8989);
+  color: #050505;
+  padding: 40px;
+  font-weight: bold;
+}
+
+section h2 {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 10px;
+  font-weight: bold;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  padding-left: 10px;
+}
+
+section p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+section ul {
+  margin-bottom: 20px;
+}
+
+section ul li {
+  margin-bottom: 10px;
+}
+
+:root {
+  --dark-gray: #333;
+  --light-gray: #555;
+  --gradient-light: #f3f3f3;
+  --gradient-dark: #8a8989;
+  --footer-text-color: #050505;
+}
+
+section button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+section button:hover {
+  background-color: #555;
+}
+
+footer {
+  background: linear-gradient(to right, #f3f3f3, #8a8989);
+  color: #050505;
+  padding: 40px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.footer img {
+  width: 250px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+footer ul {
+  margin-bottom: 20px;
+}
+
+footer .social-links ul li {
+  border: none;
+  padding: 0;
+}
+
+footer .social-links ul li:hover {
+  background-color: transparent;
+  color: inherit;
+}
+
+footer ul li {
+  display: inline;
+  margin-right: 20px;
+  font-weight: bold;
+  border: 5px 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+footer ul li:hover {
+  background-color: #918d8d;
+  color: #fff;
+}
+
+footer ul li a {
+  color: #111111;
+  text-decoration: none;
+}
+
+.contact-form {
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.contact-form button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #555;
+}
+
+.Contacts {
+  color: red;
+  text-align: center;
+}
+
+.About {
+  color: red;
+  text-align: center;
+}
+.eror {
+  width: 30%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: auto;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding-left: 20px;
+  list-style-position: inside;
+}

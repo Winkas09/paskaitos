@@ -1,0 +1,31 @@
+.lightblue {
+    color: lightblue;
+}
+
+.Green {
+    color: rgb(6, 233, 6);
+}
+
+.bold {
+    font-weight: 700;
+}
+
+html {
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+}
+
+.Lorem {
+    font-style: italic;
+    width: 500px;
+}
+
+.Pagalba {
+    font-style: oblique;
+}
+
+H2 {
+    background: silver;
+    width: 500px;
+    color: black;
+}

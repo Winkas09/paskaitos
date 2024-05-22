@@ -1,0 +1,35 @@
+h1 {
+    color: greenyellow;
+    background: lightcoral;
+    font-style: italic;
+    background-size: cover;
+}
+a{
+    color: rgb(10, 48, 129);
+}
+p.banana {
+    color: yellow;
+}
+p#black {
+    background: black;
+    color: white;
+}
+h1 {
+
+}
+
+h1 span {
+
+}
+
+.banana {
+
+}
+
+p.banana {
+
+}
+
+div p span.banana{
+    
+}

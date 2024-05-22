@@ -1,0 +1,109 @@
+body {
+  color: white;
+}
+
+.content-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+header {
+  background-color: #333;
+  text-align: center;
+}
+
+header img {
+  width: 350px;
+}
+
+header h1 {
+  text-align: left;
+  color: white;
+}
+
+header nav {
+  text-align: right;
+  background-color: yellowgreen;
+  padding: 40px;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+header nav a:last-child {
+  margin-right: 0;
+}
+header nav a:hover {
+  text-decoration: underline;
+}
+
+section .content-wrapper {
+  padding: 20px;
+}
+
+#about,
+#contact {
+  color: black;
+  text-align: center;
+}
+#about h2 {
+  text-align: left;
+}
+#about p {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+#about a {
+  background-color: red;
+  border-radius: 50px;
+  color: white;
+  padding: 20px 40px;
+}
+
+#tables {
+  background-color: #333;
+}
+
+table,
+th,
+td {
+  border: 3px solid red;
+  border-collapse: collapse;
+}
+
+table {
+  width: 100%;
+}
+td {
+  padding: 5px;
+  text-align: center;
+}
+
+td:last-child,
+tr:last-child {
+  text-align: right;
+  font-weight: bold;
+}
+
+#contacts h2,
+#contacts ul {
+  text-align: left;
+}
+
+footer {
+  text-align: center;
+  color: white;
+  background-color: yellowgreen;
+  padding: 20px;
+}
+
+.content-wrapper a {
+  background-color: red;
+  border-radius: 50px;
+  color: white;
+  padding: 20px 40px;
+}

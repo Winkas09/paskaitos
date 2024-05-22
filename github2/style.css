@@ -1,0 +1,113 @@
+.figtree-body {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500px;
+  font-style: normal;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500px;
+  font-style: normal;
+  background-color: yellow;
+}
+article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  border: 1px solid black;
+  border-radius: 35px;
+  flex-direction: column;
+  background-color: white;
+  width: 400px;
+  height: 600px;
+  box-shadow: 10px 10px 5px 0px black;
+  padding: 0px 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+article > * {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+img {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  border-radius: 10px;
+  align-items: center;
+}
+
+div.learning {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  margin: 0;
+  padding: 10px;
+  background-color: yellow;
+  text-align: left;
+}
+div.learning {
+  align-self: flex-start;
+}
+
+div.pusblished {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+}
+div.pusblished {
+  align-self: flex-start;
+}
+div.title {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 1.5em;
+  color: black;
+  text-align: center;
+  margin: 0px;
+  align-self: flex-start;
+}
+
+div.title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+div.author {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 1em;
+  color: black;
+  text-align: center;
+  margin: 10px;
+  align-self: flex-start;
+}
+
+div.learning,
+div.published,
+div.title,
+div.content {
+  text-align: left;
+}
