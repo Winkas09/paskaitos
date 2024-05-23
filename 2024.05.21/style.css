@@ -22,7 +22,7 @@ header h1 {
 }
 
 header nav {
-  text-align: right;
+  text-align: center;
   background-color: yellowgreen;
   padding: 40px;
 }
@@ -45,7 +45,7 @@ section .content-wrapper {
 }
 
 #about,
-#contact {
+#contacts {
   color: black;
   text-align: center;
 }
@@ -92,6 +92,7 @@ tr:last-child {
 #contacts h2,
 #contacts ul {
   text-align: left;
+  color: #333;
 }
 
 footer {
