@@ -81,10 +81,9 @@ img.uk-logo {
 
 .h2-wrapper {
   font-weight: bold;
-  font-size: 13px;
+  font-size: 10px;
   color: #91979b;
   text-align: left;
-  font-size: 10px;
   margin-top: 10px;
   background-color: rgba(12, 28, 41, 255);
   padding-left: 10px;
@@ -98,4 +97,21 @@ img.uk-logo {
   height: auto;
 }
 
-/* https://i.pinimg.com/736x/0f/99/a4/0f99a4a3bc5f4264abd0978e1fb843a5.jpg */
+.icons img {
+  width: 20px;
+  height: auto;
+}
+
+td {
+  padding: 5px;
+  text-align: left;
+}
+
+table {
+  width: 80%;
+}
+
+td.right {
+  text-align: right;
+  font-weight: bold;
+}
