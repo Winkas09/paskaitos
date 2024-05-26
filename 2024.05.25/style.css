@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 60px;
+  background-color: black;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px auto;
+  overflow: hidden;
+  background-color: rgba(12, 28, 41, 255);
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  transition: 0.3s;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li a {
+  display: block;
+  color: #91979b;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  color: rgb(240, 9, 9);
+  border-bottom: 2px solid rgb(240, 9, 9);
+}
+
+.header-wrapper {
+  color: white;
+  text-align: left;
+  font-size: 10px;
+  margin-top: 10px;
+  background-color: rgba(12, 28, 41, 255);
+  padding: 10px auto;
+  border: 10px solid rgba(12, 28, 41, 255);
+  border-radius: 10px;
+  width: 85%;
+}
+
+img.star {
+  width: 20px;
+  height: auto;
+  padding-left: 15px;
+}
+
+img.uk-logo {
+  width: 25px;
+  height: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.all-wrapper {
+  color: rgba(7, 19, 31, 255);
+  background-color: rgba(7, 19, 31, 255);
+}
+
+.main-wrapper {
+  color: white;
+}
+
+.h2-wrapper {
+  font-weight: bold;
+  font-size: 13px;
+  color: #91979b;
+  text-align: left;
+  font-size: 10px;
+  margin-top: 10px;
+  background-color: rgba(12, 28, 41, 255);
+  padding-left: 10px;
+  border: 10px solid rgba(12, 28, 41, 255);
+  border-radius: 10px;
+  width: 85%;
+}
+
+.stars img {
+  width: 20px;
+  height: auto;
+}
+
+/* https://i.pinimg.com/736x/0f/99/a4/0f99a4a3bc5f4264abd0978e1fb843a5.jpg */
