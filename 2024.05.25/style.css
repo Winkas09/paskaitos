@@ -102,13 +102,19 @@ img.uk-logo {
   height: auto;
 }
 
-td {
-  padding: 0px;
-  text-align: left;
-}
-
 table {
   width: 80%;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid #91979b;
+}
+
+td {
+  padding: 0px;
+  position: relative;
+  border-collapse: collapse;
 }
 
 td.right {
@@ -117,4 +123,12 @@ td.right {
   padding: 0;
   font-size: 15px;
   width: 50px;
+}
+td:not(.right):last-child::after {
+  content: "";
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  width: 3px;
+  background: grey;
 }
