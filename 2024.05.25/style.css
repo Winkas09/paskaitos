@@ -103,7 +103,7 @@ img.uk-logo {
 }
 
 td {
-  padding: 5px;
+  padding: 0px;
   text-align: left;
 }
 
@@ -114,4 +114,7 @@ table {
 td.right {
   text-align: right;
   font-weight: bold;
+  padding: 0;
+  font-size: 15px;
+  width: 50px;
 }
