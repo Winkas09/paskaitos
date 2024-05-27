@@ -1,0 +1,64 @@
+body {
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  background-image: url(https://safarifrank.com/wp-content/uploads/2021/05/frank-steenhuisen-adventures-experiences-savuti-elephant-bulls-sunset-safaris-photography.jpg);
+}
+
+h1 {
+  text-align: center;
+  color: black;
+  font-size: 50px;
+}
+
+main {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 50px;
+  border-radius: 20px;
+  margin: 50px auto;
+  max-width: 600px;
+}
+
+form input,
+form textarea,
+form label {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  background: none;
+}
+
+form input,
+form textarea {
+  background: white;
+}
+
+form textarea:focus {
+  border: 5px solid orange;
+  box-shadow: 0 5px 15px 2px orange;
+}
+
+form input:focus {
+  border: 5px solid orange;
+  box-shadow: 0 5px 15px 2px orange;
+}
+
+button {
+  background: #333;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  width: 250px;
+}
+button:hover {
+  background: #cc0707;
+  box-shadow: 0 5px 15px 2px black;
+}
+button:active {
+  background: orange;
+}
