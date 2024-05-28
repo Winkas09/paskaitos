@@ -26,12 +26,11 @@ form select {
   font-size: 20px;
   padding: 0.5rem;
   border: 1px solid black;
-  width: 50%;
   margin: 0 auto;
 }
 
 #age {
-  width: 21%;
+  width: 12%;
 }
 button:hover {
   background-color: rgb(73, 72, 72);
@@ -79,6 +78,6 @@ button {
   border: 3px solid black;
   border-left: 3px solid grey;
   border-top: 3px solid grey;
-  width: 50%;
+  width: 20%;
   margin: 0 auto;
 }
