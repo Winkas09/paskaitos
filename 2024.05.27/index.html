@@ -34,11 +34,17 @@
         />
         <label for="message">Message:</label>
         <textarea
+          rows="6"
+          cols="60"
           id="message"
           name="message"
           placeholder="Enter your message here..."
         ></textarea>
-        <label 
+        <div class="checkbox-container">
+          <label for="terms">I agree to the terms and conditions</label>
+          <input type="checkbox" id="terms" name="terms" />
+        </div>
+        <label for="submitButton"></label>
         <button type="submit">Send</button>
       </form>
     </main>

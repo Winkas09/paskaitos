@@ -62,3 +62,15 @@ button:hover {
 button:active {
   background: orange;
 }
+
+.checkbox-container {
+  text-align: center;
+}
+
+input[type="checkbox"]:focus {
+  box-shadow: none;
+}
+
+textarea {
+  resize: none;
+}
