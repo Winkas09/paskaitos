@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Register to Fancy Form</h1>
+      <h2>
+        All fields are <span class="pink">required</span> unless marked as
+        "optional"
+      </h2>
+      <div class="form-wrapper">
+        <form>
+          <label for="Your unique ID that you can't change">
+            Your unique ID that you can't change:</label
+          ><input
+            type="text"
+            id="Your unique ID that you can't change"
+            name="Your unique ID that you can't change"
+            value="YBX0123"
+            readonly
+          />
+          <label for="email">Email:</label
+          ><input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email address"
+            required
+          />
+          <label for="password">Password:</label
+          ><input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          />
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            placeholder="Enter your age"
+            required
+            min="18"
+            max="65"
+          />
+          <label for="Tell us a little about yourself"
+            >Tell us a little about yourself:</label
+          ><textarea
+            rows="6"
+            cols="60"
+            id="Tell us a little about yourself"
+            name="Tell us a little about yourself"
+            placeholder="Give us a brief description about yourself..."
+            required
+          ></textarea>
+          <div class="checkbox-container">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms">I agree to the terms and conditions</label>
+          </div>
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
