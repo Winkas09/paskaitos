@@ -27,6 +27,7 @@ form select {
   padding: 0.5rem;
   border: 1px solid black;
   margin: 0 auto;
+  width: 50%;
 }
 
 #age {
