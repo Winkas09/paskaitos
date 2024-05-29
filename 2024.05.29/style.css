@@ -1,5 +1,5 @@
 .container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -30,7 +30,6 @@ nav a:hover {
 main {
   display: flex;
   padding: 20px;
-  text-align: left;
   font-family: "Times New Roman", Times, serif;
 }
 
@@ -44,11 +43,18 @@ section#about-us {
   margin-right: 20px;
 }
 
+section#about-us .button {
+  float: right;
+}
+
 section#mission {
   flex: 2;
   margin-right: 20px;
 }
 
+section#mission .button {
+  float: right;
+}
 .button {
   background-color: rgba(184, 203, 33, 255);
   color: white;
@@ -63,4 +69,6 @@ footer {
   padding: 20px;
   text-align: center;
   font-weight: bold;
+  width: 855px;
+  margin: auto;
 }
