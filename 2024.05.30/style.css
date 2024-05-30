@@ -1,14 +1,17 @@
 body {
   background-color: lightblue;
+  width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .container {
-  margin: 0 auto;
   font-family: barlow, sans-serif;
   font-size: 13px;
-  width: 1400px;
   display: flex;
-  align-items: center;
 }
 .author-1 {
   background-color: hsl(263, 55%, 52%);
@@ -19,28 +22,28 @@ body {
   padding: 10px;
   border-radius: 15px;
   margin-top: 50px;
-  width: 55%;
+  width: 60%;
 }
 .author-2 {
   background-color: hsl(217, 19%, 35%);
   padding: 10px;
   border-radius: 15px;
   margin-top: 50px;
-  width: 35%;
+  width: 30%;
 }
 .author-3 {
   background-color: hsl(0, 0%, 100%);
   padding: 10px;
   border-radius: 15px;
   margin-top: 20px;
-  width: 35%;
+  width: 30%;
 }
 .author-4 {
   background-color: hsl(219, 29%, 14%);
   padding: 10px;
   border-radius: 15px;
   margin-top: 20px;
-  width: 55%;
+  width: 60%;
 }
 .author-5 {
   background-color: hsl(0, 0%, 100%);
@@ -48,7 +51,6 @@ body {
   border-radius: 15px;
   width: 100%;
   margin-top: 50px;
-  margin: 0 auto;
 }
 
 img {
@@ -110,7 +112,6 @@ img {
   display: flex;
   width: 20%;
   justify-content: center;
-  padding: 40px;
 }
 .left {
   display: flex;
