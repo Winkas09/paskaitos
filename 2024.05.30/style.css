@@ -1,0 +1,120 @@
+body {
+  background-color: lightblue;
+}
+
+.container {
+  margin: 0 auto;
+  font-family: barlow, sans-serif;
+  font-size: 13px;
+  width: 1400px;
+  display: flex;
+  align-items: center;
+}
+.author-1 {
+  background-color: hsl(263, 55%, 52%);
+  background-image: url("https://raw.githubusercontent.com/frontendmentorio/testimonials-grid-section/e011521d9f6f715e5c374eb752c3a8e8e94d04ac/images/bg-pattern-quotation.svg");
+  background-position: 90% 10%;
+  background-repeat: no-repeat;
+  background-size: 15%;
+  padding: 10px;
+  border-radius: 15px;
+  margin-top: 50px;
+  width: 55%;
+}
+.author-2 {
+  background-color: hsl(217, 19%, 35%);
+  padding: 10px;
+  border-radius: 15px;
+  margin-top: 50px;
+  width: 35%;
+}
+.author-3 {
+  background-color: hsl(0, 0%, 100%);
+  padding: 10px;
+  border-radius: 15px;
+  margin-top: 20px;
+  width: 35%;
+}
+.author-4 {
+  background-color: hsl(219, 29%, 14%);
+  padding: 10px;
+  border-radius: 15px;
+  margin-top: 20px;
+  width: 55%;
+}
+.author-5 {
+  background-color: hsl(0, 0%, 100%);
+  padding: 10px;
+  border-radius: 15px;
+  width: 100%;
+  margin-top: 50px;
+  margin: 0 auto;
+}
+
+img {
+  border-radius: 50%;
+  border: 2px solid lightgrey;
+}
+.img-about {
+  display: flex;
+}
+.author-1 .about-author,
+.author-2 .about-author,
+.author-4 .about-author {
+  margin-left: 20px;
+  margin-top: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+.author-3 .about-author,
+.author-5 .about-author {
+  margin-left: 20px;
+  margin-top: 18px;
+  font-weight: bold;
+  color: black;
+}
+.author-1 h2,
+.author-2 h2,
+.author-4 h2 {
+  color: white;
+}
+
+.author-1 .small-grey,
+.author-2 .small-grey,
+.author-4 .small-grey {
+  color: hsl(0, 0%, 81%);
+  opacity: 50%;
+}
+
+.author-3 .small-grey,
+.author-5 .small-grey {
+  color: hsl(0, 1%, 20%);
+  opacity: 50%;
+}
+
+.author-1 p,
+.author-2 p,
+.author-4 p {
+  color: hsl(210, 46%, 95%);
+  opacity: 70%;
+}
+
+.author-3 p,
+.author-5 p {
+  color: hsl(0, 0%, 0%);
+  opacity: 70%;
+}
+
+.right {
+  display: flex;
+  width: 20%;
+  justify-content: center;
+  padding: 40px;
+}
+.left {
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
