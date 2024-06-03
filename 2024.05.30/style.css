@@ -1,16 +1,17 @@
 body {
   background-color: lightblue;
-  width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
 }
 
 .container {
   font-family: barlow, sans-serif;
   font-size: 13px;
+  margin: 0 auto;
+  max-width: 1400px;
   display: flex;
 }
 .author-1 {
