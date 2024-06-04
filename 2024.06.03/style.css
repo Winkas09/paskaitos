@@ -49,9 +49,9 @@ span {
 .task-container {
   text-align: center;
   gap: 20px;
-  border: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
   border-radius: 5px;
-  margin: 20px auto;
+  margin: 30px auto;
   padding: 10px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
@@ -103,6 +103,13 @@ button.add {
   padding: 20px;
   margin: 10px 0;
 }
+
+.task1:hover,
+.task2:hover {
+  background-color: rgb(108, 59, 201);
+  border-radius: 20px;
+}
+
 .button-container {
   margin-left: auto;
 }
