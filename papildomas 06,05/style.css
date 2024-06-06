@@ -4,10 +4,10 @@
   box-sizing: border-box;
 }
 body {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100vh; */
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
 }
@@ -79,7 +79,7 @@ h1 {
   text-align: center;
   font-size: 0.8em;
   color: rgba(255, 255, 255, 0.7);
-  width: 98%;
+  width: 65%;
   margin: auto;
   word-wrap: break-word;
 }
