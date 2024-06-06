@@ -14,9 +14,12 @@ body {
 
 .main-wrapper {
   display: flex;
-  max-width: 1440px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0;
+  background-color: white;
+  box-shadow: 0px 4px 8px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
 }
 
 .left-container {
@@ -35,8 +38,6 @@ body {
   justify-content: center;
   color: white;
   font-size: 1.2em;
-  margin-right: -18px;
-  z-index: 1;
 }
 
 h1 {
@@ -88,7 +89,7 @@ h1 {
   border-bottom-left-radius: 0;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
-  padding: 30px 30px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,14 +99,13 @@ h1 {
 
 .item {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+
   row-gap: 20px;
   column-gap: 60px;
 }
 
 .button-continue {
-  width: 80%;
+  width: 100%;
   background-color: rgba(48, 59, 89, 255);
   border: none;
   color: white;
@@ -124,19 +124,19 @@ h1 {
   color: white;
 }
 
-.label-1-style {
+.label-1 {
   font-weight: bold;
   color: red;
 }
-.label-2-style {
+.label-2 {
   font-weight: bold;
   color: orange;
 }
-.label-3-style {
+.label-3 {
   font-weight: bold;
   color: green;
 }
-.label-4-style {
+.label-4 {
   font-weight: bold;
   color: blue;
 }
@@ -146,4 +146,32 @@ h1 {
 .light {
   color: rgba(122, 120, 120, 0.7);
   font-weight: bold;
+}
+
+.red-background {
+  background-color: rgba(255, 0, 0, 0.2);
+  padding: 5px;
+  border-radius: 15px;
+}
+.yellow-background {
+  background-color: rgba(248, 244, 10, 0.2);
+  padding: 5px;
+  border-radius: 15px;
+}
+.green-background {
+  background-color: rgba(6, 209, 23, 0.2);
+  padding: 5px;
+  border-radius: 15px;
+}
+.blue-background {
+  background-color: rgba(1, 5, 238, 0.2);
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  gap: 50px;
 }
