@@ -6,17 +6,17 @@
 
 .main-wrapper {
   display: flex;
-  background-color: rgb(245, 245, 236);
+  background-color: #f2f2f2;
 }
 
 .left-container {
   width: 60%;
-  background-color: rgb(219, 215, 215);
+  background-color: #f2f2f2;
 }
 
 .right-container {
   width: 40%;
-  background-color: rgb(241, 218, 218);
+  background-color: #f2f2f2;
 }
 
 h1 {
@@ -40,7 +40,7 @@ h1 {
 .news-item-1 {
   grid-row: 1;
   row-gap: 0;
-  background-color: rgb(228, 231, 233);
+  background-color: #fffffe;
   text-align: left;
 }
 
@@ -194,7 +194,7 @@ section.podcast-radio {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background-color: aliceblue;
+  background-color: f2f2f2;
 }
 
 section.renginiai {
@@ -391,7 +391,7 @@ h3 {
 }
 
 .renginiai {
-  background-color: silver;
+  background-color: #f2f2f2;
 }
 .event-1,
 .event-2,
@@ -405,6 +405,19 @@ h3 {
 .event-image {
   width: 100%;
   height: auto;
+  position: relative;
+}
+
+.event {
+  position: relative;
+}
+
+.event-1 {
+  position: relative;
+}
+
+.event-image {
+  position: relative;
 }
 .date-1 {
   position: absolute;
