@@ -1,0 +1,95 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #eee;
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 60rem;
+}
+
+header {
+  padding: 1.5rem 0;
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo {
+  max-width: 100%;
+  width: 6rem;
+}
+
+nav {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  margin-top: 0.5rem;
+}
+nav a {
+  color: #444;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+main {
+  display: flex;
+}
+
+.block {
+  background: #fff;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin: 1rem;
+}
+
+aside {
+  flex: 1;
+}
+
+main > .block {
+  flex: 3;
+  margin-left: 0;
+}
+
+footer {
+  color: grey;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  aside,
+  main > .block {
+    flex: none;
+    margin: 0 auto; /* Center the blocks on small screens */
+  }
+
+  .block {
+    margin: 0.5rem; /* Reduce margin on small screens */
+  }
+}
