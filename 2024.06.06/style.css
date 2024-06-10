@@ -1,4 +1,10 @@
-* {
+:root {
+  --main-bg-color: #f2f2f2;
+}
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,12 +12,12 @@
 
 .main-wrapper {
   display: flex;
-  background-color: #f2f2f2;
+  background-color: var(--main-bg-color);
 }
 
 .left-container {
   width: 60%;
-  background-color: #f2f2f2;
+  background-color: var(--main-bg-color);
 }
 
 .right-container {
@@ -56,7 +62,7 @@ h1 {
 
 .news-image {
   width: 100%;
-  height: 200px;
+  height: 300px;
   object-fit: cover;
 }
 .news-item-3 .news-image,
@@ -64,6 +70,8 @@ h1 {
 .news-item-5 .news-image,
 .news-item-6 .news-image {
   width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
 .news-content {
@@ -205,6 +213,7 @@ section.renginiai {
 .radio-1 {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .radio-1 .top-section {
@@ -252,6 +261,7 @@ section.renginiai {
 .radio-2 {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .radio-2 .top-section {
@@ -298,6 +308,7 @@ section.renginiai {
 .radio-3 {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .radio-3 .top-section {
@@ -344,6 +355,7 @@ section.renginiai {
 .radio-4 {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .radio-4 .top-section {
@@ -393,6 +405,12 @@ h3 {
 .renginiai {
   background-color: #f2f2f2;
 }
+.event-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
 .event-1,
 .event-2,
 .event-3,
@@ -401,28 +419,13 @@ h3 {
   width: 60%;
   border: 1px solid black;
   margin: 30px;
-}
-.event-image {
-  width: 100%;
   height: auto;
-  position: relative;
 }
 
-.event {
-  position: relative;
-}
-
-.event-1 {
-  position: relative;
-}
-
-.event-image {
-  position: relative;
-}
 .date-1 {
   position: absolute;
   width: 100px;
-  top: 300px;
+  top: 290px;
   height: auto;
   text-align: center;
   border-radius: 50%;
