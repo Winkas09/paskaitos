@@ -18,14 +18,14 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 60rem;
+  max-width: 1400px;
 }
 
 header {
   padding: 1.5rem 0;
 }
 
-.brand-container {
+.header-container {
   display: flex;
   align-items: center;
 }
@@ -41,18 +41,27 @@ nav {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   padding: 1.5rem;
   margin-top: 0.5rem;
+  font-weight: bold;
 }
 nav a {
   color: #444;
   text-decoration: none;
+  margin: 0 1rem;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: #000;
+  background-color: grey;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.3s;
 }
 
-nav a:not(:last-child) {
-  margin-right: 1.5rem;
+.login,
+.help {
+  display: block;
+  text-decoration: none;
+  color: #444;
 }
 
 main {
@@ -71,12 +80,13 @@ main {
 
 aside {
   flex: 1;
+  font-weight: bold;
 }
 
 main > .login,
 .help,
 .title {
-  flex: 3;
+  flex: 2;
 }
 
 footer {
