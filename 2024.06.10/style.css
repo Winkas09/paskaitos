@@ -59,7 +59,9 @@ main {
   display: flex;
 }
 
-.block {
+.login,
+.help,
+.title {
   background: #fff;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   border-radius: 0.5rem;
@@ -71,9 +73,10 @@ aside {
   flex: 1;
 }
 
-main > .block {
+main > .login,
+.help,
+.title {
   flex: 3;
-  margin-left: 0;
 }
 
 footer {
@@ -86,10 +89,12 @@ footer {
   aside,
   main > .block {
     flex: none;
-    margin: 0 auto; /* Center the blocks on small screens */
+    margin: 0 auto;
   }
 
-  .block {
-    margin: 0.5rem; /* Reduce margin on small screens */
+  .login,
+  .help,
+  .title {
+    margin: 0.5rem;
   }
 }
