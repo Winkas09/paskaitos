@@ -156,10 +156,14 @@ footer {
     font-size: larger;
   }
 
-  .hero {
+  section.hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .img {
+    width: 80%;
   }
 
   .features .grow-together,
@@ -200,9 +204,4 @@ footer {
   .footer-social {
     display: flex;
   }
-}
-
-/* 1400 */
-
-@media screen and (min-width: 1440px) {
 }
