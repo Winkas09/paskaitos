@@ -1,0 +1,270 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f0f0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+}
+span.purple {
+  color: #6a0dad;
+}
+a {
+  margin: auto 5px;
+  text-decoration: none;
+}
+
+.header-container {
+  text-align: center;
+  padding: 200px 0;
+  background-color: #6a0dad;
+  color: white;
+}
+
+.aboutus {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.aboutus-text {
+  text-align: left;
+}
+
+.services-container {
+  padding: 20px 0;
+}
+
+h2 {
+  text-align: center;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row: inherit;
+  padding: 20px 0;
+  text-align: center;
+}
+
+section.tours {
+  padding: 20px 0;
+}
+
+.tour-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.tour-info .country {
+  grid-row: span 2;
+  align-self: center;
+  padding: 0 20px;
+}
+
+.days-price {
+  margin: 0;
+  text-align: right;
+  padding: 0 20px;
+}
+
+.tour {
+  position: relative;
+}
+.tour-date {
+  position: absolute;
+  top: 10px;
+  background-color: #6a0dad;
+  color: white;
+  padding: 5px 10px;
+}
+
+button {
+  background-color: #6a0dad;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+button:hover {
+  background-color: #4b007d;
+}
+
+.tours-btn {
+  display: block;
+  margin: 30px auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.gallery-wrapper {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  background-color: #6a0dad;
+}
+
+.gallery-images {
+  background-color: #6a0dad;
+}
+
+.gallery-left {
+  padding: 20px;
+  text-align: center;
+}
+.gallery-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.email-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.email-form input[type="email"] {
+  font-size: 0.7em;
+  padding: 1em 0.8em;
+  background-color: white;
+  border-radius: 2px 0 0 2px;
+  outline: none;
+  border: none;
+  margin: 0;
+  height: 1.5em;
+  box-sizing: border-box;
+}
+
+.email-form input[type="email"]::placeholder {
+  text-transform: uppercase;
+}
+
+.email-form button {
+  font-size: 0.7em;
+  background-color: lightgrey;
+  border: none;
+  color: black;
+  font-weight: 500;
+  letter-spacing: 0;
+  cursor: pointer;
+  border-radius: 0 2px 2px 0;
+  margin: 0 1em 0 0;
+  padding: 1em 0.8em;
+  height: 1.5em;
+  line-height: 0;
+}
+
+.email-form button:hover {
+  background-color: rgb(216, 214, 214);
+}
+
+.footer-container {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+footer nav {
+  padding: 20px 0;
+}
+
+footer nav.white a {
+  color: white;
+}
+
+footer nav a {
+  color: #6a0dad;
+}
+
+.white a {
+  color: transparent;
+  text-decoration: none;
+}
+
+@media (min-width: 749px) {
+  .header-container {
+    background: linear-gradient(rgba(74, 63, 218, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1504280317859-9c6cce36bca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format") center/cover no-repeat;
+    text-align: center;
+    padding: 200px 0;
+  }
+
+  .header-container h1 {
+    font-size: 60px;
+    padding: 0;
+  }
+
+  .header-container p {
+    font-size: 15px;
+  }
+
+  .white a {
+    color: black;
+    font-weight: bold;
+  }
+
+  .image-content {
+    display: flex;
+    width: 50%;
+  }
+
+  .img-box-border {
+    border: 5px solid rgb(100, 92, 255);
+    border-radius: 3px;
+  }
+
+  .img-relative {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .aboutus-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin: 20px;
+  }
+
+  .aboutus-text {
+    width: 50%;
+    margin: auto;
+    padding: 0 20px;
+  }
+
+  .services-grid {
+    display: flex;
+  }
+
+  .tours-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 20px;
+  }
+
+  .gallery-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
