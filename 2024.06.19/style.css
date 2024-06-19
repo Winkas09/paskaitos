@@ -1,0 +1,24 @@
+.kitten-pics {
+  object-fit: cover;
+  height: 600px;
+}
+
+.nav-link.active {
+  text-decoration: underline;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#menubtn {
+  position: fixed;
+  padding: 10px;
+  left: 2400px;
+  top: 600px;
+  background-color: #333;
+  color: white;
+  width: 60px;
+  height: 60px;
+}
