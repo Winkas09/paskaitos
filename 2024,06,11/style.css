@@ -1,56 +1,25 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 body {
   background: grey;
-}
-
-header {
-  background: white;
-  text-align: center;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-header img {
-  width: 100px;
-  height: auto;
-}
-
-header nav a {
-  display: block;
-  padding: 10px;
-  text-decoration: none;
-  color: purple;
 }
 
 .header-container {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-h1 {
-  color: grey;
+.header-container header {
+  background: white;
   text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
 }
-
-table {
-  width: 100%;
-  border-collapse: collapse;
+.header-container header img {
+  width: 100px;
+  height: auto;
 }
-
-table th {
-  padding: 5px;
-}
-
-table th,
-table td {
-  color: grey;
-  text-align: left;
-  padding: 10 px;
-  border-bottom: 1px solid violet;
+.header-container nav a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: purple;
 }
 
 .main-wrapper {
@@ -60,187 +29,27 @@ table td {
   border: 1px solid grey;
   border-radius: 5px;
 }
+.main-wrapper h1 {
+  color: grey;
+  text-align: center;
+}
+.main-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.main-wrapper table thead tr th {
+  padding: 5px;
+}
+.main-wrapper table thead tr table th,
+.main-wrapper table thead tr table td {
+  color: grey;
+  text-align: left;
+  padding: 10 px;
+  border-bottom: 1px solid violet;
+}
 
 footer {
   text-align: center;
   padding: 10px;
   margin-top: 20px;
-}
-
-@media screen and (min-width: 300px) {
-  header {
-    background: white;
-    text-align: center;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-
-  header img {
-    width: 100px;
-    height: auto;
-  }
-
-  header nav a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: purple;
-  }
-
-  .header-container {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  h1 {
-    color: grey;
-    text-align: center;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  table th {
-    padding: 5px;
-  }
-
-  table th,
-  table td {
-    color: grey;
-    text-align: left;
-    padding: 10 px;
-    border-bottom: 1px solid violet;
-  }
-
-  .main-wrapper {
-    background-color: white;
-    margin: 10px;
-    border: 1px solid grey;
-    border-radius: 5px;
-    padding: 20px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-  }
-}
-
-@media screen and (min-width: 600px) {
-  header {
-    background: white;
-    text-align: center;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-
-  header img {
-    width: 100px;
-    height: auto;
-  }
-
-  header nav a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: purple;
-  }
-
-  .header-container {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  h1 {
-    color: grey;
-    text-align: center;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  table th {
-    padding: 5px;
-  }
-
-  table th,
-  table td {
-    color: grey;
-    text-align: center;
-    padding: 10 px;
-    border-bottom: 1px solid violet;
-  }
-
-  .main-wrapper {
-    background-color: white;
-    margin: 10px;
-    border: 1px solid grey;
-    border-radius: 5px;
-    padding: 20px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  header {
-    background: white;
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 0 20px;
-  }
-
-  header img {
-    width: 100px;
-    height: auto;
-  }
-
-  header nav a {
-    display: inline-block;
-    padding: 10px;
-    text-decoration: none;
-    color: purple;
-  }
-
-  .header-container {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-
-  table th {
-    padding: 5px;
-  }
-
-  table th,
-  table td {
-    color: grey;
-    text-align: left;
-    padding: 10 px;
-    border-bottom: 1px solid violet;
-  }
-
-  .main-wrapper {
-    background-color: white;
-    border: 1px solid grey;
-    border-radius: 5px;
-    margin: 10px auto;
-    width: 80%;
-    padding: 20px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-  }
-}
+}/*# sourceMappingURL=style.css.map */
