@@ -1,0 +1,29 @@
+@use "../_responsive.scss";
+@use "../_variables.scss";
+
+@include responsive.sm {
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 0;
+  }
+  .header-logo {
+    width: 1200px;
+    height: 20px;
+    padding: 0 0 0 5px;
+  }
+  .header-button {
+    border-radius: 20px;
+    border: 1px solid white;
+    $box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+    font-weight: bold;
+    display: block;
+    margin: 10px 10px 10px 20px;
+  }
+  .header-button:hover {
+    background-color: white;
+    color: #333;
+    font-weight: bold;
+  }
+}

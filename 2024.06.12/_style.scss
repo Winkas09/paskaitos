@@ -1,0 +1,129 @@
+@use "./_responsive";
+@use "./_variables";
+@use "./scss/header";
+@use "./header/foooter.scss";
+
+--source-map *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: $bg-color;
+  color: $color-dark;
+  font-size: 16px;
+
+  @include responsive.sm {
+    background-image: url("bg-hero-mobile.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  @include responsive.lg {
+    font-size: large;
+  }
+}
+
+section.hero {
+  @include responsive.sm {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    margin: 60px 20px;
+  }
+
+  @include responsive.lg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.hero-button {
+  @include responsive.sm {
+    border-radius: 20px;
+    border: 1px solid white;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    font-weight: bold;
+    display: block;
+    margin: auto;
+    background-color: $bg-color;
+    color: white;
+  }
+}
+
+img {
+  @include responsive.sm {
+    width: 100%;
+    margin: 20px 0px;
+  }
+
+  @include responsive.lg {
+    width: 80%;
+  }
+}
+
+.section.features {
+  @include responsive.sm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 20px 20px;
+  }
+}
+
+.section-cta {
+  @include responsive.sm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 20px 20px;
+  }
+}
+
+.cta-button {
+  @include responsive.sm {
+    border-radius: 20px;
+    border: 1px solid white;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    padding: 13px 50px;
+    font-weight: bold;
+    display: block;
+    margin: 20px auto;
+    background: orchid;
+    color: white;
+  }
+}
+
+@include responsive.lg {
+  .features .grow-together,
+  .features .your-users,
+  .features .flowing-conversations {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .features .grow-together img,
+  .features .your-users img,
+  .features .flowing-conversations img {
+    width: 45%;
+  }
+
+  .features .grow-together div,
+  .features .your-users div,
+  .features .flowing-conversations div {
+    width: 45%;
+  }
+}
