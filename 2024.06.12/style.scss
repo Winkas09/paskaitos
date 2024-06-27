@@ -1,20 +1,14 @@
-@use "./_responsive";
-@use "./_variables";
+@use "./scss/responsive";
+@use "./scss/variables";
 @use "./scss/header";
-@use "./header/foooter.scss";
-
---source-map *,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@use "./scss/foooter";
 
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: $bg-color;
-  color: $color-dark;
+  background-color: variables.$color-primary;
+  color: variables.$color-warning;
   font-size: 16px;
 
   @include responsive.sm {
@@ -54,7 +48,7 @@ section.hero {
     font-weight: bold;
     display: block;
     margin: auto;
-    background-color: $bg-color;
+    background-color: variables.$bg-color;
     color: white;
   }
 }
@@ -101,7 +95,7 @@ img {
     font-weight: bold;
     display: block;
     margin: 20px auto;
-    background: orchid;
+    background: variables.$color-primary;
     color: white;
   }
 }

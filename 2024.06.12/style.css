@@ -1,44 +1,17 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-  color: #333;
-}
-
-footer {
-  background-color: hsl(192, 100%, 9%);
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-}
-
-@media screen and (min-width: 375px) {
-  body {
-    background-image: url("bg-hero-mobile.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+@media screen and (max-width: 375px) {
   header {
     display: flex;
     justify-content: space-between;
     margin: 20px 20px 0;
   }
   .header-logo {
-    width: 120px;
+    width: 1200px;
     height: 20px;
     padding: 0 0 0 5px;
   }
   .header-button {
     border-radius: 20px;
     border: 1px solid white;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
     padding: 0 20px;
     font-weight: bold;
     display: block;
@@ -49,6 +22,97 @@ footer {
     color: #333;
     font-weight: bold;
   }
+}
+footer {
+  background-color: hsl(192, 100%, 9%);
+  color: #ffffff;
+  text-align: center;
+  padding: 20px 0;
+}
+@media screen and (max-width: 375px) {
+  footer {
+    text-align: left;
+  }
+  footer .footer-content {
+    margin: 20px 20px;
+  }
+  footer .footer-logo {
+    width: 160px;
+    height: 30px;
+  }
+  footer .footer-social img {
+    filter: invert(1);
+  }
+  footer .footer-legal {
+    text-align: center;
+    margin: 0 20px;
+  }
+}
+@media screen and (max-width: 760px) {
+  footer footer {
+    text-align: center;
+  }
+  footer .footer-logo {
+    width: 200px;
+    height: 40px;
+  }
+  footer footer ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+    list-style-type: none;
+    padding: 0;
+  }
+  footer footer ul li {
+    margin: 10px 0;
+  }
+}
+@media screen and (max-width: 760px) and (max-width: 800px) {
+  footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  footer .footer-links {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 300px;
+  }
+  footer .footer-links ul {
+    padding: 0;
+    list-style: none;
+  }
+  footer .footer-social {
+    display: flex;
+  }
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #007bff;
+  color: #ffc107;
+  font-size: 16px;
+}
+@media screen and (max-width: 375px) {
+  body {
+    background-image: url("bg-hero-mobile.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+@media screen and (max-width: 800px) {
+  body {
+    font-size: large;
+  }
+}
+
+@media screen and (max-width: 375px) {
   section.hero {
     justify-content: center;
     align-items: center;
@@ -56,6 +120,16 @@ footer {
     padding: 0 20px;
     margin: 60px 20px;
   }
+}
+@media screen and (max-width: 800px) {
+  section.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 375px) {
   .hero-button {
     border-radius: 20px;
     border: 1px solid white;
@@ -64,14 +138,25 @@ footer {
     font-weight: bold;
     display: block;
     margin: auto;
-    background: orchid;
+    background-color: orchid;
     color: white;
   }
+}
+
+@media screen and (max-width: 375px) {
   img {
     width: 100%;
     margin: 20px 0px;
   }
-  section.features {
+}
+@media screen and (max-width: 800px) {
+  img {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .section.features {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,7 +164,10 @@ footer {
     align-items: center;
     margin: 20px 20px;
   }
-  section.cta {
+}
+
+@media screen and (max-width: 375px) {
+  .section-cta {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -87,6 +175,9 @@ footer {
     align-items: center;
     margin: 20px 20px;
   }
+}
+
+@media screen and (max-width: 375px) {
   .cta-button {
     border-radius: 20px;
     border: 1px solid white;
@@ -95,77 +186,12 @@ footer {
     font-weight: bold;
     display: block;
     margin: 20px auto;
-    background: orchid;
+    background: #007bff;
     color: white;
-  }
-  footer {
-    text-align: left;
-  }
-  .footer-content {
-    margin: 20px 20px;
-  }
-
-  .footer-logo {
-    width: 160px;
-    height: 30px;
-  }
-  a {
-    color: white;
-    text-decoration: none;
-  }
-  .footer-social {
-    display: flex;
-    justify-content: center;
-  }
-  .footer-social img {
-    filter: invert(1);
-  }
-  .footer-legal {
-    text-align: center;
-    margin: 0 20px;
   }
 }
 
-/* 760 */
-
-@media screen and (min-width: 768px) {
-  footer {
-    text-align: center;
-  }
-  .footer-logo {
-    width: 200px;
-    height: 40px;
-  }
-  footer ul {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 20px;
-    list-style-type: none;
-    padding: 0;
-  }
-  footer ul li {
-    margin: 10px 0;
-  }
-}
-
-/* 1024 */
-
-@media screen and (min-width: 1024px) {
-  body {
-    font-size: larger;
-  }
-
-  section.hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .img {
-    width: 80%;
-  }
-
+@media screen and (max-width: 800px) {
   .features .grow-together,
   .features .your-users,
   .features .flowing-conversations {
@@ -173,35 +199,14 @@ footer {
     flex-wrap: wrap;
     justify-content: space-between;
   }
-
   .features .grow-together img,
   .features .your-users img,
   .features .flowing-conversations img {
     width: 45%;
   }
-
   .features .grow-together div,
   .features .your-users div,
   .features .flowing-conversations div {
     width: 45%;
   }
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .footer-links {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    max-height: 300px;
-  }
-  .footer-links ul {
-    padding: 0;
-    list-style: none;
-  }
-  .footer-social {
-    display: flex;
-  }
-}
+}/*# sourceMappingURL=style.css.map */

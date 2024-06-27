@@ -1,4 +1,7 @@
-@media screen and (max-width: 375px) {
+@use "./responsive";
+@use "./variables";
+
+@include responsive.sm {
   header {
     display: flex;
     justify-content: space-between;
@@ -12,6 +15,7 @@
   .header-button {
     border-radius: 20px;
     border: 1px solid white;
+    $box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
     padding: 0 20px;
     font-weight: bold;
     display: block;
@@ -22,4 +26,4 @@
     color: #333;
     font-weight: bold;
   }
-}/*# sourceMappingURL=header.css.map */
+}

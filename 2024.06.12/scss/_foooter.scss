@@ -1,9 +1,9 @@
-@use "../_responsive.scss";
-@use "../_variables.scss";
+@use "./responsive";
+@use "./variables";
 
 footer {
   background-color: hsl(192, 100%, 9%);
-  color: $color-white;
+  color: variables.$color-white;
   text-align: center;
   padding: 20px 0;
 
