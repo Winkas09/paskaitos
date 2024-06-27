@@ -3,9 +3,13 @@ body {
   font-family: "Poppins", sans-serif;
   background: #f8f8f8;
   padding: 0 32px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 475px) {
+  body {
+    cursor: pointer;
+  }
   .header-nav-desktop {
     display: none;
   }
