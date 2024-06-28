@@ -5,10 +5,12 @@ body {
   cursor: pointer;
 }
 
+body,
+html {
+  overflow-x: hidden;
+}
+
 @media screen and (max-width: 475px) {
-  body {
-    cursor: pointer;
-  }
   .header-nav-desktop {
     display: none;
   }
@@ -77,6 +79,7 @@ body {
   section.first {
     display: flex;
     text-align: left;
+    position: relative;
   }
   div.left {
     margin-top: 80px;
@@ -85,13 +88,13 @@ body {
 
   div.right {
     position: absolute;
-    right: -30%;
+    right: -170px;
     width: auto;
   }
 
   div.right img {
     overflow: hidden;
-    height: 350px;
+    height: 480px;
     width: 280px;
   }
 
@@ -151,6 +154,8 @@ body {
   }
 
   section.fourth {
+    padding: 20px 0;
+
     .bg-2 {
       background-color: #647864;
       border-radius: 5px;
@@ -158,6 +163,25 @@ body {
     .bg-1 {
       background: linear-gradient(358.27deg, rgba(100, 123, 100, 0.77) -118.86%, rgba(100, 123, 100, 0) 25.62%, rgba(100, 123, 100, 0) 98.53%);
       border-radius: 5px;
+    }
+  }
+
+  section.fifth {
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
+    height: 300px;
+
+    .overflow-img {
+      position: absolute;
+      left: -530px;
+      width: auto;
+      height: auto;
+    }
+
+    .text {
+      margin-left: 120px;
+      text-align: left;
     }
   }
 }
