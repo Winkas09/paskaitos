@@ -2,13 +2,22 @@
 body {
   font-family: "Poppins", sans-serif;
   background: #f8f8f8;
-  padding: 0 32px;
   cursor: pointer;
 }
 
 body,
 html {
   overflow-x: hidden;
+}
+
+.carousel-item {
+  width: auto;
+  height: auto;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
 }
 
 @media screen and (max-width: 475px) {
@@ -155,5 +164,24 @@ html {
   section.fifth .text {
     margin-left: 120px;
     text-align: left;
+    margin-top: 50px;
+  }
+  section.sixth {
+    padding: 40px 0;
+  }
+  section.sixth .carousel-item {
+    width: 100%;
+    height: auto;
+  }
+  footer {
+    padding: 20px 0;
+    background-color: #f0dcc5;
+  }
+  footer .social-media-icons {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 20px 50px;
+    gap: 40px;
   }
 }/*# sourceMappingURL=style.css.map */
