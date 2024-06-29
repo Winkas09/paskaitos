@@ -104,14 +104,16 @@ html {
 
   div.right img {
     overflow: hidden;
-    height: 480px;
-    width: 280px;
+    height: 350px;
+    width: 320px;
   }
 
   section.second {
-    margin: 50px 0;
     text-align: left;
     width: 70%;
+    margin-top: 120px;
+    margin-left: 20px;
+    padding: 8px;
     h3 {
       font-size: 13px;
       color: #f3b562;
@@ -138,14 +140,7 @@ html {
       opacity: 0;
       transition: opacity 0.5s ease;
     }
-    // .col:hover .img-bg::after {
-    //   opacity: 0.5;
-    //   border-radius: 10px;
-    // }
 
-    // .col:first-of-type {
-    //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); // Example shadow
-    // }
     .col {
       padding: 20px;
       transition: box-shadow 0.5s ease, opacity 0.5s ease;
@@ -213,6 +208,42 @@ html {
       list-style: none;
       padding: 20px 50px;
       gap: 40px;
+    }
+    div.footer {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+    }
+    p.awesome {
+      font-size: 20px;
+      margin: 0 8px;
+      font-weight: 500;
+      color: #647864;
+    }
+    div.text-footer p {
+      font-size: 14px;
+      font-weight: 400;
+    }
+    h5 {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 30px;
+      color: #647864;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .message-input {
+      width: 100%;
+      font-size: 14px;
+      height: 150px;
+      margin-bottom: 20px;
+    }
+    .btn-primary {
+      width: 100%;
     }
   }
 }

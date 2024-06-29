@@ -93,13 +93,15 @@ html {
   }
   div.right img {
     overflow: hidden;
-    height: 480px;
-    width: 280px;
+    height: 350px;
+    width: 320px;
   }
   section.second {
-    margin: 50px 0;
     text-align: left;
     width: 70%;
+    margin-top: 120px;
+    margin-left: 20px;
+    padding: 8px;
   }
   section.second h3 {
     font-size: 13px;
@@ -183,5 +185,41 @@ html {
     list-style: none;
     padding: 20px 50px;
     gap: 40px;
+  }
+  footer div.footer {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+  }
+  footer p.awesome {
+    font-size: 20px;
+    margin: 0 8px;
+    font-weight: 500;
+    color: #647864;
+  }
+  footer div.text-footer p {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  footer h5 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    color: #647864;
+  }
+  footer a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  footer .message-input {
+    width: 100%;
+    font-size: 14px;
+    height: 150px;
+    margin-bottom: 20px;
+  }
+  footer .btn-primary {
+    width: 100%;
   }
 }/*# sourceMappingURL=style.css.map */
