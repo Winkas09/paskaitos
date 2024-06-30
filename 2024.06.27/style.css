@@ -154,6 +154,9 @@ html {
     border-radius: 5px;
     position: relative;
   }
+  section.fourth div.hidden {
+    display: none;
+  }
   section.fifth {
     position: relative;
     overflow: hidden;
