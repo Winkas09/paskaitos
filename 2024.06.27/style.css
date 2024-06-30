@@ -88,6 +88,13 @@ html {
     text-align: left;
     position: relative;
   }
+  section.first .circle-behind {
+    position: absolute;
+    top: 21%;
+    left: 25%;
+    z-index: -1;
+    align-self: center;
+  }
   div.left {
     margin-top: 80px;
     width: 70%;
@@ -106,12 +113,22 @@ html {
     text-align: left;
     width: 70%;
     margin-top: 120px;
-    margin-left: 20px;
     padding: 8px;
   }
   section.second h3 {
     font-size: 13px;
     color: #f3b562;
+  }
+  section.second .background-gradient {
+    background: linear-gradient(164.26deg, rgba(239, 128, 49, 0) -335.51%, rgba(239, 128, 49, 0.15) -20.24%, rgba(239, 128, 49, 0) 119.45%);
+    margin-left: -10px;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  section.second .gradient1 {
+    margin-left: 20px;
   }
   section.third img.s-third-img {
     width: 20px;
@@ -162,6 +179,11 @@ html {
     background: linear-gradient(358.27deg, rgba(100, 123, 100, 0.77) -118.86%, rgba(100, 123, 100, 0) 25.62%, rgba(100, 123, 100, 0) 98.53%);
     border-radius: 5px;
     position: relative;
+  }
+  section.fourth .bg-1 .dotted {
+    position: absolute;
+    left: -15px;
+    bottom: -20px;
   }
   section.fourth div.hidden {
     display: none;
@@ -331,6 +353,16 @@ html {
     display: flex;
     text-align: left;
     justify-content: space-between;
+    position: relative;
+  }
+  section.first .circle-behind {
+    position: absolute;
+    top: -10%;
+    left: 15%;
+    z-index: -1;
+    width: 150px;
+    height: 150px;
+    align-self: center;
   }
   section.first .left {
     margin: 20px;
@@ -507,9 +539,12 @@ html {
   footer {
     padding: 0;
   }
+  footer div.row {
+    white-space: nowrap;
+  }
   .footer-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     padding: 20px;
     background-color: #f0dcc5;
