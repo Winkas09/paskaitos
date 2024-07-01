@@ -21,12 +21,8 @@ html {
 }
 
 @media (min-width: 340px) and (max-width: 750px) {
-  .carousel-images-row {
-    display: none;
-  }
-  section.seventh {
-    display: none;
-  }
+  .carousel-images-row,
+  section.seventh,
   .header-nav-desktop {
     display: none;
   }

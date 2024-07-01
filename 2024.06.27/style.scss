@@ -1,3 +1,5 @@
+@import "styles/mixins";
+
 body {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(180deg, #f8f8f8 0%, #e7e6e3 50%);
@@ -16,33 +18,21 @@ html {
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+  @include carousel-icon-filter;
 }
 
 @media (min-width: 340px) and (max-width: 750px) {
-  .carousel-images-row {
-    display: none;
-  }
-  section.seventh {
-    display: none;
-  }
+  .carousel-images-row,
+  section.seventh,
   .header-nav-desktop {
-    display: none;
+    @include hide-element;
   }
   .header-nav {
-    display: flex;
-    justify-content: space-between;
+    @include flex-space-between;
   }
 
   div.logo-name {
-    display: flex;
-    margin-top: 40px;
-    span {
-      color: #647864;
-      font-size: 20px;
-      margin: 0 8px;
-      font-weight: 500;
-    }
+    @include logo-name-style;
   }
 
   .menu-icon {

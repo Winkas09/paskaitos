@@ -1,0 +1,23 @@
+@mixin hide-element {
+  display: none;
+}
+
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin carousel-icon-filter {
+  filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+@mixin logo-name-style {
+  display: flex;
+  margin-top: 40px;
+  span {
+    color: #647864;
+    font-size: 20px;
+    margin: 0 8px;
+    font-weight: 500;
+  }
+}
