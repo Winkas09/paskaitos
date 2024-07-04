@@ -1,100 +1,98 @@
-// let value = true;
-// console.log(typeof value); // boolean
+// SLAPTAŽODIS:
+// 1. Jeigu slaptažodis yra trumpesnis už 16 simbolių, tai parašyti jog „Slaptažodis yra per trumpas. Jis privalo būti bent 16 simbolių ilgumo."
+// 2. Jeigu slaptažodis yra ilgesnis už 15 simbolių, tai:
+// 2.1. Patikrinti ar jis yra ilgesnis už 20 simbolių. Jeigu ilgesnis, tai parašyti: „Slaptažodis tinkamas".
+// 2.2. Jeigu jis nėra ilgesnis už 20 simbolių, tai parašyti jog: „Slaptažodis yra tinkamas. Tačiau rekomenduojama jog jis būtų bent 21 simbolio ilgumo."
 
-// value = String(value); // now value is a string "true"
-// console.log(typeof value); // string
+// 3. Jeigu slaptažodis neturi grotažymių (#), tai parašyti: „Slaptažodis privalo turėti grotažymes"
 
-// console.log("6" / "2"); // 3, strings are converted to numbers
+// let password = "123456789011";
+// if (password.length < 16) {
+//   console.log("Slaptažodis yra per trumpas. Jis privalo būti bent 16 simbolių ilgumo.");
+// } else if (password.length > 15) {
+//   if (password.length > 20) {
+//     console.log("Slaptažodis tinkamas");
+//   } else {
+//     console.log("Slaptažodis yra tinkamas. Tačiau rekomenduojama jog jis būtų bent 21 simbolio ilgumo.");
+//   }
+// }
 
-// let str = "123";
-// console.log(typeof str); // string
+// if (!password.includes("#")) {
+//   console.log("Slaptažodis privalo turėti grotažymes");
+// }
 
-// let num = Number(str); // becomes a number 123
+// AMŽIUS
+// Pagal amžiu surašyti į kurią klasė eina mokinys:
+// 1. Iki 6 metų į mokyklą neina.
+// 2. 7-10 metų eina į pradinę klasę.
+// 3. 11-14 metų eina į pagrindinę.
+// 4. 15-18 metų eina į gimnaziją.
+// 5. 19+ mokyklą baigė.
+// 6.1. Jeigu amžius yra mažiau nei 0, tai parašyti jog įvestas amžius yra per mažas.
+// // 6.2. Jeigu amžius yra daugau nei 120, tai parašyti jog įvestas amžius yra per didelis.
+// 7.1. Jeigu amžius yra 6 metai, tai parašyti: "Į mokyklą tikriausiai neina, tačiau gali būti ir pirmokas."
+// 7.2. Jeigu amžius yra 10 metai, tai parašyti: "Tikriausiai mokosi pradinėje, tačiau gali būti ir penktokas."
+// 7.3. Jeigu amžius yra 14 metai, tai parašyti: "Tikriausiai mokosi pagrindinėje, tačiau gali būti ir devintokas."
+// 7.4. Jeigu amžius yra 18 metai, tai parašyti: "Tikriausiai mokosi gimnazijoje, tačiau mokyklą gali būti ir baigęs."
+// 8. Jeigu įvestas ne amžius (t.y. ne skaičius), tai parašyti: "Netinkamai nurodytas amžius, amžius privalo būti skaičius."
+// 9. Panaudoti prompt funkciją amžiui įvesti.
 
-// console.log(typeof num); // number
+// let age = prompt("Įveskite amžių: ");
+// if (isNaN(age)) {
+//   alert("Netinkamai nurodytas amžius, amžius privalo būti skaičius.");
+// } else if (age < 0) {
+//   console.log("įvestas amžius yra per mažas");
+// } else if (age < 6) {
+//   console.log("Į mokykla neina");
+// } else if (age === 6) {
+//   console.log("Į mokyklą tikriausiai neina, tačiau gali būti ir pirmokas.");
+// } else if (age === 10) {
+//   console.log("Tikriausiai mokosi pradinėje, tačiau gali būti ir penktokas.");
+// } else if (age === 14) {
+//   console.log("Tikriausiai mokosi pagrindinėje, tačiau gali būti ir devintokas.");
+// } else if (age === 18) {
+//   console.log("Tikriausiai mokosi gimnazijoje, tačiau mokyklą gali būti ir baigęs.");
+// } else if (age >= 7 && age <= 10) {
+//   console.log("eina į pradinę klasę");
+// } else if (age >= 11 && age <= 14) {
+//   console.log("eina į pagrindinę mokyklą");
+// } else if (age >= 15 && age <= 18) {
+//   console.log("eina į gimnaziją");
+// } else if (age > 110) {
+//   console.log("įvestas amžius yra per didelis");
+// } else if (age >= 19) {
+//   console.log("mokyklą baigė");
+// }
 
-// console.log(Number("   123   ")); // 123
-// console.log(Number("123z")); // NaN (error reading a number at "z")
-// console.log(Number(true)); // 1
-// console.log(Number(false)); // 0
+// optimizuotas kodas ??
 
-// console.log(Boolean(1)); // true
-// console.log(Boolean(0)); // false
+let age = prompt("Įveskite amžių: ");
+age = Number(age);
 
-// console.log(Boolean("hello")); // true
-// console.log(Boolean("")); // false
-
-// let a = 10;
-// let b = 20;
-
-// console.log(a + b); // 30
-
-// let year = "2024";
-// year -= 28;
-// console.log(year); // 2020
-
-// let name = "Edvinas";
-// let surname = "Pasinas";
-// console.log(name + " " + surname); // Edvinas Pasinas
-
-// let celsijai = 30;
-// let farenheitai = (9 / 5) * celsijai + 32;
-// console.log(farenheitai); // 86
-
-// let startingBalance = 999.99;
-// let increasedBalance = startingBalance * 0.09;
-// let doubledBalance = increasedBalance * 2;
-// let finaBalance = doubledBalance - 50;
-// // console.log(finaBalance); // 809.991
-
-// colsole.log("Pradinis balansas:", startingBalance.toFixed(2));
-// console.log("Pajamos:", increasedBalance.toFixed(2));
-// console.log("Pajamu dvigubai:", doubledBalance.toFixed(2));
-// console.log("Likutis po pirkimo:", finaBalance.toFixed(2));
-
-// let startingBalance = 999.99;
-// let increasedBalance = startingBalance * 0.09;
-// let doubledBalance = increasedBalance * 2;
-// let finalBalance = doubledBalance - 50; // Corrected variable name
-// // console.log(finalBalance); // 809.991
-
-// console.log("Pradinis balansas:", startingBalance.toFixed(2)); // Corrected typo in console.log
-// console.log("Pajamos:", increasedBalance.toFixed(2));
-// console.log("Pajamu dvigubai:", doubledBalance.toFixed(2));
-// console.log("Likutis po pirkimo:", finalBalance.toFixed(2)); // Corrected variable name
-
-// const text1 = "Labas";
-// const text2 = "rytas";
-// const result1 = text1 === text2;
-// console.log(result1); // false
-
-const text = "10";
-const number = 10;
-console.log(text == number); // true
-console.log(text === number); // false
-console.log(text !== number); // true
-
-const currentBalance = 50;
-const transaction = -50;
-const result = currentBalance + transaction >= 0;
-console.log(result); // true
-
-const currentBalance1 = 50;
-const transaction1 = 50;
-const result1 = currentBalance1 + transaction1 >= 0;
-console.log(result1); // true
-
-const currentBalance2 = 50;
-const transaction2 = -51;
-const result2 = currentBalance2 + transaction2 >= 0;
-console.log(result2); // true
-
-const currentBalance3 = 50;
-const transaction3 = 51;
-const result3 = currentBalance3 + transaction3 >= 0;
-console.log(result3); // true
-
-const a = 15;
-const b = 7;
-const divisibleWithoutRemainder = a % b === 0;
-console.log(divisibleWithoutRemainder); // false
+if (isNaN(age)) {
+  alert("Netinkamai nurodytas amžius, amžius privalo būti skaičius.");
+} else if (age < 0) {
+  console.log("įvestas amžius yra per mažas");
+} else if (age > 110) {
+  console.log("įvestas amžius yra per didelis");
+} else if (age < 6) {
+  console.log("Į mokykla neina");
+} else if (age >= 19) {
+  console.log("mokyklą baigė");
+} else {
+  if (age === 6) {
+    console.log("Į mokyklą tikriausiai neina, tačiau gali būti ir pirmokas.");
+  } else if (age === 10) {
+    console.log("Tikriausiai mokosi pradinėje, tačiau gali būti ir penktokas.");
+  } else if (age === 14) {
+    console.log("Tikriausiai mokosi pagrindinėje, tačiau gali būti ir devintokas.");
+  } else if (age === 18) {
+    console.log("Tikriausiai mokosi gimnazijoje, tačiau mokyklą gali būti ir baigęs.");
+  } else if (age <= 10) {
+    console.log("eina į pradinę klasę");
+  } else if (age <= 14) {
+    console.log("eina į pagrindinę mokyklą");
+  } else {
+    console.log("eina į gimnaziją");
+  }
+}
