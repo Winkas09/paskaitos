@@ -267,3 +267,607 @@ console.log(firstFiveLastSix);
 const fromThreeToFiveAndFifteenToSeventeen = arr.slice(2, 5).concat(arr.slice(14, 17));
 console.log(arr);
 console.log(fromThreeToFiveAndFifteenToSeventeen);
+
+// ['start', 2, 3, 5, 11, 155, 888, '15x', 6789, -5564, 'obuolys', -51, 55, 0, 33, 789, 6543, 1, 'trylika', 444, 321, 654, -1, 987, -333, -321, 'end']
+
+// 3. Tęsiant darbą su ankstesniu masyvu atlikti šias užduotis naudojant filter metodą. Kiekvienai užduočiai sukurti naują kintamąjį, jame išsaugoti reikšmę, kurią grąžina filter metodas, ir šį kintamąjį išvesti į konsolę:
+// 3.1. Gauti tik teigiamus skaičius.
+// 3.2. Gauti tik neigiamus skaičius.
+// 3.3. Gauti tik skaičius, kurie dalinasi iš 2.
+// 3.4. Gauti tik skaičius, kurie dalinasi iš 3.
+// 3.5. Gauti tik skaičius, kurie dalinasi iš 5.
+// 3.6. Gauti tik skaičius, kurie dalinasi iš 11.
+// 3.7. Gauti tik skaičius, kurie dalinasi iš 31.
+// 3.8. Gauti tik skaičius, kurie dalinasi iš 2 ir iš 3.
+// 3.9. Gauti tik skaičius, kurie dalinasi iš 3 ir iš 7.
+// 3.10. Gauti tik skaičius, kurie dalinasi iš 5 ir iš 9.
+// 3.11. Gauti tik skaičius, kurie dalinasi iš 5 ir iš 11.
+// 3.12. Gauti tik skaičius, kurie dalinasi iš 2, 8 ir 12.
+// 3.13. Gauti tik skaičius, kurie dalinasi iš 2 arba iš 3.
+// 3.14. Gauti tik skaičius, kurie dalinasi iš 3 arba iš 5.
+// 3.15. Gauti tik skaičius, kurie dalinasi iš 5 arba iš 6.
+// 3.16. Gauti tik skaičius, kurie dalinasi iš 7 arba iš 8.
+// 3.17. Gauti tik skaičius, kurie dalinasi iš 9 arba iš 13.
+// 3.18. Gauti tik skaičius, kurie dalinasi iš 2, 3 arba iš 5.
+// 3.19. Gauti tik skaičius, kurie dalinasi iš 5, 7 arba iš 9.
+// 3.20. Gauti tik skaičius, kurie dalinasi iš 7, 8 arba iš 11.
+// 3.21. Gauti tik skaičius, kurie dalinasi iš 9, 12 arba iš 13.
+// 3.22. Gauti tik skaičius, kurie yra didesni už 100.
+// 3.23. Gauti tik skaičius, kurie yra didesni už 555.
+// 3.24. Gauti tik skaičius, kurie yra didesni arba lygūs 888.
+// 3.25. Gauti tik skaičius, kurie yra didesni arba lygūs 6789.
+// 3.26. Gauti tik skaičius, kurie yra mažesni už 50.
+// 3.27. Gauti tik skaičius, kurie yra mažesni už 1000.
+// 3.28. Gauti tik skaičius, kurie yra mažesni arba lygūs -1.
+// 3.29. Gauti tik skaičius, kurie yra mažesni arba lygūs -5564.
+// 3.30. Gauti tik skaičius, kurie yra mažesni už 1000 ir didesni už 500.
+// 3.31. Gauti tik skaičius, kurie yra mažesni už 100 ir didesni už 0.
+// 3.32. Gauti tik skaičius, kurie yra mažesni už 0 ir didesni už -50.
+// 3.33. Gauti tik skaičius, kurie yra mažesni arba lygūs 0 ir didesni už -100.
+// 3.34. Gauti tik skaičius, kurie yra didesni arba lygūs 0 ir mažesni už 55.
+// 3.35. Gauti tik skaičius, kurie yra didesni arba lygūs 444 ir mažesni arba lygūs 654.
+// 3.36. Gauti tik teigiamus skaičius, kurie dalinasi iš 2.
+// 3.37. Gauti tik teigiamus skaičius, kurie dalinasi iš 3.
+// 3.38. Gauti tik neigiamus skaičius, kurie dalinasi iš 4.
+// 3.39. Gauti tik neigiamus skaičius, kurie dalinasi iš 111.
+// 3.40. Gauti tik skaičius, kurie yra didesni už 500 ir kurie dalinasi iš 2.
+// 3.41. Gauti tik skaičius, kurie yra didesni už 1000 ir kurie dalinasi iš 3.
+// 3.42. Gauti tik skaičius, kurie yra mažesni už 1000 ir kurie dalinasi iš 9.
+// 3.43. Gauti tik skaičius, kurie yra mažesni už 500 ir kurie dalinasi iš 2.
+// 3.44. Gauti tik skaičius, kurie yra didesni arba lygūs 33 ir kurie dalinasi iš 3.
+// 3.45. Gauti tik skaičius, kurie yra didesni arba lygūs 444 ir kurie dalinasi iš 12.
+// 3.46. Gauti tik skaičius, kurie yra mažesni arba lygūs 155 ir kurie dalinasi iš 5.
+// 3.47. Gauti tik skaičius, kurie yra mažesni arba lygūs -333 ir kurie dalinasi iš 9.
+// 3.48. Gauti tik skaičius, kurie yra didesni už 100, mažesni už 500 ir kurie dalinasi iš 5.
+// 3.49. Gauti tik skaičius, kurie yra didesni arba lygūs 888, mažesni už 1000 ir kurie dalinasi iš 2.
+// 3.50. Gauti tik skaičius, kurie yra mažesni arba lygūs 888, didesni arba lygūs -333, dalinasi iš 3 ir nėra nulis.
+// 3.51. Gauti tik skaičius.
+// 3.52. Gauti tik tekstus (string).
+// 3.53. Gauti tik tekstus (string), kurie turi daugiau nei 5 simbolius.
+// 3.54. Gauti tik tekstus (string), kurie turi mažiau arba lygiai 5 simbolius.
+// 3.55. Gauti tik tekstus (string), kurie turi mažiau nei 7 simbolius.
+// 3.56. Gauti tik tekstus (string), kurie turi raidę t.
+// 3.57. Gauti tik tekstus (string), kurie turi raidę y.
+// 3.58. Gauti tik tekstus (string), kurie turi raides e arba a.
+// 3.59. Gauti tik tekstus (string), kurie turi raides t ir i.
+// 3.60. Gauti tik tekstus (string), kurie turi raide t, bet neturi raidės k.
+// 3.61. Gauti tik tekstus (string), kurie turi raide a, bet neturi raidės s.
+// 3.62. Gauti tik tekstus (string), kurie turi daugiau nei vieną raidę t.
+// 3.63. Gauti tik tekstus (string), kurie turi raidžių junginį st.
+// 3.64. Gauti tik tekstus (string), kurie turi raidžių junginį nd.
+// 3.65. Gauti tik tekstus (string), kurie neturi raidės s.
+// 3.66. Gauti tik tekstus (string), kurie neturi raidės t.
+// 3.67. Gauti tik tekstus (string), kurie neturi raidės r ir l.
+// 3.68. Gauti tik tekstus (string), kurie prasideda skaičiumi.
+// 3.69. Gauti tik tekstus (string), kurie prasideda raide s.
+// 3.70. Gauti tik tekstus (string), kurie prasideda raide o.
+// 3.70. Gauti tik tekstus (string), kurie baigiasi raide d.
+// 3.71. Gauti tik tekstus (string), kurie baigiasi raide s.
+// 3.72. Gauti tik tekstus (string), kurie turi daugiau nei 4 simbolius ir turi raidę o.
+// 3.73. Gauti tik tekstus (string), kurie turi daugiau arba lygiai 5 simbolius ir turi raidę a.
+// 3.74. Gauti tik tekstus (string), kurie turi porinį simbolių skaičių.
+// 3.75. Gauti tik tekstus (string), kurie turi neporinį simbolių skaičių ir turi raidę s.
+// 3.76. Gauti tik tekstus (string), kurių trečias simbolis yra a.
+// 3.77. Gauti tik tekstus (string), kurių ketvirtas simbolis yra l.
+// 3.78. Gauti tik tekstus (string), kurių penktas simbolis nėra t ir kurie turi daugiau simbolių nei 4.
+// 3.79. Gauti tik tekstus (string), kurių pirmas simbolis nėra e, kurie turi mažiau simbolių nei 6 ir kurie neprasideda skaičiumi.
+
+let arr1 = ["start", 2, 3, 5, 11, 155, 888, "15x", 6789, -5564, "obuolys", -51, 55, 0, 33, 789, 6543, 1, "trylika", 444, 321, 654, -1, 987, -333, -321, "end"];
+
+// 3.1. Gauti tik teigiamus skaičius.
+const positiveNumbers = arr1.filter((el) => typeof el === "number" && el > 0);
+console.log(positiveNumbers);
+
+// 3.2. Gauti tik neigiamus skaičius.
+const negativeNumbers = arr1.filter((el) => typeof el === "number" && el < 0);
+console.log(negativeNumbers);
+
+// 3.3. Gauti tik skaičius, kurie dalinasi iš 2.
+const dividedByTwo = arr1.filter((el) => typeof el === "number" && el % 2 === 0);
+console.log(dividedByTwo);
+
+// 3.4. Gauti tik skaičius, kurie dalinasi iš 3.
+const dividedByThree = arr1.filter((el) => typeof el === "number" && el % 3 === 0);
+console.log(dividedByThree);
+
+// 3.5. Gauti tik skaičius, kurie dalinasi iš 5.
+const dividedByFive = arr1.filter((el) => typeof el === "number" && el % 5 === 0);
+console.log(dividedByFive);
+
+// 3.6. Gauti tik skaičius, kurie dalinasi iš 11.
+const dividedByEleven = arr1.filter((el) => typeof el === "number" && el % 11 === 0);
+console.log(dividedByEleven);
+
+// 3.7. Gauti tik skaičius, kurie dalinasi iš 31.
+const dividedByThirtyOne = arr1.filter((el) => typeof el === "number" && el % 31 === 0);
+console.log(dividedByThirtyOne);
+
+// 3.8. Gauti tik skaičius, kurie dalinasi iš 2 ir iš 3.
+const dividedByTwoAndThree = arr1.filter((el) => typeof el === "number" && el % 2 === 0 && el % 3 === 0);
+console.log(dividedByTwoAndThree);
+
+// 3.9. Gauti tik skaičius, kurie dalinasi iš 3 ir iš 7.
+const dividedByThreeAndSeven = arr1.filter((el) => typeof el === "number" && el % 3 === 0 && el % 7 === 0);
+console.log(dividedByThreeAndSeven);
+
+// 3.10. Gauti tik skaičius, kurie dalinasi iš 5 ir iš 9.
+const dividedByFiveAndNine = arr1.filter((el) => typeof el === "number" && el % 5 === 0 && el % 9 === 0);
+console.log(dividedByFiveAndNine);
+
+// 3.11. Gauti tik skaičius, kurie dalinasi iš 5 ir iš 11.
+const dividedByFiveAndEleven = arr1.filter((el) => typeof el === "number" && el % 5 === 0 && el % 11 === 0);
+console.log(dividedByFiveAndEleven);
+
+// 3.12. Gauti tik skaičius, kurie dalinasi iš 2, 8 ir 12.
+const dividedByTwoEightTwelve = arr1.filter((el) => typeof el === "number" && el % 2 === 0 && el % 8 === 0 && el % 12 === 0);
+console.log(dividedByTwoEightTwelve);
+
+// 3.13. Gauti tik skaičius, kurie dalinasi iš 2 arba iš 3.
+const dividedByTwoOrThree = arr1.filter((el) => typeof el === "number" && (el % 2 === 0 || el % 3 === 0));
+console.log(dividedByTwoOrThree);
+
+// 3.14. Gauti tik skaičius, kurie dalinasi iš 3 arba iš 5.
+const dividedByThreeOrFive = arr1.filter((el) => typeof el === "number" && (el % 3 === 0 || el % 5 === 0));
+console.log(dividedByThreeOrFive);
+
+// 3.15. Gauti tik skaičius, kurie dalinasi iš 5 arba iš 6.
+const dividedByFiveOrSix = arr1.filter((el) => typeof el === "number" && (el % 5 === 0 || el % 6 === 0));
+console.log(dividedByFiveOrSix);
+
+// 3.16. Gauti tik skaičius, kurie dalinasi iš 7 arba iš 8.
+const dividedBySevenOrEight = arr1.filter((el) => typeof el === "number" && (el % 7 === 0 || el % 8 === 0));
+console.log(dividedBySevenOrEight);
+
+// 3.17. Gauti tik skaičius, kurie dalinasi iš 9 arba iš 13.
+const dividedByNineOrThirteen = arr1.filter((el) => typeof el === "number" && (el % 9 === 0 || el % 13 === 0));
+console.log(dividedByNineOrThirteen);
+
+// 3.18. Gauti tik skaičius, kurie dalinasi iš 2, 3 arba iš 5.
+const dividedByTwoThreeFive = arr1.filter((el) => typeof el === "number" && (el % 2 === 0 || el % 3 === 0 || el % 5 === 0));
+console.log(dividedByTwoThreeFive);
+
+// 3.19. Gauti tik skaičius, kurie dalinasi iš 5, 7 arba iš 9.
+const dividedByFiveSevenNine = arr1.filter((el) => typeof el === "number" && (el % 5 === 0 || el % 7 === 0 || el % 9 === 0));
+console.log(dividedByFiveSevenNine);
+
+// 3.20. Gauti tik skaičius, kurie dalinasi iš 7, 8 arba iš 11.
+const dividedBySevenEightEleven = arr1.filter((el) => typeof el === "number" && (el % 7 === 0 || el % 8 === 0 || el % 11 === 0));
+console.log(dividedBySevenEightEleven);
+
+// 3.21. Gauti tik skaičius, kurie dalinasi iš 9, 12 arba iš 13.
+const dividedByNineWelveThirteen = arr1.filter((el) => typeof el === "number" && (el % 9 === 0 || el % 12 === 0 || el % 13 === 0));
+console.log(dividedByNineWelveThirteen);
+
+// 3.22. Gauti tik skaičius, kurie yra didesni už 100.
+const biggerThanHundred = arr1.filter((el) => typeof el === "number" && el > 100);
+console.log(biggerThanHundred);
+
+// 3.23. Gauti tik skaičius, kurie yra didesni už 555.
+const biggerThanFiveHundredsFiftyFive = arr1.filter((el) => typeof el === "number" && el > 555);
+console.log(biggerThanFiveHundredsFiftyFive);
+
+// 3.24. Gauti tik skaičius, kurie yra didesni arba lygūs 888.
+const biggerThanEightHundredEightyEight = arr1.filter((el) => typeof el === "number" && el >= 888);
+console.log(biggerThanEightHundredEightyEight);
+
+// 3.25. Gauti tik skaičius, kurie yra didesni arba lygūs 6789.
+const biggerThanSixThousandsSevenHundredsEightyNine = arr1.filter((el) => typeof el === "number" && el >= 6789);
+console.log(biggerThanSixThousandsSevenHundredsEightyNine);
+
+// 3.26. Gauti tik skaičius, kurie yra mažesni už 50.
+const smallerThanFifty = arr1.filter((el) => typeof el === "number" && el < 50);
+console.log(smallerThanFifty);
+
+// 3.27. Gauti tik skaičius, kurie yra mažesni už 1000.
+const smallerThanThousand = arr1.filter((el) => typeof el === "number" && el < 1000);
+console.log(smallerThanThousand);
+
+// 3.28. Gauti tik skaičius, kurie yra mažesni arba lygūs -1.
+const smallerOrEqualToMinusOne = arr1.filter((el) => typeof el === "number" && el <= -1);
+console.log(smallerOrEqualToMinusOne);
+
+// 3.29. Gauti tik skaičius, kurie yra mažesni arba lygūs -5564.
+const smallerOrEqualToMinusFiveThousandFiveHundredSixtyFour = arr1.filter((el) => typeof el === "number" && el <= -5564);
+console.log(smallerOrEqualToMinusFiveThousandFiveHundredSixtyFour);
+
+// 3.30. Gauti tik skaičius, kurie yra mažesni už 1000 ir didesni už 500.
+const smallerThanThousandBiggerThanFiveHundred = arr1.filter((el) => typeof el === "number" && el < 1000 && el > 500);
+console.log(smallerThanThousandBiggerThanFiveHundred);
+
+// 3.31. Gauti tik skaičius, kurie yra mažesni už 100 ir didesni už 0.
+const smallerThanHundredBiggerThanZero = arr1.filter((el) => typeof el === "number" && el < 100 && el > 0);
+console.log(smallerThanHundredBiggerThanZero);
+
+// 3.32. Gauti tik skaičius, kurie yra mažesni už 0 ir didesni už -50.
+const smallerThanZeroBiggerThanMinusFifty = arr1.filter((el) => typeof el === "number" && el < 0 && el > -50);
+console.log(smallerThanZeroBiggerThanMinusFifty);
+
+// 3.33. Gauti tik skaičius, kurie yra mažesni arba lygūs 0 ir didesni už -100.
+const smallerOrEqualToZeroBiggerThanMinusHundred = arr1.filter((el) => typeof el === "number" && el <= 0 && el > -100);
+console.log(smallerOrEqualToZeroBiggerThanMinusHundred);
+
+// 3.34. Gauti tik skaičius, kurie yra didesni arba lygūs 0 ir mažesni už 55.
+const biggerOrEqualToZeroSmallerThanFiftyFive = arr1.filter((el) => typeof el === "number" && el >= 0 && el < 55);
+console.log(biggerOrEqualToZeroSmallerThanFiftyFive);
+
+// 3.35. Gauti tik skaičius, kurie yra didesni arba lygūs 444 ir mažesni arba lygūs 654.
+const biggerOrEqualToFourFourFourSmallerOrEqualToSixFiveFour = arr1.filter((el) => typeof el === "number" && el >= 444 && el <= 654);
+console.log(biggerOrEqualToFourFourFourSmallerOrEqualToSixFiveFour);
+
+// 3.36. Gauti tik teigiamus skaičius, kurie dalinasi iš 2.
+const positiveDividedByTwo = arr1.filter((el) => typeof el === "number" && el > 0 && el % 2 === 0);
+console.log(positiveDividedByTwo);
+
+// 3.37. Gauti tik teigiamus skaičius, kurie dalinasi iš 3.
+const positiveDividedByThree = arr1.filter((el) => typeof el === "numer" && el > 0 && el % 3 === 0);
+console.log(positiveDividedByThree);
+
+// 3.38. Gauti tik neigiamus skaičius, kurie dalinasi iš 4.
+const negativeDividedByFour = arr1.filter((el) => typeof el === "number" && el < 0 && el % 4 === 0);
+console.log(negativeDividedByFour);
+
+// 3.39. Gauti tik neigiamus skaičius, kurie dalinasi iš 111.
+const negativeDividedByOneOneOne = arr1.filter((el) => typeof el === "number" && el < 0 && el % 111 === 0);
+console.log(negativeDividedByOneOneOne);
+
+// 3.40. Gauti tik skaičius, kurie yra didesni už 500 ir kurie dalinasi iš 2.
+const biggerThanFiveHundredsDividedByTwo = arr1.filter((el) => typeof el === "numer" && el > 500 && el % 2 === 0);
+console.log(biggerThanFiveHundredsDividedByTwo);
+
+// 3.41. Gauti tik skaičius, kurie yra didesni už 1000 ir kurie dalinasi iš 3.
+const biggerThanThousandDividedByThree = arr1.filter((el) => typeof el === "number" && el > 1000 && el % 3 === 0);
+console.log(biggerThanThousandDividedByThree);
+
+// 3.42. Gauti tik skaičius, kurie yra mažesni už 1000 ir kurie dalinasi iš 9.
+const smallerThanThousandDividedByNine = arr1.filter((el) => typeof el === "number" && el < 1000 && el % 9 === 0);
+console.log(smallerThanThousandDividedByNine);
+
+// 3.43. Gauti tik skaičius, kurie yra mažesni už 500 ir kurie dalinasi iš 2.
+const smallerThanFiveHundredsDividedByTwo = arr1.filter((el) => typeof el === "number" && el < 500 && el % 2 === 0);
+console.log(smallerThanFiveHundredsDividedByTwo);
+
+// 3.44. Gauti tik skaičius, kurie yra didesni arba lygūs 33 ir kurie dalinasi iš 3.
+const threeFourFour = arr1.filter((el) => typeof el === "number" && el >= 33 && el % 3 === 0);
+console.log(threeFourFour);
+
+// 3.45. Gauti tik skaičius, kurie yra didesni arba lygūs 444 ir kurie dalinasi iš 12.
+const threeFourFive = arr1.filter((el) => typeof el === "number" && el >= 444 && el % 12 === 0);
+console.log(threeFourFive);
+
+// 3.46. Gauti tik skaičius, kurie yra mažesni arba lygūs 155 ir kurie dalinasi iš 5.
+const threeFourSix = arr1.filter((el) => typeof el === "number" && el <= 155 && el % 5 === 0);
+console.log(threeFourSix);
+
+// 3.47. Gauti tik skaičius, kurie yra mažesni arba lygūs -333 ir kurie dalinasi iš 9.
+const threeFourSeven = arr1.filter((el) => typeof el === "number" && el <= -333 && el % 9 === 0);
+console.log(threeFourSeven);
+
+// 3.48. Gauti tik skaičius, kurie yra didesni už 100, mažesni už 500 ir kurie dalinasi iš 5.
+const threeFourEight = arr1.filter((el) => typeof el === "number" && el > 100 && el < 500 && el % 5 === 0);
+console.log(threeFourEight);
+
+// 3.49. Gauti tik skaičius, kurie yra didesni arba lygūs 888, mažesni už 1000 ir kurie dalinasi iš 2.
+const threeFourNine = arr1.filter((el) => typeof el === "number" && el >= 888 && el < 1000 && el % 2 === 0);
+console.log(threeFourNine);
+
+// 3.50. Gauti tik skaičius, kurie yra mažesni arba lygūs 888, didesni arba lygūs -333, dalinasi iš 3 ir nėra nulis.
+const threeFiveZero = arr1.filter((el) => typeof el === "number" && el <= 888 && el >= -333 && el % 3 === 0 && el !== 0);
+console.log(threeFiveZero);
+
+// 3.51. Gauti tik skaičius.
+const onlyNumbers = arr1.filter((el) => typeof el === "number");
+console.log(onlyNumbers);
+
+// 3.52. Gauti tik tekstus (string).
+const onlyStrings = arr1.filter((el) => typeof el === "string");
+console.log(onlyStrings);
+
+// 3.53. Gauti tik tekstus (string), kurie turi daugiau nei 5 simbolius.
+const threeFiveThree = arr1.filter((el) => typeof el === "string" && el.length > 5);
+console.log(threeFiveThree);
+
+// 3.54. Gauti tik tekstus (string), kurie turi mažiau arba lygiai 5 simbolius.
+const threeFiveFour = arr1.filter((el) => typeof el === "string" && el.length <= 5);
+console.log(threeFiveFour);
+
+// 3.55. Gauti tik tekstus (string), kurie turi mažiau nei 7 simbolius.
+const threeFiveFive = arr1.filter((el) => typeof el === "string" && el.length < 7);
+console.log(threeFiveFive);
+
+// 3.56. Gauti tik tekstus (string), kurie turi raidę t.
+const threeFiveSix = arr1.filter((el) => typeof el === "string" && el.includes("t"));
+console.log(threeFiveSix);
+
+// 3.57. Gauti tik tekstus (string), kurie turi raidę y.
+const threeFiveSeven = arr1.filter((el) => typeof el === "string" && el.includes("y"));
+console.log(threeFiveSeven);
+
+// 3.58. Gauti tik tekstus (string), kurie turi raides e arba a.
+const threeFiveEight = arr1.filter((el) => typeof el === "string" && (el.includes("e") || el.includes("a")));
+console.log(threeFiveEight);
+
+// 3.59. Gauti tik tekstus (string), kurie turi raides t ir i.
+const threeFiveNine = arr1.filter((el) => typeof el === "string" && el.includes("t") && el.includes("i"));
+console.log(threeFiveNine);
+
+// 3.60. Gauti tik tekstus (string), kurie turi raide t, bet neturi raidės k.
+const threeSixZero = arr1.filter((el) => typeof el === "string" && el.includes("t") && !el.includes("k"));
+console.log(threeSixZero);
+
+// 3.61. Gauti tik tekstus (string), kurie turi raide a, bet neturi raidės s.
+const threeSixOne = arr1.filter((el) => typeof el === "string" && el.includes("a") && !el.includes("s"));
+console.log(threeSixOne);
+
+// 3.62. Gauti tik tekstus (string), kurie turi daugiau nei vieną raidę t.
+const threeSixTwo = arr1.filter((el) => typeof el === "string" && el.split("t").length - 1 > 1);
+console.log(threeSixTwo);
+
+// 3.63. Gauti tik tekstus (string), kurie turi raidžių junginį st.
+const threeSixThree = arr1.filter((el) => typeof el === "string" && el.includes("st"));
+console.log(threeSixThree);
+
+// 3.64. Gauti tik tekstus (string), kurie turi raidžių junginį nd.
+const threeSixFour = arr1.filter((el) => typeof el === "string" && el.includes("nd"));
+console.log(threeSixFour);
+
+// 3.65. Gauti tik tekstus (string), kurie neturi raidės s.
+const threeSixFive = arr1.filter((el) => typeof el === "string" && !el.includes("s"));
+console.log(threeSixFive);
+
+// 3.66. Gauti tik tekstus (string), kurie neturi raidės t.
+const threeSixSix = arr1.filter((el) => typeof el === "string" && !el.includes("t"));
+console.log(threeSixSix);
+
+// 3.67. Gauti tik tekstus (string), kurie neturi raidės r ir l.
+const threeSixSeven = arr1.filter((el) => typeof el === "string" && !el.includes("r") && !el.includes("l"));
+console.log(threeSixSeven);
+
+// 3.68. Gauti tik tekstus (string), kurie prasideda skaičiumi.
+const threeSixEight = arr1.filter((el) => typeof el === "string" && !isNaN(el[0]));
+console.log(threeSixEight);
+
+// 3.69. Gauti tik tekstus (string), kurie prasideda raide s.
+const threeSixNine = arr1.filter((el) => typeof el === "string" && el[0] === "s");
+console.log(threeSixNine);
+
+// 3.70. Gauti tik tekstus (string), kurie prasideda raide o.
+const threeSevenZero = arr1.filter((el) => typeof el === "string" && el[0] === "o");
+console.log(threeSevenZero);
+
+// 3.70. Gauti tik tekstus (string), kurie baigiasi raide d.
+const threeSevenZero1 = arr1.filter((el) => typeof el === "string" && el[el.length - 1] === "d");
+console.log(threeSevenZero1);
+
+// 3.71. Gauti tik tekstus (string), kurie baigiasi raide s.
+const threeSevenOne = arr1.filter((el) => typeof el === "string" && el[el.length - 1] === "s");
+console.log(threeSevenOne);
+
+// 3.72. Gauti tik tekstus (string), kurie turi daugiau nei 4 simbolius ir turi raidę o.
+const threeSevenTwo = arr1.filter((el) => typeof el === "string" && el.length > 4 && el.includes("o"));
+console.log(threeSevenTwo);
+
+// 3.73. Gauti tik tekstus (string), kurie turi daugiau arba lygiai 5 simbolius ir turi raidę a.
+const threeSevenThree = arr1.filter((el) => typeof el === "string" && el.length >= 5 && el.includes("a"));
+console.log(threeSevenThree);
+
+// 3.74. Gauti tik tekstus (string), kurie turi porinį simbolių skaičių.
+const threeSevenFour = arr1.filter((el) => typeof el === "string" && el.length % 2 === 0);
+console.log(threeSevenFour);
+
+// 3.75. Gauti tik tekstus (string), kurie turi neporinį simbolių skaičių ir turi raidę s.
+const threeSevenFive = arr1.filter((el) => typeof el === "string" && el.length % 2 !== 0 && el.includes("s"));
+console.log(threeSevenFive);
+
+// 3.76. Gauti tik tekstus (string), kurių trečias simbolis yra a.
+const threeSevenSix = arr1.filter((el) => typeof el === "string" && el[2] === "a");
+console.log(threeSevenSix);
+
+// 3.77. Gauti tik tekstus (string), kurių ketvirtas simbolis yra l.
+const threeSevenSeven = arr1.filter((el) => typeof el === "string" && el.length > 3 && el[3] === "l");
+console.log(threeSevenSeven);
+
+// 3.78. Gauti tik tekstus (string), kurių penktas simbolis nėra t ir kurie turi daugiau simbolių nei 4.
+
+const threeSevenEight = arr1.filter((el) => typeof el === "string" && el.length > 4 && el[4] !== "t");
+console.log(threeSevenEight);
+
+// 3.79. Gauti tik tekstus (string), kurių pirmas simbolis nėra e, kurie turi mažiau simbolių nei 6 ir kurie neprasideda skaičiumi.
+const threeSevenNine = arr1.filter((el) => typeof el === "string" && el[0] !== "e" && el.length < 6 && isNaN(el[0]));
+console.log(threeSevenNine);
+
+// ['start', 2, 3, 5, 11, 155, 888, '15x', 6789, -5564, 'obuolys', -51, 55, 0, 33, 789, 6543, 1, 'trylika', 444, 321, 654, -1, 987, -333, -321, 'end']
+
+// 4. Tęsiant darbą su ankstesniu masyvu atlikti šias užduotis naudojant for ciklą ir map/forEach metodą. Kiekvieną užduotį atlikti abiem būdais (for ciklu ir map/forEach metodu). Visus narius išvesti į konsole pagal žemiau pateiktas sąlygas:
+// 4.1. Tik skaičius (number tipo duomenis).
+// 4.2. Tik tekstą (string tipo duomenis).
+// 4.3. Tik skaičius (number tipo duomenis) ir juos pakelti 4-tuoju laipsniu.
+// 4.4. Tik skaičius (number tipo duomenis) ir prie jų pridėti 55.
+// 4.5. Tik skaičius (number tipo duomenis) ir juos padalinti iš 2.
+// 4.6. Tik skaičius (number tipo duomenis) ir prieš juos pridėti teksta, tokiu formatu: "Number: 2".
+// 4.7. Tik skaičius (number tipo duomenis) ir pridėti tekstą su jų pačių indeksais, pvz.:
+//   "Index: 0, Number: 2"
+//   "Index: 1, Number: 3"
+//   "Index: 2, Number: 5"
+//   Ir t.t.
+// 4.8. Tik skaičius (number tipo duomenis) ir juos padauginti iš jų pačių indekso.
+// 4.9. Tik skaičius (number tipo duomenis) ir juos padauginti iš ankstesnio nario, pvz.:
+//   - Pirmo skaičiaus dauginti nereikia.
+//   - Antrą skaičių dauginti iš pirmo.
+//   - Trečią skaičių dauginti iš antro.
+//   - Ketvirta skaičių dauginti iš trečio.
+//   - Penktą skaičių dauginti iš ketvirto.
+//   Ir t.t.
+// 4.10. Tik tuos skaičius (number tipo duomenis), kuriuos padauginus iš 5, atsakymas gaunasi didesnis už 350.
+// 4.11. Tik tekstą (string tipo duomenis) ir prie kiekvieno teksto parašyti kiek simbolių jis turi, pvz. "Start has 5 symbols".
+// 4.12. Tik tekstą (string tipo duomenis), tačiau kiekviena žodžio raidę išskiriant brūkšniu ir paverčiant ją didžiąja raide, pvz.: "S-T-A-R-T".
+// 4.13. Tik tekstą (string tipo duomenis), tačiau kiekviena žodžio pirmą ir trečią raidę pakeičiant brūkšniu (underscore), pvz.: "_t_rt";
+// 4.14. Tik tekstą (string tipo duomenis), tačiau žodį parašant atvirkščiai, pvz.: vietoje "start" parašyti "trats";
+// 4.15. Tik tekstą (string tipo duomenis) ir prie kiekvieno teksto parašyti tarp kokių narių masyve jis yra, pvz.: "Word obuolys is between -5564 and -51 in the array".
+
+const arr2 = ["start", 2, 3, 5, 11, 155, 888, "15x", 6789, -5564, "obuolys", -51, 55, 0, 33, 789, 6543, 1, "trylika", 444, 321, 654, -1, 987, -333, -321, "end"];
+
+// 4. Tęsiant darbą su ankstesniu masyvu atlikti šias užduotis naudojant for ciklą ir map/forEach metodą. Kiekvieną užduotį atlikti abiem būdais (for ciklu ir map/forEach metodu). Visus narius išvesti į konsole pagal žemiau pateiktas sąlygas:
+// 4.1. Tik skaičius (number tipo duomenis).
+const numbersForLoop = [];
+for (let i = 0; i < arr2.length; i++) {
+  if (typeof arr2[i] === "number") {
+    numbersForLoop.push(arr2[i]);
+  }
+}
+console.log(numbersForLoop);
+
+const numbersMap = arr2
+  .map((el) => {
+    if (typeof el === "number") {
+      return el;
+    } else {
+      return null;
+    }
+  })
+  .filter((el) => {
+    if (el !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+console.log(numbersMap);
+
+// 4.2. Tik tekstą (string tipo duomenis).
+
+const stringsForLoop = [];
+for (let i = 0; i < arr2.length; i++) {
+  if (typeof arr2[i] === "string") {
+    stringsForLoop.push(arr2[i]);
+  }
+}
+console.log(stringsForLoop);
+
+const stringsMap = arr2
+  .map((el) => {
+    if (typeof el === "string") {
+      return el;
+    } else {
+      return null;
+    }
+  })
+  .filter((el) => {
+    if (el !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+console.log(stringsMap);
+
+// 4.3. Tik skaičius (number tipo duomenis) ir juos pakelti 4-tuoju laipsniu.
+
+const numbersToPowerFourForLoop = [];
+for (let i = 0; i < arr2.length; i++) {
+  if (typeof arr2[i] === "number") {
+    numbersToPowerFourForLoop.push(arr2[i] ** 4);
+  }
+}
+console.log(numbersToPowerFourForLoop);
+
+const numbersToPowerFourMap = arr2
+  .map((el) => {
+    if (typeof el === "number") {
+      return el ** 4;
+    } else {
+      return null;
+    }
+  })
+  .filter((el) => {
+    if (el !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+console.log(numbersToPowerFourMap);
+
+// 4.4. Tik skaičius (number tipo duomenis) ir prie jų pridėti 55.
+
+const numbersPlusFiftyFiveForLoop = [];
+for (let i = 0; i < arr2.length; i++) {
+  if (typeof arr2[i] === "number") {
+    numbersPlusFiftyFiveForLoop.push(arr2[i] + 55);
+  }
+}
+console.log(numbersPlusFiftyFiveForLoop);
+
+const numbersPlusFiftyFiveMap = arr2
+  .map((el) => {
+    if (typeof el === "number") {
+      return el + 55;
+    } else {
+      return null;
+    }
+  })
+  .filter((el) => {
+    if (el !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+console.log(numbersPlusFiftyFiveMap);
+
+// 4.5. Tik skaičius (number tipo duomenis) ir juos padalinti iš 2.
+
+const numbersDividedByTwoForLoop = [];
+for (let i = 0; i < arr2.length; i++) {
+  if (typeof arr2[i] === "number") {
+    numbersDividedByTwoForLoop.push(arr2[i] / 2);
+  }
+}
+console.log(numbersDividedByTwoForLoop);
+
+const numbersDividedByTwoMap = arr2.filter((el) => typeof el === "number").map((el) => el / 2);
+console.log(numbersDividedByTwoMap);
+
+// 4.6. Tik skaičius (number tipo duomenis) ir prieš juos pridėti teksta, tokiu formatu: "Number: 2".
+
+const numbersWithTextForLoop = [];
+for (let i = 0; i < arr2.length; i++) {
+  if (typeof arr2[i] === "number") {
+    numbersWithTextForLoop.push(`Number: ${arr2[i]}`);
+  }
+}
+console.log(numbersWithTextForLoop);
+
+const numbersWithTextMap = arr2.filter((el) => typeof el === "number").map((el) => `Number: ${el}`);
+console.log(numbersWithTextMap);
+
+// 4.7. Tik skaičius (number tipo duomenis) ir pridėti tekstą su jų pačių indeksais, pvz.
+//   "Index: 0, Number: 2"
+//   "Index: 1, Number: 3"
+//   "Index: 2, Number: 5"
+
+const numbersWithIndexForLoop = [];
+for (let i = 0; i < arr2.length; i++) {
+  if (typeof arr2[i] === "number") {
+    numbersWithIndexForLoop.push(`Index: ${i}, Number: ${arr2[i]}`);
+  }
+}
+console.log(numbersWithIndexForLoop);
+
+const numbersWithIndexMap = arr2
+  .map((el, i) => {
+    if (typeof el === "number") {
+      return `Index: ${i}, Number: ${el}`;
+    } else {
+      return null;
+    }
+  })
+  .filter((el) => {
+    if (el !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+console.log(numbersWithIndexMap);
+
+// 4.8. Tik skaičius (number tipo duomenis) ir juos padauginti iš jų pačių indekso.
