@@ -992,29 +992,14 @@ console.log(stringsReversedMap);
 
 const stringsWithIndexesForLoop = [];
 for (let i = 0; i < arr2.length; i++) {
+  console.log(arr2[i]);
   if (typeof arr2[i] === "string") {
-    stringsWithIndexesForLoop.push(`${arr2[i]} is between ${arr2[i - 1]} and ${arr2[i + 1]} in the array`);
+    const prev = i > 0 ? arr2[i - 1] : "start";
+    const next = i < arr2.length - 1 ? arr2[i + 1] : "end";
+    stringsWithIndexesForLoop.push(`${arr2[i]} is between ${prev} and ${next} in the array`);
   }
 }
 console.log(stringsWithIndexesForLoop);
-
-const stringsWithIndexesMap = arr2
-  .map((el, i, arr) => {
-    if (typeof el === "string") {
-      return `${el} is between ${arr[i - 1]} and ${arr[i + 1]} in the array`;
-    } else {
-      return null;
-    }
-  })
-  .filter((el) => {
-    if (el !== null) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-
-console.log(stringsWithIndexesMap);
 
 const posts = [
   {
