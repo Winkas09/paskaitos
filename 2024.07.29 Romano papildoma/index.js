@@ -33,100 +33,100 @@
 //        9.1. Veiklos šalį iš šalių masyvo.
 //        9.2. Veiklos rūšį iš veiklų masyvo.
 
-// 1.
-const company = new Object();
-console.log(company);
-// 2.
-company["company name"] = "TechCompany";
-company.opened = 2000;
-company.companyCode = 123456789;
-company.employees = 1000;
-company.ceo = "John Doe";
-company.nvo = false;
-company.workingLocations = ["Germany", "Spain", "Italy", "France"];
-company.activityAreas = ["SoftwareDev", "HardwareDev"];
-company.contacts = {
-  phone: "+37061234567",
-  email: "tc@gmail.com",
-};
-company.contacts.address = {
-  country: "Germany",
-  city: "Munich",
-  street: "Hauptstrasse",
-  apartment: 15,
-};
-console.log(company);
+// // 1.
+// const company = new Object();
+// console.log(company);
+// // 2.
+// company["company name"] = "TechCompany";
+// company.opened = 2000;
+// company.companyCode = 123456789;
+// company.employees = 1000;
+// company.ceo = "John Doe";
+// company.nvo = false;
+// company.workingLocations = ["Germany", "Spain", "Italy", "France"];
+// company.activityAreas = ["SoftwareDev", "HardwareDev"];
+// company.contacts = {
+//   phone: "+37061234567",
+//   email: "tc@gmail.com",
+// };
+// company.contacts.address = {
+//   country: "Germany",
+//   city: "Munich",
+//   street: "Hauptstrasse",
+//   apartment: 15,
+// };
+// console.log(company);
 
-// 5.
-function addressString(address) {
-  return `${address.street} ${address.apartment}, ${address.city}, ${address.country}.`;
-}
-console.log(addressString(company.contacts.address));
+// // 5.
+// function addressString(address) {
+//   return `${address.street} ${address.apartment}, ${address.city}, ${address.country}.`;
+// }
+// console.log(addressString(company.contacts.address));
 
-// 6.
-function changeNVOStatusTrue(company) {
-  if (!company.nvo) {
-    company.nvo = true;
-  } else {
-    console.log("NVO status already true");
-  }
-}
-changeNVOStatusTrue(company);
-console.log(company);
+// // 6.
+// function changeNVOStatusTrue(company) {
+//   if (!company.nvo) {
+//     company.nvo = true;
+//   } else {
+//     console.log("NVO status already true");
+//   }
+// }
+// changeNVOStatusTrue(company);
+// console.log(company);
 
-function changeNVOStatusFalse(company) {
-  if (company.nvo) {
-    company.nvo = false;
-  } else {
-    console.log("NVO status already false");
-  }
-}
-changeNVOStatusFalse(company);
-console.log(company);
+// function changeNVOStatusFalse(company) {
+//   if (company.nvo) {
+//     company.nvo = false;
+//   } else {
+//     console.log("NVO status already false");
+//   }
+// }
+// changeNVOStatusFalse(company);
+// console.log(company);
 
-function changeNVOStatus(company) {
-  company.nvo = !company.nvo;
-}
-changeNVOStatus(company);
-console.log(company);
+// function changeNVOStatus(company) {
+//   company.nvo = !company.nvo;
+// }
+// changeNVOStatus(company);
+// console.log(company);
 
-// 7.
-function workingLocationsString(company) {
-  return company.workingLocations.join(", ");
-}
-console.log(workingLocationsString(company));
+// // 7.
+// function workingLocationsString(company) {
+//   return company.workingLocations.join(", ");
+// }
+// console.log(workingLocationsString(company));
 
-function activityAreasString(company) {
-  return company.activityAreas.join(", ");
-}
-console.log(activityAreasString(company));
+// function activityAreasString(company) {
+//   return company.activityAreas.join(", ");
+// }
+// console.log(activityAreasString(company));
 
-// 8.
-function addWorkingLocation(company, location) {
-  company.workingLocations.push(location);
-}
-addWorkingLocation(company, "UK");
-console.log(company);
+// // 8.
+// function addWorkingLocation(company, location) {
+//   company.workingLocations.push(location);
+// }
+// addWorkingLocation(company, "UK");
+// console.log(company);
 
-function addActivityArea(company, area) {
-  company.activityAreas.push(area);
-}
-addActivityArea(company, "AI Dev");
-console.log(company);
+// function addActivityArea(company, area) {
+//   company.activityAreas.push(area);
+// }
+// addActivityArea(company, "AI Dev");
+// console.log(company);
 
-// 9.
+// // 9.
 
-function removeWorkingLocation(company, location) {
-  company.workingLocations = company.workingLocations.filter((loc) => loc !== location);
-}
-removeWorkingLocation(company, "Germany");
-console.log(company);
+// function removeWorkingLocation(company, location) {
+//   company.workingLocations = company.workingLocations.filter((loc) => loc !== location);
+// }
+// removeWorkingLocation(company, "Germany");
+// console.log(company);
 
-function removeActivityArea(company, area) {
-  company.activityAreas = company.activityAreas.filter((ar) => ar !== area);
-}
-removeActivityArea(company, "AI Dev");
-console.log(company);
+// function removeActivityArea(company, area) {
+//   company.activityAreas = company.activityAreas.filter((ar) => ar !== area);
+// }
+// removeActivityArea(company, "AI Dev");
+// console.log(company);
 
 // const company = {
 //   "company name": "TechCompany",
@@ -215,3 +215,119 @@ console.log(company);
 
 // company.removeActivityArea("AI Dev");
 // console.log(company);
+
+1;
+const company1 = {};
+
+company1["company name"] = "TechCompany";
+
+company1.opened = 2000;
+
+company1.companyCode = 123456789;
+
+company1.employees = 1000;
+
+company1.ceo = "John Doe";
+
+company1.nvo = false;
+
+company1.workingLocations = ["Germany", "Spain", "Italy", "France"];
+
+company1.activityAreas = ["SoftwareDev", "HardwareDev"];
+
+company1.contacts = {};
+
+company1.contacts.phone = "+37061234567";
+
+company1.contacts.email = `info@techcompany.com`;
+
+company1.contacts.address = {};
+
+company1.contacts.address.country = "Lithuania";
+
+company1.contacts.address.city = "Vilnius";
+
+company1.contacts.address.street = "Gedimino pr.";
+
+company1.contacts.address.apartment = 15;
+
+console.log(company1);
+
+// 5.
+
+company1.addressString = function () {
+  let { street, apartment, city, country } = this.contacts.address;
+  return `${street} ${apartment}, ${city}, ${country}.`;
+};
+
+console.log(company1.addressString());
+
+// 6.
+
+company1.setNVO = function () {
+  this.nvo = true;
+};
+
+company1.setNVO = function () {
+  this.nvo = false;
+  return this.nvo;
+};
+
+company1.changeNVO = function () {
+  this.nvo = !this.nvo;
+  return this.nvo;
+};
+
+console.log(company1.changeNVO());
+
+// 7.
+
+company1.getWorkingLocations = function () {
+  const locationStr = this.workingLocations.join(", ");
+  const output = `Company is working in ${locationStr}.`;
+  return output;
+};
+
+console.log(company1.getWorkingLocations());
+
+company1.activityAreasString = function () {
+  const areaStr = this.activityAreas.join(", ");
+  const output = `Company is working in ${areaStr}.`;
+  return output;
+};
+
+console.log(company1.activityAreasString());
+
+// 8.
+
+company1.addWorkingLocation = function (location) {
+  const { workingLocations } = this;
+  workingLocations.push(location);
+  return this.workingLocations;
+};
+
+console.log(company1.addWorkingLocation("UK"));
+
+company1.addActivityArea = function (area) {
+  this.activityAreas.push(area);
+  return this.activityAreas;
+};
+
+console.log(company1.addActivityArea("AI Dev"));
+
+// 9.
+
+company1.removeWorkingLocation = function (location) {
+  const updateWorkingLocations = this.workingLocations.filter((loc) => loc !== location);
+  this.workingLocations = updateWorkingLocations;
+  return this.workingLocations;
+};
+
+console.log(company1.removeWorkingLocation("Germany"));
+
+company1.removeActivityArea = function (area) {
+  this.activityAreas = this.activityAreas.filter((ar) => ar !== area);
+  return this.activityAreas;
+};
+
+console.log(company1.removeActivityArea("AI Dev"));
