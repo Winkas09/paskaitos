@@ -93,74 +93,156 @@ function setColor() {
 
 // 13. Sukurti input elementą (number tipo) ir jame įrašytą skaičių pridėti kaip h3 elemento tekstą.
 
-const inputElement = document.createElement("input");
-inputElement.type = "number";
-inputElement.addEventListener("input", () => {
-  const value = inputElement.value;
-  display.textContent = value;
+// const inputElement = document.createElement("input");
+// inputElement.type = "number";
+// inputElement.addEventListener("input", () => {
+//   const value = inputElement.value;
+//   display.textContent = value;
 
-  let color;
-  if (value < 5) {
-    color = "red";
-  } else if (value < 7) {
-    color = "blue";
-  } else {
-    color = "green";
-  }
+//   let color;
+//   if (value < 5) {
+//     color = "red";
+//   } else if (value < 7) {
+//     color = "blue";
+//   } else {
+//     color = "green";
+//   }
 
-  display.style.color = color;
-});
-numbersElement.append(inputElement);
+//   display.style.color = color;
+// });
+// numbersElement.append(inputElement);
 
-// 14. Sukurti naują elementą (h4) ir jį pridėti į „numbers" elemento pabaigą.
+// // 14. Sukurti naują elementą (h4) ir jį pridėti į „numbers" elemento pabaigą.
 
-const h4Element = document.createElement("h4");
+// const h4Element = document.createElement("h4");
 
-// 14.1. Šio elemento tekstas turėtų būti „Balai:"
+// // 14.1. Šio elemento tekstas turėtų būti „Balai:"
 
-h4Element.textContent = "Balai:";
+// h4Element.textContent = "Balai:";
 
-// 15. Sukurti naują elementą (ul) ir jį pridėti į „numbers" elemento pabaigą.
+// // 15. Sukurti naują elementą (ul) ir jį pridėti į „numbers" elemento pabaigą.
 
-const ulElement = document.createElement("ul");
-numbersElement.append(ulElement);
+// const ulElement = document.createElement("ul");
+// numbersElement.append(ulElement);
 
-// 15.1. Sukurti naują mygtuką, kurio teksta būtų „Įrašyti balą".
+// // 15.1. Sukurti naują mygtuką, kurio teksta būtų „Įrašyti balą".
 
-const addScoreButton = document.createElement("button");
-addScoreButton.textContent = "Įrašyti balą";
-numbersElement.append(addScoreButton);
+// const addScoreButton = document.createElement("button");
+// addScoreButton.textContent = "Įrašyti balą";
+// numbersElement.append(addScoreButton);
 
-// 15.2. Paspaudus šį mygtuką, reikia paimti reikšmę iš h3 elemento ir sukurti naują li elementą bei jį prepend'inti prie ul elemento.
+// // 15.2. Paspaudus šį mygtuką, reikia paimti reikšmę iš h3 elemento ir sukurti naują li elementą bei jį prepend'inti prie ul elemento.
 
-addScoreButton.addEventListener("click", () => {
+// addScoreButton.addEventListener("click", () => {
+//   const liElement = document.createElement("li");
+//   liElement.textContent = display.textContent;
+//   liElement.style.color = display.style.color;
+
+//   const deleteButton = document.createElement("button");
+//   deleteButton.textContent = "Ištrinti";
+//   liElement.append(deleteButton);
+
+//   deleteButton.addEventListener("click", () => {
+//     liElement.remove();
+//   });
+
+//   ulElement.prepend(liElement);
+// });
+
+// // 16. Į li elementą įrašytas balas turi būti tos pačios spalvos kaip ir h3 elemente.
+
+// // 17.1. Sukurti mygtuką ir jį įdėti į li elementą.
+
+// // 17.2. Paspaudus šį mygtuką, li elementas su balu turi būti ištrintas.
+
+// // 18. Po h4 elementu pridėti mygtuką, kurio tekstas būtų „Ištrinti visus balus". Paspaudus šį mygtuką, ištrinami visi li elementai.
+
+// function deleleteAllScores() {
+//   ulElement.innerHTML = "";
+// }
+
+// const deleteAllButton = document.createElement("button");
+// deleteAllButton.textContent = "Ištrinti visus balus";
+// numbersElement.append(deleteAllButton);
+
+// deleteAllButton.addEventListener("click", deleleteAllScores);
+
+// REFACTORED CODE
+
+// sukuria input elementa
+
+function createInputElement() {
+  const inputElement = document.createElement("input");
+  inputElement.type = "number";
+  inputElement.addEventListener("input", () => {
+    const value = inputElement.value;
+    display.textContent = value;
+
+    let color;
+    if (value < 5) {
+      color = "red";
+    } else if (value < 7) {
+      color = "blue";
+    } else {
+      color = "green";
+    }
+
+    display.style.color = color;
+  });
+  numbersElement.append(inputElement);
+}
+
+// sukuria h4 su tekstu balai
+
+function createH4Element() {
+  const h4Element = document.createElement("h4");
+  h4Element.textContent = "Balai:";
+  numbersElement.append(h4Element);
+}
+
+// sukuria ul elementa
+
+function createUlElement() {
+  const ulElement = document.createElement("ul");
+  numbersElement.append(ulElement);
+  return ulElement;
+}
+
+// sukuria mygtuka
+
+function createButton(text, onClick) {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.addEventListener("click", onClick);
+  return button;
+}
+
+// prideda score
+
+function addScore() {
   const liElement = document.createElement("li");
   liElement.textContent = display.textContent;
   liElement.style.color = display.style.color;
 
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Ištrinti";
-  liElement.append(deleteButton);
-
-  deleteButton.addEventListener("click", () => {
+  const deleteButton = createButton("Ištrinti", () => {
     liElement.remove();
   });
-
+  liElement.append(deleteButton);
   ulElement.prepend(liElement);
-});
+}
 
-// 16. Į li elementą įrašytas balas turi būti tos pačios spalvos kaip ir h3 elemente.
+// istrina visus score
 
-// 17.1. Sukurti mygtuką ir jį įdėti į li elementą.
+function deletelAllScores() {
+  ulElement.innerHtml = "";
+}
 
-// 17.2. Paspaudus šį mygtuką, li elementas su balu turi būti ištrintas.
+createInputElement();
+createH4Element();
 
-// 18. Po h4 elementu pridėti mygtuką, kurio tekstas būtų „Ištrinti visus balus". Paspaudus šį mygtuką, ištrinami visi li elementai.
+const ulElement = createUlElement();
+const addScoreButton = createButton("Įrašyti balą", addScore);
+numbersElement.append(addScoreButton);
 
-const deleteAllButton = document.createElement("button");
-deleteAllButton.textContent = "Ištrinti visus balus";
+const deleteAllButton = createButton("Ištrinti visus balus", deletelAllScores);
 numbersElement.append(deleteAllButton);
-
-deleteAllButton.addEventListener("click", () => {
-  ulElement.innerHTML = "";
-});
