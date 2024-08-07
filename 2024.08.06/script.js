@@ -1,290 +1,166 @@
-// Užduotis:
-// 1. Sukurti HTML elementą, kurio id „numbers"
-// 2. JavaScript pagalba šio elemento viduje sukurti: h3 elementą ir du mygtukų elementus
-// 3. h3 elemento tekstas turėtų būti „5"
-// 4. Mygtukų tekstas turėtų būti „+" ir „-"
-// 5. Sukurti „click" (paspaudimo) event listener'ius abiems mygtukams.
-// 6. „-" mygtuko event listeneris turėtų iškviesti funkciją, kuri sumažina skaičių h3 elemente, o „+" mygtuko paspaudimas turėtų skaičių padidinti
-
-// 7. Jeigu skaitmuo h3 komponente yra mažesnis už du, tai „-" mygtukas turėtų patapti neveiksnus (disabled)- element.setAttribute('disabled', true) / element.removeAttribute('disabled')
-// 8. Jeigu skaitmuo h3 komponente yra didesnis už 9, tai „+" mygtukas turėtų patapti neveiksnus (disabled)
-
-// 9. Jeigu skaitmuo yra 5 arba daugiau, tai jo spalva turėtų būti žalia. Kitu atveju - raudona.
-
-// 10. Sukurti naują mygtuką „Reset". Jį paspaudus viskas atstatoma į pradinę padėtį.
-
-// 11. Sukurti du naujus mygtukus, kurie:
-// 11.1. Prideda dvejetą prie esamos h3 elemento reikšmės.
-// 11.2. Atima dvejetą iš esamos h3 elemento reikšmės.
-
-// 12. Sukurti du naujus mygtukus, kurie:
-// 12.1. Prideda 5 prie esamos h3 elemento reikšmės.
-// 12.2. Atima 5 iš esamos h3 elemento reikšmės..
-
-// const numbersElement = document.querySelector("#numbers");
-
-// const display = document.createElement("h3");
-// const minus1Button = document.createElement("button");
-// const plus1Button = document.createElement("button");
-
-// display.textContent = "5";
-// minus1Button.textContent = "-";
-// plus1Button.textContent = "+";
-
-// numbersElement.append(display, minus1Button, plus1Button);
-
-// 5. Sukurti „click" (paspaudimo) event listener'ius abiems mygtukams.
-
-// minus1Button.addEventListener("click", () => {
-//   console.log("minus1Button clicked");
-// });
-
-// plus1Button.addEventListener("click", () => {
-//   console.log("plus1Button clicked");
-// });
-
-// 6. „-" mygtuko event listeneris turėtų iškviesti funkciją, kuri sumažina skaičių h3 elemente, o „+" mygtuko paspaudimas turėtų skaičių padidinti
-
-// minus1Button.addEventListener("click", () => {
-//   const number = parseInt(display.textContent);
-//   display.textContent = number - 1;
-// });
-
-// plus1Button.addEventListener("click", () => {
-//   const number = parseInt(display.textContent);
-//   display.textContent = number + 1;
-// });
-
-// 7. Jeigu skaitmuo h3 komponente yra mažesnis už du, tai „-" mygtukas turėtų patapti neveiksnus (disabled)- element.setAttribute('disabled', true) / element.removeAttribute('disabled')
-
-// minus1Button.addEventListener("click", () => {
-//   const number = parseInt(display.textContent);
-//   display.textContent = number - 1;
-//   if (number - 1 < 2) {
-//     minus1Button.setAttribute("disabled", true);
-//   }
-// });
-
-// // 8. Jeigu skaitmuo h3 komponente yra didesnis už 9, tai „+" mygtukas turėtų patapti neveiksnus (disabled)
-
-// plus1Button.addEventListener("click", () => {
-//   const number = parseInt(display.textContent);
-//   display.textContent = number + 1;
-//   if (number + 1 > 9) {
-//     plus1Button.setAttribute("disabled", true);
-//   }
-// });
-
-// 9. Jeigu skaitmuo yra 5 arba daugiau, tai jo spalva turėtų būti žalia. Kitu atveju - raudona.
-
-// minus1Button.addEventListener("click", () => {
-//   const number = parseInt(display.textContent);
-//   display.textContent = number - 1;
-//   if (number - 1 < 2) {
-//     minus1Button.setAttribute("disabled", true);
-//   }
-//   if (number - 1 >= 5) {
-//     display.style.color = "green";
-//   } else {
-//     display.style.color = "red";
-//   }
-// });
-
-// plus1Button.addEventListener("click", () => {
-//   const number = parseInt(display.textContent);
-//   display.textContent = number + 1;
-//   if (number + 1 > 9) {
-//     plus1Button.setAttribute("disabled", true);
-//   }
-//   if (number + 1 >= 5) {
-//     display.style.color = "green";
-//   } else {
-//     display.style.color = "red";
-//   }
-// });
-
-// // 10. Sukurti naują mygtuką „Reset". Jį paspaudus viskas atstatoma į pradinę padėtį.
-
-// const resetButton = document.createElement("button");
-// resetButton.textContent = "Reset";
-// numbersElement.append(resetButton);
-
-// resetButton.addEventListener("click", () => {
-//   display.textContent = "5";
-//   display.style.color = "black";
-//   minus1Button.removeAttribute("disabled");
-//   plus1Button.removeAttribute("disabled");
-// });
-
-// // 11. Sukurti du naujus mygtukus, kurie:
-// // 11.1. Prideda dvejetą prie esamos h3 elemento reikšmės.
-
-// const plus2Button = document.createElement("button");
-// plus2Button.textContent = "+2";
-// numbersElement.append(plus2Button);
-
-// plus2Button.addEventListener("click", () => {
-//   const number = parseInt(display.textContent);
-//   display.textContent = number + 2;
-//   if (number + 2 > 9) {
-//     plus1Button.setAttribute("disabled", true);
-//   }
-//   if (number + 2 >= 5) {
-//     display.style.color = "green";
-//   } else {
-//     display.style.color = "red";
-//   }
-// });
-
-// // 11.2. Atima dvejetą iš esamos h3 elemento reikšmės.
-
-// const minus2Button = document.createElement("button");
-// minus2Button.textContent = "-2";
-// numbersElement.append(minus2Button);
-
-// minus2Button.addEventListener("click", () => {
-//   const number = parseInt(display.textContent);
-//   display.textContent = number - 2;
-//   if (number - 2 < 2) {
-//     minus1Button.setAttribute("disabled", true);
-//   }
-//   if (number - 2 >= 5) {
-//     display.style.color = "green";
-//   } else {
-//     display.style.color = "red";
-//   }
-// });
-
-// // 12. Sukurti du naujus mygtukus, kurie:
-// // 12.1. Prideda 5 prie esamos h3 elemento reikšmės.
-
-// const plus5Button = document.createElement("button");
-// plus5Button.textContent = "+5";
-// numbersElement.append(plus5Button);
-
-// plus5Button.addEventListener("click", () => {
-//   const number = parseInt(display.textContent);
-//   display.textContent = number + 5;
-//   if (number + 5 > 9) {
-//     plus1Button.setAttribute("disabled", true);
-//   }
-//   if (number + 5 >= 5) {
-//     display.style.color = "green";
-//   } else {
-//     display.style.color = "red";
-//   }
-// });
-
-// // 12.2. Atima 5 iš esamos h3 elemento reikšmės..
-
-// const minus5Button = document.createElement("button");
-// minus5Button.textContent = "-5";
-// numbersElement.append(minus5Button);
-
-// minus5Button.addEventListener("click", () => {
-//   const number = parseInt(display.textContent);
-//   display.textContent = number - 5;
-//   if (number - 5 < 2) {
-//     minus1Button.setAttribute("disabled", true);
-//   }
-//   if (number - 5 >= 5) {
-//     display.style.color = "green";
-//   } else {
-//     display.style.color = "red";
-//   }
-// });
-
-// can i make everything in one ?
-
 const numbersElement = document.querySelector("#numbers");
 
 const display = document.createElement("h3");
+const minus5Button = document.createElement("button");
+const minus2Button = document.createElement("button");
 const minus1Button = document.createElement("button");
 const plus1Button = document.createElement("button");
-const resetButton = document.createElement("button");
 const plus2Button = document.createElement("button");
-const minus2Button = document.createElement("button");
 const plus5Button = document.createElement("button");
-const minus5Button = document.createElement("button");
+const resetButton = document.createElement("button");
 
-display.textContent = "5";
+minus5Button.textContent = "-5";
+minus2Button.textContent = "-2";
 minus1Button.textContent = "-";
 plus1Button.textContent = "+";
-resetButton.textContent = "Reset";
 plus2Button.textContent = "+2";
-minus2Button.textContent = "-2";
 plus5Button.textContent = "+5";
-minus5Button.textContent = "-5";
+resetButton.textContent = "Reset";
 
-numbersElement.append(display, minus1Button, plus1Button, resetButton, plus2Button, minus2Button, plus5Button, minus5Button);
+numbersElement.append(display, minus5Button, minus2Button, minus1Button, plus1Button, plus2Button, plus5Button, resetButton);
 
-function updateDisplay(newNumber) {
-  // Ensure the number stays within the range 1 to 9
-  if (newNumber < 1) newNumber = 1;
-  if (newNumber > 9) newNumber = 9;
+const initialCounter = 5;
+let counter = initialCounter;
+checkData(0);
 
-  display.textContent = newNumber;
+minus5Button.addEventListener("click", () => checkData(-5));
+minus2Button.addEventListener("click", () => checkData(-2));
+minus1Button.addEventListener("click", () => checkData(-1));
+plus1Button.addEventListener("click", () => checkData(1));
+plus2Button.addEventListener("click", () => checkData(2));
+plus5Button.addEventListener("click", () => checkData(5));
 
-  // Disable or enable buttons based on the new number
-  if (newNumber <= 1) {
+resetButton.addEventListener("click", () => {
+  counter = initialCounter;
+  checkData(0);
+});
+
+function checkData(num) {
+  counter = counter + num;
+
+  display.textContent = counter;
+  setColor();
+  checkCounter();
+}
+
+function checkCounter() {
+  if (counter <= 1) {
     minus1Button.setAttribute("disabled", true);
-    minus2Button.setAttribute("disabled", true);
-    minus5Button.setAttribute("disabled", true);
   } else {
     minus1Button.removeAttribute("disabled");
+  }
+
+  if (counter <= 2) {
+    minus2Button.setAttribute("disabled", true);
+  } else {
     minus2Button.removeAttribute("disabled");
+  }
+
+  if (counter <= 5) {
+    minus5Button.setAttribute("disabled", true);
+  } else {
     minus5Button.removeAttribute("disabled");
   }
 
-  if (newNumber >= 9) {
-    plus1Button.setAttribute("disabled", true);
-    plus2Button.setAttribute("disabled", true);
+  if (counter > 5) {
     plus5Button.setAttribute("disabled", true);
   } else {
-    plus1Button.removeAttribute("disabled");
-    plus2Button.removeAttribute("disabled");
     plus5Button.removeAttribute("disabled");
   }
 
-  // Change color based on the new number
-  if (newNumber >= 5) {
-    display.style.color = "green";
+  if (counter > 8) {
+    plus2Button.setAttribute("disabled", true);
   } else {
-    display.style.color = "red";
+    plus2Button.removeAttribute("disabled");
+  }
+
+  if (counter > 9) {
+    plus1Button.setAttribute("disabled", true);
+  } else {
+    plus1Button.removeAttribute("disabled");
   }
 }
 
-minus1Button.addEventListener("click", () => {
-  const number = parseInt(display.textContent);
-  updateDisplay(number - 1);
+function setColor() {
+  if (counter < 5) {
+    display.style.color = "red";
+  } else if (counter < 7) {
+    display.style.color = "blue";
+  } else {
+    display.style.color = "green";
+  }
+}
+
+// 13. Sukurti input elementą (number tipo) ir jame įrašytą skaičių pridėti kaip h3 elemento tekstą.
+
+const inputElement = document.createElement("input");
+inputElement.type = "number";
+inputElement.addEventListener("input", () => {
+  const value = inputElement.value;
+  display.textContent = value;
+
+  let color;
+  if (value < 5) {
+    color = "red";
+  } else if (value < 7) {
+    color = "blue";
+  } else {
+    color = "green";
+  }
+
+  display.style.color = color;
+});
+numbersElement.append(inputElement);
+
+// 14. Sukurti naują elementą (h4) ir jį pridėti į „numbers" elemento pabaigą.
+
+const h4Element = document.createElement("h4");
+
+// 14.1. Šio elemento tekstas turėtų būti „Balai:"
+
+h4Element.textContent = "Balai:";
+
+// 15. Sukurti naują elementą (ul) ir jį pridėti į „numbers" elemento pabaigą.
+
+const ulElement = document.createElement("ul");
+numbersElement.append(ulElement);
+
+// 15.1. Sukurti naują mygtuką, kurio teksta būtų „Įrašyti balą".
+
+const addScoreButton = document.createElement("button");
+addScoreButton.textContent = "Įrašyti balą";
+numbersElement.append(addScoreButton);
+
+// 15.2. Paspaudus šį mygtuką, reikia paimti reikšmę iš h3 elemento ir sukurti naują li elementą bei jį prepend'inti prie ul elemento.
+
+addScoreButton.addEventListener("click", () => {
+  const liElement = document.createElement("li");
+  liElement.textContent = display.textContent;
+  liElement.style.color = display.style.color;
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Ištrinti";
+  liElement.append(deleteButton);
+
+  deleteButton.addEventListener("click", () => {
+    liElement.remove();
+  });
+
+  ulElement.prepend(liElement);
 });
 
-plus1Button.addEventListener("click", () => {
-  const number = parseInt(display.textContent);
-  updateDisplay(number + 1);
-});
+// 16. Į li elementą įrašytas balas turi būti tos pačios spalvos kaip ir h3 elemente.
 
-resetButton.addEventListener("click", () => {
-  updateDisplay(5);
-  display.style.color = "black";
-});
+// 17.1. Sukurti mygtuką ir jį įdėti į li elementą.
 
-plus2Button.addEventListener("click", () => {
-  const number = parseInt(display.textContent);
-  updateDisplay(number + 2);
-});
+// 17.2. Paspaudus šį mygtuką, li elementas su balu turi būti ištrintas.
 
-minus2Button.addEventListener("click", () => {
-  const number = parseInt(display.textContent);
-  updateDisplay(number - 2);
-});
+// 18. Po h4 elementu pridėti mygtuką, kurio tekstas būtų „Ištrinti visus balus". Paspaudus šį mygtuką, ištrinami visi li elementai.
 
-plus5Button.addEventListener("click", () => {
-  const number = parseInt(display.textContent);
-  updateDisplay(number + 5);
-});
+const deleteAllButton = document.createElement("button");
+deleteAllButton.textContent = "Ištrinti visus balus";
+numbersElement.append(deleteAllButton);
 
-minus5Button.addEventListener("click", () => {
-  const number = parseInt(display.textContent);
-  updateDisplay(number - 5);
+deleteAllButton.addEventListener("click", () => {
+  ulElement.innerHTML = "";
 });
