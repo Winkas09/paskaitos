@@ -218,87 +218,73 @@ minus5Button.textContent = "-5";
 
 numbersElement.append(display, minus1Button, plus1Button, resetButton, plus2Button, minus2Button, plus5Button, minus5Button);
 
-minus1Button.addEventListener("click", () => {
-  const number = parseInt(display.textContent);
-  display.textContent = number - 1;
-  if (number - 1 < 2) {
+function updateDisplay(newNumber) {
+  // Ensure the number stays within the range 1 to 9
+  if (newNumber < 1) newNumber = 1;
+  if (newNumber > 9) newNumber = 9;
+
+  display.textContent = newNumber;
+
+  // Disable or enable buttons based on the new number
+  if (newNumber <= 1) {
     minus1Button.setAttribute("disabled", true);
+    minus2Button.setAttribute("disabled", true);
+    minus5Button.setAttribute("disabled", true);
+  } else {
+    minus1Button.removeAttribute("disabled");
+    minus2Button.removeAttribute("disabled");
+    minus5Button.removeAttribute("disabled");
   }
-  if (number - 1 >= 5) {
+
+  if (newNumber >= 9) {
+    plus1Button.setAttribute("disabled", true);
+    plus2Button.setAttribute("disabled", true);
+    plus5Button.setAttribute("disabled", true);
+  } else {
+    plus1Button.removeAttribute("disabled");
+    plus2Button.removeAttribute("disabled");
+    plus5Button.removeAttribute("disabled");
+  }
+
+  // Change color based on the new number
+  if (newNumber >= 5) {
     display.style.color = "green";
   } else {
     display.style.color = "red";
   }
+}
+
+minus1Button.addEventListener("click", () => {
+  const number = parseInt(display.textContent);
+  updateDisplay(number - 1);
 });
 
 plus1Button.addEventListener("click", () => {
   const number = parseInt(display.textContent);
-  display.textContent = number + 1;
-  if (number + 1 > 9) {
-    plus1Button.setAttribute("disabled", true);
-  }
-  if (number + 1 >= 5) {
-    display.style.color = "green";
-  } else {
-    display.style.color = "red";
-  }
+  updateDisplay(number + 1);
 });
 
 resetButton.addEventListener("click", () => {
-  display.textContent = "5";
+  updateDisplay(5);
   display.style.color = "black";
-  minus1Button.removeAttribute("disabled");
-  plus1Button.removeAttribute("disabled");
 });
 
 plus2Button.addEventListener("click", () => {
   const number = parseInt(display.textContent);
-  display.textContent = number + 2;
-  if (number + 2 > 9) {
-    plus1Button.setAttribute("disabled", true);
-  }
-  if (number + 2 >= 5) {
-    display.style.color = "green";
-  } else {
-    display.style.color = "red";
-  }
+  updateDisplay(number + 2);
 });
 
 minus2Button.addEventListener("click", () => {
   const number = parseInt(display.textContent);
-  display.textContent = number - 2;
-  if (number - 2 < 2) {
-    minus1Button.setAttribute("disabled", true);
-  }
-  if (number - 2 >= 5) {
-    display.style.color = "green";
-  } else {
-    display.style.color = "red";
-  }
+  updateDisplay(number - 2);
 });
 
 plus5Button.addEventListener("click", () => {
   const number = parseInt(display.textContent);
-  display.textContent = number + 5;
-  if (number + 5 > 9) {
-    plus1Button.setAttribute("disabled", true);
-  }
-  if (number + 5 >= 5) {
-    display.style.color = "green";
-  } else {
-    display.style.color = "red";
-  }
+  updateDisplay(number + 5);
 });
 
 minus5Button.addEventListener("click", () => {
   const number = parseInt(display.textContent);
-  display.textContent = number - 5;
-  if (number - 5 < 2) {
-    minus1Button.setAttribute("disabled", true);
-  }
-  if (number - 5 >= 5) {
-    display.style.color = "green";
-  } else {
-    display.style.color = "red";
-  }
+  updateDisplay(number - 5);
 });
