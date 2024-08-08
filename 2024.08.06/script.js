@@ -246,3 +246,47 @@ numbersElement.append(addScoreButton);
 
 const deleteAllButton = createButton("Ištrinti visus balus", deletelAllScores);
 numbersElement.append(deleteAllButton);
+
+// 19. Virš ul elemento, sukurti div elementą.
+
+// 19.1. Šio div elemento elemento viduje sukurti p elementą ir jame pridėti tekstą, kuriame nurodomas balų vidurkis: „Vidurkis: 7.5"
+
+// 19.2. Šio div elemento elemento viduje sukurti p elementą ir jame pridėti tekstą, kuriame nurodomas balų mediana: „Mediana: 8"
+
+// 19.3. Šio div elemento elemento viduje sukurti p elementą ir jame pridėti tekstą, kuriame nurodomas didžiausias balas: „Didžiausias balas: 10"
+
+// 19.4. Šio div elemento elemento viduje sukurti p elementą ir jame pridėti tekstą, kuriame nurodomas mažiausias balas: „Mažiausias balas: 10"
+
+function calculateAverage(scores) {
+  const sum = scores.reduce((acc, score) => acc + score, 0);
+  return (sum / scores.length).toFixed(2);
+}
+
+function calculateMedian(scores) {
+  scores.sort((a, b) => a - b);
+  const mid = Math.floor(scores.length / 2);
+  return scores.length % 2 !== 0 ? scores[mid] : ((scores[mid - 1] + scores[mid]) / 2).toFixed(2);
+}
+
+function findHighestScore(scores) {
+  return Math.max(...scores);
+}
+
+function findLowestScore(scores) {
+  return Math.min(...scores);
+}
+
+function updateStatistics() {
+  const scores = Array.from(ulElement.children).map((li) => parseFloat(li.textContent));
+  if (scores.length === 0) {
+    averageScoreP.textContent = "Vidurkis: N/A";
+    medianScoreP.textContent = "Mediana: N/A";
+    highestScoreP.textContent = "Didziausias balas: N/A";
+    lowestScoreP.textContent = "Maziausias balas: N/A";
+  } else {
+    averageScoreP.textContent = `Vidurkis: ${calculateAverage(scores)}`;
+    medianScoreP.textContent = `Mediana: ${calculateMedian(scores)}`;
+    highestScoreP.textContent = `Didziausias balas: ${findHighestScore(scores)}`;
+    lowestScoreP.textContent = `Maziausias balas: ${findLowestScore(scores)}`;
+  }
+}
