@@ -55,18 +55,16 @@ button.addEventListener("click", () => {
 //   alert("You are not allowed to copy this text");
 // });
 
-const symbols = ["❤️", "🌟", "🍀", "🌙", "🍄", "❤️", "🌟", "🍀", "🌙", "🍄"];
-
-let moves = 0;
-let timer = 0;
-let interval;
-let revealedCards = [];
-let matchedCards = 0;
-
 document.addEventListener("DOMContentLoaded", () => {
   const gameBoard = document.getElementById("game-board");
   const movesElement = document.getElementById("moves");
   const timerElement = document.getElementById("timer");
+  let moves = 0;
+  let timer = 0;
+  let revealedCards = [];
+  let matchedCards = 0;
+  let interval;
+  const symbols = ["❤️", "🌟", "🍀", "🌙", "🍄", "❤️", "🌟", "🍀", "🌙", "🍄"];
 
   function startGame() {
     moves = 0;
@@ -87,4 +85,59 @@ document.addEventListener("DOMContentLoaded", () => {
       gameBoard.appendChild(card);
     });
   }
+
+  function createCard(symbol) {
+    const card = document.createElement("div");
+    card.classList.add("card", "hidden");
+    card.dataset.symbol = symbol;
+    card.addEventListener("click", onCardClick);
+    return card;
+  }
+
+  function onCardClick(event) {
+    const card = event.target;
+    if (card.classList.contains("revealed") || card.classList.contains("matched") || revealedCards.length === 2) {
+      return;
+    }
+    revealCard(card);
+    revealedCards.push(card);
+    if (revealedCards.length === 2) {
+      moves++;
+      movesElement.textContent = moves;
+      checkMatch();
+    }
+  }
+
+  function revealCard(card) {
+    card.classList.remove("hidden");
+    card.classList.add("revealed");
+    card.textContent = card.dataset.symbol;
+  }
+
+  function hideCard(card) {
+    card.classList.remove("revealed");
+    card.classList.add("hidden");
+    card.textContent = "";
+  }
+
+  function checkMatch() {
+    const [card1, card2] = revealedCards;
+    if (card1.dataset.symbol === card2.dataset.symbol) {
+      card1.classList.add("matched");
+      card2.classList.add("matched");
+      matchedCards += 2;
+      if (matchedCards === symbols.length) {
+        clearInterval(interval);
+        alert(`Game over! Moves: ${moves}, Time: ${timer} s`);
+      }
+    } else {
+      setTimeout(() => {
+        hideCard(card1);
+        hideCard(card2);
+      }, 1000);
+    }
+    revealedCards = [];
+  }
+
+  startGame();
 });
