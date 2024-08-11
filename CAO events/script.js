@@ -4,48 +4,87 @@
 //   document.querySelector("p").textContent = "Tekstas apie mane";
 // });
 
-// const h1 = document.createElement("h1");
-// h1.id = "number";
-// h1.textContent = "0";
+const h1 = document.createElement("h1");
+h1.id = "number";
+h1.textContent = "0";
 
-// const button = document.createElement("button");
-// button.id = "increamentButton";
-// button.textContent = "Increase";
+const button = document.createElement("button");
+button.id = "increamentButton";
+button.textContent = "Padidinti";
 
-// document.body.appendChild(h1);
-// document.body.appendChild(button);
+document.body.appendChild(h1);
+document.body.appendChild(button);
 
-// button.addEventListener("click", () => {
-//   let currentNumber = parseInt(h1.textContent);
-//   h1.textContent = currentNumber + 1;
-//   button.style.backgroundColor = "red";
-//   button.style.color = "white";
-//   button.style.fontSize = "20px";
-//   button.style.border = "none";
-//   button.style.padding = "10px";
-//   button.style.borderRadius = "5px";
-//   button.style.margin = "10px";
-//   button.style.cursor = "pointer";
-//   button.style.display = "block";
-//   button.style.margin = "auto";
-//   button.style.marginTop = "20px";
-//   button.style.textAlign = "center";
-//   button.style.textDecoration = "none";
-//   button.style.textTransform = "uppercase";
-//   button.style.fontWeight = "bold";
-//   button.style.fontFamily = "Arial";
-//   button.style.letterSpacing = "1px";
-//   button.style.transition = "all 0.5s";
-//   button.style.boxShadow = "0 5px 15px rgba(0,0,0,0.2)";
-//   button.style.outline = "none";
-//   button.style.border = "none";
-//   button.style.borderRadius = "5px";
-//   button.style.backgroundColor = "blue";
+button.addEventListener("click", () => {
+  let currentNumber = parseInt(h1.textContent);
+  h1.textContent = currentNumber + 1;
+  button.style.backgroundColor = "red";
+  button.style.color = "white";
+  button.style.fontSize = "20px";
+  button.style.border = "none";
+  button.style.padding = "10px";
+  button.style.borderRadius = "5px";
+  button.style.margin = "10px";
+  button.style.cursor = "pointer";
+  button.style.display = "block";
+  button.style.margin = "auto";
+  button.style.marginTop = "20px";
+  button.style.textAlign = "center";
+  button.style.textDecoration = "none";
+  button.style.textTransform = "uppercase";
+  button.style.fontWeight = "bold";
+  button.style.fontFamily = "Arial";
+  button.style.letterSpacing = "1px";
+  button.style.transition = "all 0.5s";
+  button.style.boxShadow = "0 5px 15px rgba(0,0,0,0.2)";
+  button.style.outline = "none";
+  button.style.border = "none";
+  button.style.borderRadius = "5px";
+  button.style.backgroundColor = "blue";
 
-//   h1.style.fontSize = "50px";
-//   h1.style.textAlign = "center";
-//   h1.style.margin = "20px";
-//   h1.style.fontFamily = "Arial";
-//   h1.style.fontWeight = "bold";
-//   h1.style.letterSpacing = "1px";
+  h1.style.fontSize = "50px";
+  h1.style.textAlign = "center";
+  h1.style.margin = "20px";
+  h1.style.fontFamily = "Arial";
+  h1.style.fontWeight = "bold";
+  h1.style.letterSpacing = "1px";
+});
+
+// document.querySelector("p").addEventListener("copy", () => {
+//   event.preventDefault();
+//   alert("You are not allowed to copy this text");
 // });
+
+const symbols = ["❤️", "🌟", "🍀", "🌙", "🍄", "❤️", "🌟", "🍀", "🌙", "🍄"];
+
+let moves = 0;
+let timer = 0;
+let interval;
+let revealedCards = [];
+let matchedCards = 0;
+
+document.addEventListener("DOMContentLoaded", () => {
+  const gameBoard = document.getElementById("game-board");
+  const movesElement = document.getElementById("moves");
+  const timerElement = document.getElementById("timer");
+
+  function startGame() {
+    moves = 0;
+    timer = 0;
+    revealedCards = [];
+    matchedCards = 0;
+    movesElement.textContent = moves;
+    timerElement.textContent = timer;
+    clearInterval(interval); // stop the timer
+    interval = setInterval(() => {
+      timer++;
+      timerElement.textContent = timer;
+    }, 1000);
+    gameBoard.innerHTML = "";
+    const shuffledSymbols = symbols.sort(() => 0.5 - Math.random());
+    shuffledSymbols.forEach((symbol) => {
+      const card = createCard(symbol);
+      gameBoard.appendChild(card);
+    });
+  }
+});
