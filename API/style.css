@@ -1,0 +1,23 @@
+button {
+  background-color: green;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  background-image: green;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 8px;
+  box-shadow: 0 5px #999;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 auto;
+  display: block;
+}
+
+.catFacts p,
+.catBreed p {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
