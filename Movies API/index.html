@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MovieFinder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>MovieFinder</h1>
+      <form id="movie-form">
+        <div class="form">
+          <label for="query">Search:</label>
+          <input type="text" id="query-input" placeholder="Enter the movie title or actors name" aria-label="Search for movies or actors" />
+        </div>
+        <div class="form">
+          <label for="genre">Choose a genre:</label>
+          <select id="genre" name="genre">
+            <option value="action">Action</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="horror">Horror</option>
+            <option value="romance">Romance</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="adventure">Adventure</option>
+            <option value="animation">Animation</option>
+            <option value="crime">Crime</option>
+            <option value="documentary">Documentary</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="mystery">Mystery</option>
+            <option value="thriller">Thriller</option>
+          </select>
+        </div>
+        <div class="form">
+          <label for="type">Choose type:</label>
+          <select id="type" name="type">
+            <option value="movie">Movie</option>
+            <option value="series">Series</option>
+          </select>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </header>
+    <div id="movie-results-container">
+      <div id="movie-results"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
