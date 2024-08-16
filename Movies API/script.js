@@ -24,9 +24,11 @@ movieForm.addEventListener("submit", async (event) => {
 
   do {
     const searchURL = `https://www.omdbapi.com/?apikey=683ee54d&s=${encodeURIComponent(searchQuery)}&page=${page}`;
+    console.log(`Fetching URL: ${searchURL}`); // Log the URL being fetched
     try {
       const response = await fetch(searchURL);
       const data = await response.json();
+      console.log(`Response data:`, data); // Log the response data
       if (data.Response === "True") {
         totalResults = parseInt(data.totalResults);
         allMovies = allMovies.concat(data.Search);
