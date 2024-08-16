@@ -39,7 +39,7 @@ movieForm.addEventListener("submit", async (event) => {
       movieResults.innerHTML = `<h2>An error occurred. Please try again later.</h2>`;
       return;
     }
-  } while (allMovies.length < totalResults && allMovies.length < 50); // Limit to 50 results for performance
+  } while (allMovies.length < totalResults && allMovies.length < 200); // limitas 200 filmu per paieska, nes ilgai kraunasi paskui
 
   const detailedMovies = await Promise.all(
     allMovies.map(async (movie) => {
@@ -48,7 +48,7 @@ movieForm.addEventListener("submit", async (event) => {
     })
   );
 
-  // jei pasirinktas filtras, filtruoja pagal zanra
+  // jei pasirinktas filtras pagal zanra, filtruojame pagal zanra
   filteredMovies = genre ? detailedMovies.filter((movie) => movie.Genre.toLowerCase().includes(genre)) : detailedMovies;
 
   if (filteredMovies.length > 0) {
