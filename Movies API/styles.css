@@ -128,7 +128,7 @@ button:hover {
 }
 
 /* Mobile Styles */
-@media (max-width: 600px) {
+@media (max-width: 370px) {
   body {
     margin: 10px;
   }
