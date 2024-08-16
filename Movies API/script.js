@@ -1,6 +1,12 @@
 const movieResults = document.querySelector("#movie-results");
 const movieForm = document.querySelector("#movie-form");
 const paginationControls = document.querySelector("#pagination-controls");
+const loadingIndicator = document.createElement("div");
+
+loadingIndicator.id = "loading-indicator";
+loadingIndicator.innerHTML = "Loading...";
+loadingIndicator.style.display = "none";
+document.body.appendChild(loadingIndicator);
 
 let currentPage = 1;
 const moviesPerPage = 10;
@@ -22,10 +28,13 @@ movieForm.addEventListener("submit", async (event) => {
   let page = 1;
   let totalResults = 0;
 
-  do {
-    const searchURL = `https://www.omdbapi.com/?apikey=683ee54d&s=${encodeURIComponent(searchQuery)}&page=${page}`;
-    console.log(`Fetching URL: ${searchURL}`); // Log the URL being fetched
-    try {
+  // Show loading indicator
+  loadingIndicator.style.display = "block";
+
+  try {
+    do {
+      const searchURL = `https://www.omdbapi.com/?apikey=683ee54d&s=${encodeURIComponent(searchQuery)}&page=${page}`;
+      console.log(`Fetching URL: ${searchURL}`); // Log the URL being fetched
       const response = await fetch(searchURL);
       const data = await response.json();
       console.log(`Response data:`, data); // Log the response data
@@ -36,29 +45,31 @@ movieForm.addEventListener("submit", async (event) => {
       } else {
         break;
       }
-    } catch (error) {
-      console.error("Error fetching movies", error);
-      movieResults.innerHTML = `<h2>An error occurred. Please try again later.</h2>`;
-      return;
+    } while (allMovies.length < totalResults && allMovies.length < 200); // limitas 200 filmu per paieska, nes ilgai kraunasi paskui
+
+    const detailedMovies = await Promise.all(
+      allMovies.map(async (movie) => {
+        const detailedResponse = await fetch(`https://www.omdbapi.com/?apikey=683ee54d&i=${movie.imdbID}`);
+        return detailedResponse.json();
+      })
+    );
+
+    // Filter movies by genre if a genre is selected and not "all"
+    filteredMovies = genre && genre !== "all" ? detailedMovies.filter((movie) => movie.Genre.toLowerCase().includes(genre)) : detailedMovies;
+
+    if (filteredMovies.length > 0) {
+      currentPage = 1;
+      displayMovies(filteredMovies, currentPage);
+      setupPagination(filteredMovies);
+    } else {
+      movieResults.innerHTML = `<h2>No movies found</h2>`;
     }
-  } while (allMovies.length < totalResults && allMovies.length < 200); // limitas 200 filmu per paieska, nes ilgai kraunasi paskui
-
-  const detailedMovies = await Promise.all(
-    allMovies.map(async (movie) => {
-      const detailedResponse = await fetch(`https://www.omdbapi.com/?apikey=683ee54d&i=${movie.imdbID}`);
-      return detailedResponse.json();
-    })
-  );
-
-  // Filter movies by genre if a genre is selected and not "all"
-  filteredMovies = genre && genre !== "all" ? detailedMovies.filter((movie) => movie.Genre.toLowerCase().includes(genre)) : detailedMovies;
-
-  if (filteredMovies.length > 0) {
-    currentPage = 1;
-    displayMovies(filteredMovies, currentPage);
-    setupPagination(filteredMovies);
-  } else {
-    movieResults.innerHTML = `<h2>No movies found</h2>`;
+  } catch (error) {
+    console.error("Error fetching movies", error);
+    movieResults.innerHTML = `<h2>An error occurred. Please try again later.</h2>`;
+  } finally {
+    // Hide loading indicator
+    loadingIndicator.style.display = "none";
   }
 });
 
