@@ -110,6 +110,10 @@ button:hover {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
 }
 
 #pagination-controls button {

@@ -36,11 +36,10 @@ movieForm.addEventListener("submit", async (event) => {
   try {
     do {
       const searchURL = `https://www.omdbapi.com/?apikey=683ee54d&s=${encodeURIComponent(searchQuery)}&page=${page}`;
-      console.log(`Fetching URL: ${searchURL}`);
+      console.log(`Fetching URL: ${searchURL}`); // Log the URL being fetched
       const response = await fetch(searchURL);
       const data = await response.json();
-      console.log(`Response data:`, data);
-      a;
+      console.log(`Response data:`, data); // Log the response data
       if (data.Response === "True") {
         totalResults = parseInt(data.totalResults);
         allMovies = allMovies.concat(data.Search);
@@ -57,7 +56,7 @@ movieForm.addEventListener("submit", async (event) => {
       })
     );
 
-    // filtruojam pagal genre, jei pasirinktas genre ne "all"
+    // Filter movies by genre if a genre is selected and not "all"
     filteredMovies = genre && genre !== "all" ? detailedMovies.filter((movie) => movie.Genre.toLowerCase().includes(genre)) : detailedMovies;
 
     if (filteredMovies.length > 0) {
@@ -71,7 +70,7 @@ movieForm.addEventListener("submit", async (event) => {
     console.error("Error fetching movies", error);
     movieResults.innerHTML = `<h2>An error occurred. Please try again later.</h2>`;
   } finally {
-    // isjungti hide loading indicator and enable submit button
+    // Hide loading indicator and enable submit button
     loadingIndicator.style.display = "none";
     submitButton.disabled = false;
   }
