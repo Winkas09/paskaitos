@@ -23,7 +23,7 @@ movieForm.addEventListener("submit", async (event) => {
   let totalResults = 0;
 
   do {
-    const searchURL = `http://www.omdbapi.com/?apikey=683ee54d&s=${encodeURIComponent(searchQuery)}&page=${page}`;
+    const searchURL = `https://www.omdbapi.com/?apikey=683ee54d&s=${encodeURIComponent(searchQuery)}&page=${page}`;
     try {
       const response = await fetch(searchURL);
       const data = await response.json();
@@ -43,7 +43,7 @@ movieForm.addEventListener("submit", async (event) => {
 
   const detailedMovies = await Promise.all(
     allMovies.map(async (movie) => {
-      const detailedResponse = await fetch(`http://www.omdbapi.com/?apikey=683ee54d&i=${movie.imdbID}`);
+      const detailedResponse = await fetch(`https://www.omdbapi.com/?apikey=683ee54d&i=${movie.imdbID}`);
       return detailedResponse.json();
     })
   );
