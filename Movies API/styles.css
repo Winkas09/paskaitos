@@ -105,3 +105,32 @@ button:hover {
   height: auto;
   border-radius: 5px;
 }
+
+.movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: wheat;
+}
+
+#pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#pagination-controls button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid darkred;
+  background-color: white;
+  color: darkred;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#pagination-controls button:hover {
+  background-color: darkred;
+  color: white;
+}

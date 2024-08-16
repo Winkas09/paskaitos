@@ -1,5 +1,10 @@
 const movieResults = document.querySelector("#movie-results");
 const movieForm = document.querySelector("#movie-form");
+const paginationControls = document.querySelector("#pagination-controls");
+
+let currentPage = 1;
+const moviesPerPage = 10;
+let filteredMovies = [];
 
 movieForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -43,23 +48,29 @@ movieForm.addEventListener("submit", async (event) => {
     })
   );
 
-  // Filter movies by genre if a genre is selected
-  const filteredMovies = genre ? detailedMovies.filter((movie) => movie.Genre.toLowerCase().includes(genre)) : detailedMovies;
+  // jei pasirinktas filtras, filtruoja pagal zanra
+  filteredMovies = genre ? detailedMovies.filter((movie) => movie.Genre.toLowerCase().includes(genre)) : detailedMovies;
 
   if (filteredMovies.length > 0) {
-    displayMovies(filteredMovies);
+    currentPage = 1;
+    displayMovies(filteredMovies, currentPage);
+    setupPagination(filteredMovies);
   } else {
     movieResults.innerHTML = `<h2>No movies found</h2>`;
   }
 });
 
-function displayMovies(movies) {
-  if (movies.length === 0) {
+function displayMovies(movies, page) {
+  const startIndex = (page - 1) * moviesPerPage;
+  const endIndex = startIndex + moviesPerPage;
+  const moviesToDisplay = movies.slice(startIndex, endIndex);
+
+  if (moviesToDisplay.length === 0) {
     movieResults.innerHTML = `<h2>No movies found for the selected genre.</h2>`;
     return;
   }
 
-  movieResults.innerHTML = movies
+  movieResults.innerHTML = moviesToDisplay
     .map(
       (movie) => `
         <div class="movie">
@@ -74,4 +85,19 @@ function displayMovies(movies) {
         `
     )
     .join("");
+}
+
+function setupPagination(movies) {
+  const totalPages = Math.ceil(movies.length / moviesPerPage);
+  paginationControls.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    const pageButton = document.createElement("button");
+    pageButton.textContent = i;
+    pageButton.addEventListener("click", () => {
+      currentPage = i;
+      displayMovies(movies, currentPage);
+    });
+    paginationControls.appendChild(pageButton);
+  }
 }
