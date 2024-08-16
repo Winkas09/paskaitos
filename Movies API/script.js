@@ -48,8 +48,8 @@ movieForm.addEventListener("submit", async (event) => {
     })
   );
 
-  // jei pasirinktas filtras pagal zanra, filtruojame pagal zanra
-  filteredMovies = genre ? detailedMovies.filter((movie) => movie.Genre.toLowerCase().includes(genre)) : detailedMovies;
+  // Filter movies by genre if a genre is selected and not "all"
+  filteredMovies = genre && genre !== "all" ? detailedMovies.filter((movie) => movie.Genre.toLowerCase().includes(genre)) : detailedMovies;
 
   if (filteredMovies.length > 0) {
     currentPage = 1;
