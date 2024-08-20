@@ -1,7 +1,9 @@
-Reset some basic elements * {
+/* Reset some basic elements */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-weight: bold;
 }
 
 body {
@@ -15,8 +17,10 @@ body {
 nav {
   background-color: #343a40;
   padding: 15px;
-  border-bottom: 3px solid #007bff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
+  margin: 0 auto;
 }
 
 nav a {
@@ -28,6 +32,8 @@ nav a {
   padding: 10px 15px;
   border-radius: 4px;
   width: 100px;
+  text-align: center;
+  display: inline-block;
 }
 
 nav a:hover {
@@ -88,6 +94,7 @@ main p {
 ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
@@ -142,4 +149,10 @@ footer p {
   margin: 0;
   font-size: 0.9em;
   font-style: italic;
+}
+
+h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  text-align: center;
 }
