@@ -1,63 +1,40 @@
-const contentDiv = document.getElementById("content");
+import navigation from "./navigation.js";
 
-async function fetchUsers() {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users?_limit=20");
-    const users = await response.json();
-    const ul = document.createElement("ul");
+async function init() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users?_embed=posts");
+  const users = await res.json();
 
-    for (const user of users) {
-      const postsResponse = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`);
-      const posts = await postsResponse.json();
+  const contentElement = document.querySelector("#content");
+  const navigationElement = navigation();
+  const usersList = createUsersList(users);
 
-      const listItem = document.createElement("li");
-      const userLink = document.createElement("a");
-      userLink.href = "#";
-      userLink.textContent = `${user.name} - Posts: ${posts.length}`;
-      userLink.addEventListener("click", (event) => {
-        event.preventDefault();
-        fetchUserDetails(user.id);
-      });
-
-      listItem.appendChild(userLink);
-      ul.appendChild(listItem);
-    }
-
-    contentDiv.appendChild(ul);
-  } catch (error) {
-    console.error("Error fetching users:", error);
-  }
+  contentElement.append(navigationElement, usersList);
 }
 
-async function fetchUserDetails(userId) {
-  try {
-    const [userResponse, postsResponse] = await Promise.all([fetch(`https://jsonplaceholder.typicode.com/users/${userId}`), fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)]);
+init();
 
-    if (!userResponse.ok) throw new Error("Failed to fetch user details");
-    if (!postsResponse.ok) throw new Error("Failed to fetch user posts");
+function createUsersList(data) {
+  const usersWrapper = document.createElement("div");
+  usersWrapper.classList.add("users-wrapper");
 
-    const user = await userResponse.json();
-    const posts = await postsResponse.json();
+  const usersTitle = document.createElement("h1");
+  usersTitle.textContent = "Users:";
+  usersWrapper.append(usersTitle);
 
-    contentDiv.innerHTML = `
-      <h1>${user.name}</h1>
-      <p><strong>Username:</strong> ${user.username}</p>
-      <p><strong>Email:</strong> ${user.email}</p>
-      <p><strong>Phone:</strong> ${user.phone}</p>
-      <p><strong>Website:</strong> <a href="http://${user.website}" target="_blank">${user.website}</a></p>
-      <p><strong>Company:</strong> ${user.company.name}</p>
-      <p><strong>Address:</strong> ${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}</p>
-      <h2>Posts</h2>
-      <ul>
-        ${posts.map((post) => `<li><strong>${post.title}</strong><p>${post.body}</p></li>`).join("")}
-      </ul>
-      <a href="users.html">Back to users</a>
-    `;
-  } catch (error) {
-    console.error("Error fetching user details:", error);
-    contentDiv.innerHTML = "<p>Error loading user details. Please try again later.</p>";
-  }
+  const usersList = document.createElement("ul");
+  usersWrapper.append(usersList);
+
+  data.forEach((user) => {
+    const { id, name, posts } = user;
+
+    const userItem = document.createElement("li");
+    const userLink = document.createElement("a");
+    userLink.href = `./user.html?user_id=${id}`;
+    userLink.textContent = `${name} (${posts.length})`;
+    userItem.append(userLink);
+
+    usersList.append(userItem);
+  });
+
+  return usersWrapper;
 }
-
-// Call the function to fetch users
-fetchUsers();

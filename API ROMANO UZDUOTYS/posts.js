@@ -1,96 +1,50 @@
-const contentDiv = document.getElementById("content");
+import navigation from "./navigation.js";
 
-// Function to initialize the page
-function initialize() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const postId = urlParams.get("id");
+async function init() {
+  const content = document.querySelector("#content");
+  const navigationElement = navigation();
+  const pageTitle = createPageTitle("Posts:");
+  const postsList = await createPostsList();
 
-  if (postId) {
-    // Fetch and display post details
-    fetchPostDetails(postId);
-  } else {
-    // Fetch and display list of posts
-    fetchPosts();
-  }
+  content.append(navigationElement, pageTitle, postsList);
 }
 
-// Call initialize on page load
-initialize();
+init();
 
-// Listen for popstate event to handle back/forward navigation
-window.addEventListener("popstate", initialize);
+function createPageTitle(text) {
+  const element = document.createElement("h1");
+  element.textContent = text;
+  element.classList.add("page-title");
 
-async function fetchPosts() {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=20");
-    if (!response.ok) throw new Error("Failed to fetch posts");
-    const posts = await response.json();
-    const ul = document.createElement("ul");
-
-    for (const post of posts) {
-      try {
-        const [userResponse, commentsResponse] = await Promise.all([fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`), fetch(`https://jsonplaceholder.typicode.com/comments?postId=${post.id}`)]);
-
-        if (!userResponse.ok) throw new Error(`Failed to fetch user ${post.userId}`);
-        if (!commentsResponse.ok) throw new Error(`Failed to fetch comments for post ${post.id}`);
-
-        const user = await userResponse.json();
-        const comments = await commentsResponse.json();
-
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-          <a href="?id=${post.id}" class="post-link">${post.title}</a> 
-          by <a href="./user.html?id=${user.id}">${user.name}</a> - 
-          Comments: ${comments.length}
-        `;
-        ul.appendChild(listItem);
-      } catch (error) {
-        console.error(`Error processing post ${post.id}:`, error);
-      }
-    }
-
-    contentDiv.innerHTML = ""; // Clear previous content
-    contentDiv.appendChild(ul);
-
-    // Add event listeners to post links
-    document.querySelectorAll(".post-link").forEach((link) => {
-      link.addEventListener("click", function (event) {
-        event.preventDefault();
-        const postId = new URL(this.href).searchParams.get("id");
-        history.pushState(null, "", `?id=${postId}`);
-        fetchPostDetails(postId);
-      });
-    });
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-  }
+  return element;
 }
 
-async function fetchPostDetails(postId) {
-  try {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
-    if (!response.ok) throw new Error("Failed to fetch post details");
-    const post = await response.json();
+async function createPostsList() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=20&_expand=user&_embed=comments");
+  const posts = await res.json();
 
-    const userResponse = await fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`);
-    if (!userResponse.ok) throw new Error(`Failed to fetch user ${post.userId}`);
-    const user = await userResponse.json();
+  const postsList = document.createElement("ul");
+  postsList.classList.add("posts-list");
 
-    const commentsResponse = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${post.id}`);
-    if (!commentsResponse.ok) throw new Error(`Failed to fetch comments for post ${post.id}`);
-    const comments = await commentsResponse.json();
+  posts.forEach((post) => {
+    const { title, userId, id, user, comments } = post;
 
-    contentDiv.innerHTML = `
-      <h1>${post.title}</h1>
-      <p>${post.body}</p>
-      <p>by <a href="./user.html?id=${user.id}">${user.name}</a></p>
-      <h2>Comments</h2>
-      <ul>
-        ${comments.map((comment) => `<li>${comment.body} - ${comment.email}</li>`).join("")}
-      </ul>
-      <a href="posts.html">Back to posts</a>
-    `;
-  } catch (error) {
-    console.error("Error fetching post details:", error);
-  }
+    const postItem = document.createElement("li");
+    postItem.classList.add("post-item");
+    postsList.append(postItem);
+
+    const postLink = document.createElement("a");
+    postLink.classList.add("post-link");
+    postLink.href = `./post.html?post_id=${id}`;
+    postLink.textContent = `${id}. ${title} (${comments.length})`;
+
+    const authorLink = document.createElement("a");
+    authorLink.classList.add("author-link");
+    authorLink.href = `./user.html?user_id=${userId}`;
+    authorLink.textContent = user.name;
+
+    postItem.append(postLink, " - ", authorLink);
+  });
+
+  return postsList;
 }
