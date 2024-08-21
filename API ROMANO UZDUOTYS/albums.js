@@ -1,84 +1,94 @@
-// const contentDiv = document.getElementById("content");
+import navigation from "./navigation.js";
+import { getUrlParams } from "./utils.js";
 
-// // Function to fetch and display albums
-// async function fetchAlbums() {
-//   try {
-//     const response = await fetch("https://jsonplaceholder.typicode.com/albums?_limit=20");
-//     if (!response.ok) throw new Error("Failed to fetch albums");
-//     const albums = await response.json();
-//     const ul = document.createElement("ul");
+async function init() {
+  const albumId = getUrlParams("album_id");
 
-//     for (const album of albums) {
-//       const userResponse = await fetch(`https://jsonplaceholder.typicode.com/users/${album.userId}`);
-//       if (!userResponse.ok) throw new Error(`Failed to fetch user ${album.userId}`);
-//       const user = await userResponse.json();
+  if (!albumId) {
+    console.error("Album ID not found in URL parameters.");
+    return;
+  }
 
-//       const photosResponse = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${album.id}`);
-//       const photos = await photosResponse.json();
-//       console.log("Photos fetched:", photos); // Debugging line
+  try {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/albums/${albumId}?_expand=user&_embed=photos`);
 
-//       const listItem = document.createElement("li");
-//       listItem.innerHTML = `
-//         <a href="#" class="album-link" data-album-id="${album.id}">${album.title}</a> by
-//         <a href="#" class="user-link" data-user-id="${user.id}">${user.name}</a> -
-//         Photos: ${photos.length}<br>
-//         <a href="${photos[0].url}" target="_blank"><img src="${photos[0].thumbnailUrl}" alt="${album.title}" /></a>
-//       `;
-//       ul.appendChild(listItem);
-//     }
+    if (!res.ok) {
+      throw new Error(`Failed to fetch album data: ${res.status} ${res.statusText}`);
+    }
 
-//     contentDiv.innerHTML = ""; // Clear previous content
-//     contentDiv.appendChild(ul);
+    const album = await res.json();
+    console.log("Album data:", album); // Log the album data
 
-//     // Add event listeners to album and user links
-//     document.querySelectorAll(".album-link").forEach((link) => {
-//       link.addEventListener("click", (event) => {
-//         event.preventDefault();
-//         const albumId = event.target.getAttribute("data-album-id");
-//         fetchAlbumDetails(albumId);
-//       });
-//     });
+    if (!album.user) {
+      throw new Error("User data is missing in the album response");
+    }
 
-//     document.querySelectorAll(".user-link").forEach((link) => {
-//       link.addEventListener("click", (event) => {
-//         event.preventDefault();
-//         const userId = event.target.getAttribute("data-user-id");
-//         window.location.href = `users.html?id=${userId}`;
-//       });
-//     });
-//   } catch (error) {
-//     console.error("Error fetching albums:", error);
-//   }
-// }
+    // Process the album data...
+  } catch (error) {
+    console.error("Error fetching album data:", error);
+  }
+}
 
-// // Function to fetch and display album details
-// async function fetchAlbumDetails(albumId) {
-//   try {
-//     const albumResponse = await fetch(`https://jsonplaceholder.typicode.com/albums/${albumId}`);
-//     if (!albumResponse.ok) throw new Error("Failed to fetch album details");
-//     const album = await albumResponse.json();
+init();
 
-//     const userResponse = await fetch(`https://jsonplaceholder.typicode.com/users/${album.userId}`);
-//     if (!userResponse.ok) throw new Error(`Failed to fetch user ${album.userId}`);
-//     const user = await userResponse.json();
+function createAlbumElement(data) {
+  const { title, user } = data;
+  const { name, id } = user;
 
-//     const photosResponse = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${album.id}`);
-//     if (!photosResponse.ok) throw new Error(`Failed to fetch photos for album ${album.id}`);
-//     const photos = await photosResponse.json();
+  const albumWrapper = document.createElement("div");
+  albumWrapper.classList.add("album-wrapper");
 
-//     contentDiv.innerHTML = `
-//       <h1>${album.title}</h1>
-//       <p>by <a href="users.html?id=${user.id}">${user.name}</a></p>
-//       <h2>Photos</h2>
-//       <ul>
-//         ${photos.map((photo) => `<li><a href="${photo.url}" target="_blank"><img src="${photo.thumbnailUrl}" alt="${photo.title}" /></a></li>`).join("")}
-//       </ul>
-//       <a href="albums.html">Back to albums</a>
-//     `;
-//   } catch (error) {
-//     console.error("Error fetching album details:", error);
-//   }
-// }
+  const albumTitle = document.createElement("h1");
+  albumTitle.classList.add("album-title");
+  albumTitle.textContent = title;
+  albumWrapper.append(albumTitle);
 
-// // Call the function to fetch albums
-// fetchAlbums();
+  const authorElement = document.createElement("span");
+  const authorLink = document.createElement("a");
+  authorLink.href = `./user.html?user_id=${id}`;
+  authorLink.textContent = name;
+  authorElement.append("Author: ", authorLink);
+  albumWrapper.append(authorElement);
+
+  return albumWrapper;
+}
+
+function createPhotosList(data) {
+  const photosWrapper = document.createElement("div");
+  photosWrapper.classList.add("photos-wrapper");
+
+  const photosTitle = document.createElement("h2");
+  photosTitle.classList.add("photos-title");
+  photosTitle.textContent = "Photos:";
+  photosWrapper.append(photosTitle);
+
+  const photosList = document.createElement("div");
+  photosList.classList.add("photos-list");
+  photosWrapper.append(photosList);
+
+  data.forEach((photo) => {
+    const { title, thumbnailUrl, url } = photo;
+
+    const photoItem = document.createElement("div");
+    photoItem.classList.add("photo-item");
+
+    const photoTitle = document.createElement("h3");
+    photoTitle.classList.add("photo-title");
+    photoTitle.textContent = title;
+    photoItem.append(photoTitle);
+
+    const photoThumbnail = document.createElement("a");
+    photoThumbnail.href = url;
+    photoThumbnail.dataset.src = url;
+    photoThumbnail.dataset.subHtml = `<h4>${title}</h4>`;
+    const img = document.createElement("img");
+    img.src = thumbnailUrl;
+    img.alt = title;
+    photoThumbnail.append(img);
+    photoItem.append(photoThumbnail);
+
+    photosList.append(photoItem);
+  });
+
+  return photosWrapper;
+}
