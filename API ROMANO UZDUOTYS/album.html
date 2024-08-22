@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Albums Page</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Albumas</title>
+    <link rel="stylesheet" href="css/styles.css" />
     <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.css" rel="stylesheet" />
     <!-- LightGallery CSS -->
   </head>
   <body>
     <div id="content"></div>
-    <div id="albumList"></div>
-    <!-- Albumų sąrašas bus rodomas čia -->
+    <!-- Navigacija -->
+    <h1 id="albumTitle"></h1>
+    <p id="albumAuthor"></p>
+    <div id="lightgallery" class="gallery"></div>
+    <!-- Nuotraukų galerija  -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.umd.js"></script>
     <!-- LightGallery JS -->
-    <script type="module" src="./albums.js"></script>
+    <script type="module" src="./album.js"></script>
     <script type="module" src="./script.js"></script>
     <!-- Navigacijos įdėjimas -->
   </body>
