@@ -6,7 +6,12 @@ export default function navigation() {
 
   const logoLink = document.createElement("a");
   logoLink.href = "./";
-  logoLink.textContent = "LOGO";
+  const logoImage = document.createElement("img");
+  logoImage.src = "./home.png";
+  logoImage.alt = "Logo";
+  logoLink.classList.add("logo-link");
+  logoLink.append(logoImage);
+  // logoLink.textContent = "LOGO";
   logoWrapper.append(logoLink);
 
   const navigationWrapper = document.createElement("nav");
@@ -17,10 +22,10 @@ export default function navigation() {
   navigationWrapper.append(navigationList);
 
   const navListData = [
-    {
-      title: "Home",
-      url: "./",
-    },
+    // {
+    //   title: "Home",
+    //   url: "./",
+    // },
     {
       title: "Posts",
       url: "./posts.html",
