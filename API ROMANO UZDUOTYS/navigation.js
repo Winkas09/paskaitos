@@ -17,6 +17,23 @@ export default function navigation() {
   const navigationWrapper = document.createElement("nav");
   navigationWrapper.classList.add("navigation-wrapper");
 
+  const searchForm = document.createElement("form");
+  searchForm.action = "./search.html";
+  navigationWrapper.append(searchForm);
+  searchForm.classList.add("search-form");
+
+  const searchInput = document.createElement("input");
+  searchInput.type = "Text";
+  searchInput.placeholder = "Search...";
+  searchInput.name = "search-phrase";
+
+  const searchButton = document.createElement("button");
+  searchButton.type = "submit";
+  searchButton.textContent = "Search";
+  searchButton.classList.add("search-button");
+
+  searchForm.append(searchInput, searchButton);
+
   const navigationList = document.createElement("ul");
   navigationList.classList.add("navigation-list");
   navigationWrapper.append(navigationList);
@@ -37,6 +54,10 @@ export default function navigation() {
     {
       title: "Albums",
       url: "./albums.html",
+    },
+    {
+      title: "Search",
+      url: "./search.html",
     },
   ];
 

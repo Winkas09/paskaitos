@@ -88,7 +88,7 @@ nav a.active {
 
 /* Header styles */
 header {
-  background: linear-gradient(135deg, #007bff, #0056b3);
+  background: linear-gradient(135deg, #007bff, #0056b3, #003380);
   color: #ffffff;
   padding: 40px 20px;
   text-align: center;
