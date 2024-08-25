@@ -30,7 +30,7 @@ function createUsersList(data) {
     const userItem = document.createElement("li");
     const userLink = document.createElement("a");
     userLink.href = `./user.html?user_id=${id}`;
-    userLink.textContent = `${name} (${posts.length})`;
+    userLink.textContent = `${name} (number of users posts: ${posts.length})`;
     userItem.append(userLink);
 
     usersList.append(userItem);

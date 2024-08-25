@@ -20,6 +20,20 @@ async function init() {
   }
 }
 
+function showLoadingIndicator(container) {
+  const loader = document.createElement("div");
+  loader.classList.add("loading-indicator");
+  loader.textContent = "Loading...";
+  container.append(loader);
+}
+
+function hideLoadingIndicator(container) {
+  const loader = container.querySelector(".loading-indicator");
+  if (loader) {
+    loader.remove();
+  }
+}
+
 async function performSearch(searchPhrase) {
   if (!searchPhrase.trim()) {
     alert("Search phrase is empty, please enter a valid search phrase.");
@@ -31,20 +45,25 @@ async function performSearch(searchPhrase) {
     console.error("Content container not found");
     return;
   }
-  contentContainer.textContent = ""; // Clear previous results
+  contentContainer.textContent = ""; // Clear previous content
+  showLoadingIndicator(contentContainer);
 
-  const postsRes = await fetch(`https://jsonplaceholder.typicode.com/posts?q=${searchPhrase}&_limit=20`);
-  const usersRes = await fetch(`https://jsonplaceholder.typicode.com/users?q=${searchPhrase}&_limit=20`);
-  const posts = await postsRes.json();
-  const users = await usersRes.json();
-  const navigationElement = navigation();
+  try {
+    const postsRes = await fetch(`https://jsonplaceholder.typicode.com/posts?q=${searchPhrase}&_limit=20`);
+    const usersRes = await fetch(`https://jsonplaceholder.typicode.com/users?q=${searchPhrase}&_limit=20`);
+    const posts = await postsRes.json();
+    const users = await usersRes.json();
+    const navigationElement = navigation();
 
-  const searchResultsTitle = createSearchResultsTitle(searchPhrase);
-  const searchResults = createSearchResults(posts, users);
+    const searchResultsTitle = createSearchResultsTitle(searchPhrase);
+    const searchResults = createSearchResults(posts, users);
 
-  const searchForm = document.querySelector("#search-form");
-
-  contentContainer.append(searchResultsTitle, searchResults, navigationElement);
+    contentContainer.append(searchResultsTitle, searchResults, navigationElement);
+  } catch (error) {
+    contentContainer.textContent = "An error occurred while fetching results. Please try again later.";
+  } finally {
+    hideLoadingIndicator(contentContainer);
+  }
 }
 
 function createSearchResultItem(data) {
