@@ -37,11 +37,14 @@ async function performSearch(searchPhrase) {
   const usersRes = await fetch(`https://jsonplaceholder.typicode.com/users?q=${searchPhrase}&_limit=20`);
   const posts = await postsRes.json();
   const users = await usersRes.json();
+  const navigationElement = navigation();
 
   const searchResultsTitle = createSearchResultsTitle(searchPhrase);
   const searchResults = createSearchResults(posts, users);
 
-  contentContainer.append(searchResultsTitle, searchResults);
+  const searchForm = document.querySelector("#search-form");
+
+  contentContainer.append(searchResultsTitle, searchResults, navigationElement);
 }
 
 function createSearchResultItem(data) {
