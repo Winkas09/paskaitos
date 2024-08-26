@@ -1,0 +1,113 @@
+#student-form label,
+#student-form input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#group-numbers {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#group-numbers label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+#group-numbers input[type="radio"] {
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+#programming-languages label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+#programming-languages input[type="checkbox"] {
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+#programming-languages {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#age {
+  width: 80px;
+}
+
+#IT-skills {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  gap: 10px;
+}
+
+#IT-skills span {
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+/* Style for the student-item div */
+.student-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Style for the notification span */
+.notification {
+  display: block;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #dff0d8;
+  color: #3c763d;
+  border: 1px solid #d6e9c6;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Style for the buttons */
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Specific styles for the "Delete Student" button */
+button.delete {
+  background-color: #dc3545;
+}
+
+button.delete:hover {
+  background-color: #c82333;
+}
+
+/* Specific styles for the "Show Personal Data" and "Hide Personal Data" buttons */
+button.show-hide {
+  background-color: #28a745;
+}
+
+button.show-hide:hover {
+  background-color: #218838;
+}
+
+.notification {
+  color: brown;
+}
