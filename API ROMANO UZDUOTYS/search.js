@@ -45,7 +45,7 @@ async function performSearch(searchPhrase) {
     console.error("Content container not found");
     return;
   }
-  contentContainer.textContent = ""; // Clear previous content
+  contentContainer.textContent = ""; // Clear previous content, not sure if needed ?
   showLoadingIndicator(contentContainer);
 
   try {
@@ -88,7 +88,7 @@ function createSearchResults(posts, users) {
 
   if (posts.length === 0 && users.length === 0) {
     const noResultsMessage = document.createElement("p");
-    noResultsMessage.textContent = "No results found for your query.";
+    noResultsMessage.textContent = "No results found for your search.";
     return noResultsMessage;
   }
 

@@ -13,7 +13,7 @@ async function init() {
     const [albums, users] = await Promise.all([fetchData("https://jsonplaceholder.typicode.com/albums?_limit=20"), fetchData("https://jsonplaceholder.typicode.com/users")]);
 
     albums.forEach((album, index) => {
-      // Add index as the second parameter
+      // prideda indexa kaip antra parametra ?
       const user = users.find((user) => user.id === album.userId);
 
       const albumItem = document.createElement("div");
@@ -22,7 +22,7 @@ async function init() {
       const albumTitle = document.createElement("h2");
       const albumLink = document.createElement("a");
       albumLink.href = `album.html?id=${album.id}`;
-      albumTitle.textContent = `${index + 1}. ${album.title}`; // Add numbering here
+      albumTitle.textContent = `${index + 1}. ${album.title}`; // numeracija
       albumLink.append(albumTitle);
       albumItem.appendChild(albumLink);
 
