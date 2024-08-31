@@ -1,26 +1,197 @@
 const form = document.getElementById("student-form");
 const studentsList = document.getElementById("students-list");
 const knowledgeLevelInput = form.elements["knowledge-level"];
-const knowledgeLevelOutput = document.createElement("span"); // Create a span element for displaying the range value
+const knowledgeLevelOutput = document.createElement("span");
 
-// Update the  element with the initial value of the range input
-knowledgeLevelOutput.textContent = knowledgeLevelInput.value;
+// Initial student data
+const initialStudents = [
+  {
+    name: "John",
+    surname: "Doe",
+    age: 22,
+    phoneNumber: "123456789",
+    email: "john.doe@example.com",
+    knowledgeLevel: "Intermediate",
+    groupNumber: "FEU 1 Grupe",
+    programmingLanguages: ["JavaScript", "Python"],
+  },
+  {
+    name: "John",
+    surname: "Doe",
+    age: 22,
+    phoneNumber: "123456789",
+    email: "john.doe@example.com",
+    knowledgeLevel: "Intermediate",
+    groupNumber: "FEU 2 Grupe",
+    programmingLanguages: ["JavaScript", "Python"],
+  },
+  {
+    name: "John",
+    surname: "Doe",
+    age: 22,
+    phoneNumber: "123456789",
+    email: "john.doe@example.com",
+    knowledgeLevel: "Intermediate",
+    groupNumber: "FEU 3 Grupe",
+    programmingLanguages: ["JavaScript", "Python"],
+  },
+  {
+    name: "John",
+    surname: "Doe",
+    age: 22,
+    phoneNumber: "123456789",
+    email: "john.doe@example.com",
+    knowledgeLevel: "Intermediate",
+    groupNumber: "FEU 4 Grupe",
+    programmingLanguages: ["JavaScript", "Python"],
+  },
+  {
+    name: "John",
+    surname: "Doe",
+    age: 22,
+    phoneNumber: "123456789",
+    email: "john.doe@example.com",
+    knowledgeLevel: "Intermediate",
+    groupNumber: "FEU 2 Grupe",
+    programmingLanguages: ["JavaScript", "Python"],
+  },
+  // Add more students as needed
+];
 
-// Insert the  element next to the range input field
+// Function to update the span showing the knowledge level
+function updateKnowledgeLevelOutput() {
+  knowledgeLevelOutput.textContent = knowledgeLevelInput.value;
+}
+
+// Update the element with the initial value of the range input
+updateKnowledgeLevelOutput();
+
+// Insert the element next to the range input field
 knowledgeLevelInput.parentNode.insertBefore(knowledgeLevelOutput, knowledgeLevelInput.nextSibling);
 
 // Add an event listener to update the span element as the range input value changes
 knowledgeLevelInput.addEventListener("input", () => {
-  knowledgeLevelOutput.textContent = knowledgeLevelInput.value;
+  updateKnowledgeLevelOutput();
+});
+
+// Function to display error message
+function showError(field, message) {
+  field.classList.add("error");
+  field.style.border = "2px solid red";
+  let errorMessage = field.nextElementSibling;
+  if (!errorMessage || !errorMessage.classList.contains("error-message")) {
+    errorMessage = document.createElement("span");
+    errorMessage.textContent = message;
+    errorMessage.classList.add("error-message");
+    errorMessage.style.color = "red";
+    field.parentNode.insertBefore(errorMessage, field.nextSibling);
+  }
+}
+
+// Function to clear error message
+function clearError(field) {
+  field.classList.remove("error");
+  field.style.border = "";
+  const errorMessage = field.nextElementSibling;
+  if (errorMessage && errorMessage.classList.contains("error-message")) {
+    errorMessage.remove();
+  }
+}
+
+// Function to validate individual form fields
+function validateField(field) {
+  let isValid = true;
+  let errorMessageText = "";
+
+  if (field.value.trim() === "") {
+    isValid = false;
+    errorMessageText = "Šis laukelis yra privalomas";
+  } else if (field.name === "name" && field.value.trim().length < 3) {
+    isValid = false;
+    errorMessageText = "Vardas privalo būti bent 3 simbolių ilgumo";
+  } else if (field.name === "surname" && field.value.trim().length < 3) {
+    isValid = false;
+    errorMessageText = "Pavardė privalo būti bent 3 simbolių ilgumo";
+  } else if (field.name === "age") {
+    const age = parseInt(field.value.trim(), 10);
+    if (isNaN(age) || age < 1) {
+      isValid = false;
+      errorMessageText = "Amžius privalo būti teigiamas skaičius arba didesnis už 0";
+    } else if (age > 100) {
+      isValid = false;
+      errorMessageText = "Įvestas amžius yra per didelis";
+    }
+  } else if (field.name === "phone-number") {
+    const phoneNumberLength = field.value.trim().length;
+    if (phoneNumberLength < 9 || phoneNumberLength > 13) {
+      isValid = false;
+      errorMessageText = "Įvestas telefono numeris yra neteisingas";
+    }
+  } else if (field.name === "email") {
+    const email = field.value.trim();
+    if (email.length < 8 || !email.includes("@") || !email.includes(".")) {
+      isValid = false;
+      errorMessageText = "Įvestas elektroninis paštas yra neteisingas";
+    }
+  }
+
+  if (isValid) {
+    clearError(field);
+  } else {
+    showError(field, errorMessageText);
+  }
+
+  return isValid;
+}
+
+// Add input event listeners to required fields for real-time validation
+const requiredFields = form.querySelectorAll("[required]");
+requiredFields.forEach((field) => {
+  field.addEventListener("input", () => validateField(field));
 });
 
 form.addEventListener("submit", (event) => {
   event.preventDefault(); // preventina perkrovima
 
+  // Clear previous validation messages and styles
+  const errorMessages = form.querySelectorAll(".error-message");
+  errorMessages.forEach((message) => message.remove());
+  const errorInputs = form.querySelectorAll(".error");
+  errorInputs.forEach((input) => {
+    input.classList.remove("error");
+    input.style.border = ""; // Remove red border
+  });
+
+  let isFormValid = true;
+
+  requiredFields.forEach((field) => {
+    if (!validateField(field)) {
+      isFormValid = false;
+    }
+  });
+
+  if (!isFormValid) {
+    // Display alert message if the form is not valid
+    const existingAlert = form.querySelector(".alert-message");
+    if (!existingAlert) {
+      const alertMessage = document.createElement("div");
+      alertMessage.textContent = "Ne visi laukeliai yra užpildyti.";
+      alertMessage.classList.add("alert-message");
+      alertMessage.style.color = "red";
+      form.insertBefore(alertMessage, form.firstChild);
+
+      // Remove the alert message after 5 seconds
+      setTimeout(() => {
+        alertMessage.remove();
+      }, 5000);
+    }
+    return; // Stop the form from being processed further
+  }
+
   const studentItem = document.createElement("div");
   studentItem.classList.add("student-item");
 
-  // data is formos
+  // Extract form data
   const name = form.elements["name"].value;
   const surname = form.elements["surname"].value;
   const age = form.elements["age"].value;
@@ -36,18 +207,18 @@ form.addEventListener("submit", (event) => {
   });
   programmingLanguages = programmingLanguages.join(", ");
 
-  // notification spanas
+  // Create and show notification
   const notification = document.createElement("span");
   notification.textContent = `Sukurtas studentas (${name} ${surname})`;
   notification.classList.add("notification");
-  form.append(notification); // Appendina notification spana po submit button
+  form.append(notification); // Append notification span after submit button
 
-  // istrina po 5 sekundziu
+  // Remove the notification after 5 seconds
   setTimeout(() => {
     notification.remove();
   }, 5000);
 
-  // sukuria studento duomenis ir prideda i student-item diva
+  // Create student data elements
   const nameParagraph = document.createElement("p");
   nameParagraph.textContent = `Name: ${name}`;
   studentItem.append(nameParagraph);
@@ -62,12 +233,12 @@ form.addEventListener("submit", (event) => {
 
   const phoneNumberParagraph = document.createElement("p");
   phoneNumberParagraph.textContent = `Phone: *********`;
-  phoneNumberParagraph.dataset.phoneNumber = phoneNumber; // isaugo numeri
+  phoneNumberParagraph.dataset.phoneNumber = phoneNumber; // Store number
   studentItem.append(phoneNumberParagraph);
 
   const emailParagraph = document.createElement("p");
   emailParagraph.textContent = `Email: *********`;
-  emailParagraph.dataset.email = email; // isaugo emaila
+  emailParagraph.dataset.email = email; // Store email
   studentItem.append(emailParagraph);
 
   const knowledgeLevelParagraph = document.createElement("p");
@@ -82,20 +253,19 @@ form.addEventListener("submit", (event) => {
   programmingLanguagesParagraph.textContent = `Programming Languages: ${programmingLanguages}`;
   studentItem.append(programmingLanguagesParagraph);
 
-  // rodyti duomenis
+  // Create and add show/hide buttons
   const showButton = document.createElement("button");
   showButton.textContent = "Rodyti asmens duomenis";
   showButton.classList.add("show-hide");
   studentItem.append(showButton);
 
-  // slepti duomenis
   const hideButton = document.createElement("button");
   hideButton.textContent = "Slėpti asmens duomenis";
   hideButton.classList.add("show-hide");
   hideButton.style.display = "none";
   studentItem.append(hideButton);
 
-  // listeneris kai paspaudziam show button
+  // Listener for show button
   showButton.addEventListener("click", () => {
     phoneNumberParagraph.textContent = `Phone: ${phoneNumberParagraph.dataset.phoneNumber}`;
     emailParagraph.textContent = `Email: ${emailParagraph.dataset.email}`;
@@ -103,7 +273,7 @@ form.addEventListener("submit", (event) => {
     hideButton.style.display = "inline";
   });
 
-  // listeneris kai paspaudziam hide button
+  // Listener for hide button
   hideButton.addEventListener("click", () => {
     phoneNumberParagraph.textContent = `Phone: *********`;
     emailParagraph.textContent = `Email: *********`;
@@ -111,30 +281,130 @@ form.addEventListener("submit", (event) => {
     showButton.style.display = "inline";
   });
 
-  // delete student
+  // Create and add delete button
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Remove the student";
   deleteButton.classList.add("delete");
   studentItem.append(deleteButton);
 
-  // listeneris kai paspaudziam delete button
+  // Listener for delete button
   deleteButton.addEventListener("click", () => {
     studentItem.remove();
 
-    // istrinimo notification spanas
+    // Show deletion notification
     const deleteNotification = document.createElement("span");
-    deleteNotification.textContent = `Student (${name} ${surname}) was succesfully removed.`;
+    deleteNotification.textContent = `Student (${name} ${surname}) was successfully removed.`;
+    deleteNotification.style.color = "red";
     deleteNotification.classList.add("notification");
     form.append(deleteNotification);
 
-    // istrina po 5 sekundziu
+    // Remove the deletion notification after 5 seconds
     setTimeout(() => {
       deleteNotification.remove();
     }, 5000);
   });
 
-  // pridejimas i student list diva pirmas studentas bus pirmas listo vietoje ir t.t.
+  // Add the student item to the list
   studentsList.insertBefore(studentItem, studentsList.firstChild);
 
+  // Reset the form
   form.reset();
+
+  // Update the knowledge level display after form reset
+  // Reset the knowledge level to its initial value
+  knowledgeLevelInput.value = knowledgeLevelInput.defaultValue;
+  updateKnowledgeLevelOutput();
+});
+
+// Function to display initial students
+function displayInitialStudents() {
+  initialStudents.forEach((student) => {
+    const studentItem = document.createElement("div");
+    studentItem.classList.add("student-item");
+
+    const nameParagraph = document.createElement("p");
+    nameParagraph.textContent = `Name: ${student.name}`;
+    studentItem.append(nameParagraph);
+
+    const surnameParagraph = document.createElement("p");
+    surnameParagraph.textContent = `Surname: ${student.surname}`;
+    studentItem.append(surnameParagraph);
+
+    const ageParagraph = document.createElement("p");
+    ageParagraph.textContent = `Age: ${student.age}`;
+    studentItem.append(ageParagraph);
+
+    const phoneNumberParagraph = document.createElement("p");
+    phoneNumberParagraph.textContent = `Phone: *********`;
+    phoneNumberParagraph.dataset.phoneNumber = student.phoneNumber;
+    studentItem.append(phoneNumberParagraph);
+
+    const emailParagraph = document.createElement("p");
+    emailParagraph.textContent = `Email: *********`;
+    emailParagraph.dataset.email = student.email;
+    studentItem.append(emailParagraph);
+
+    const knowledgeLevelParagraph = document.createElement("p");
+    knowledgeLevelParagraph.textContent = `IT Knowledge: ${student.knowledgeLevel}`;
+    studentItem.append(knowledgeLevelParagraph);
+
+    const groupNumberParagraph = document.createElement("p");
+    groupNumberParagraph.textContent = `Group: ${student.groupNumber}`;
+    studentItem.append(groupNumberParagraph);
+
+    const programmingLanguagesParagraph = document.createElement("p");
+    programmingLanguagesParagraph.textContent = `Programming Languages: ${student.programmingLanguages.join(", ")}`;
+    studentItem.append(programmingLanguagesParagraph);
+
+    const showButton = document.createElement("button");
+    showButton.textContent = "Rodyti asmens duomenis";
+    showButton.classList.add("show-hide");
+    studentItem.append(showButton);
+
+    const hideButton = document.createElement("button");
+    hideButton.textContent = "Slėpti asmens duomenis";
+    hideButton.classList.add("show-hide");
+    hideButton.style.display = "none";
+    studentItem.append(hideButton);
+
+    showButton.addEventListener("click", () => {
+      phoneNumberParagraph.textContent = `Phone: ${phoneNumberParagraph.dataset.phoneNumber}`;
+      emailParagraph.textContent = `Email: ${emailParagraph.dataset.email}`;
+      showButton.style.display = "none";
+      hideButton.style.display = "inline";
+    });
+
+    hideButton.addEventListener("click", () => {
+      phoneNumberParagraph.textContent = `Phone: *********`;
+      emailParagraph.textContent = `Email: *********`;
+      hideButton.style.display = "none";
+      showButton.style.display = "inline";
+    });
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Remove the student";
+    deleteButton.classList.add("delete");
+    studentItem.append(deleteButton);
+
+    deleteButton.addEventListener("click", () => {
+      studentItem.remove();
+
+      const deleteNotification = document.createElement("span");
+      deleteNotification.textContent = `Student (${student.name} ${student.surname}) was successfully removed.`;
+      deleteNotification.style.color = "red";
+      deleteNotification.classList.add("notification");
+      form.append(deleteNotification);
+
+      setTimeout(() => {
+        deleteNotification.remove();
+      }, 5000);
+    });
+
+    studentsList.append(studentItem);
+  });
+}
+
+// Call this function on page load
+document.addEventListener("DOMContentLoaded", () => {
+  displayInitialStudents();
 });

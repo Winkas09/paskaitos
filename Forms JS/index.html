@@ -7,41 +7,46 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <form id="student-form">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required placeholder="Enter your name" />
+    <form id="student-form" novalidate>
+      <fieldset>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your name" />
 
-      <label for="surname">Surname:</label>
-      <input type="text" id="surname" name="surname" required placeholder="Enter your surname" />
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required placeholder="Enter your surname" />
 
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" required placeholder="Enter age" min="1" max="99" />
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required placeholder="Enter age" min="1" max="99" />
 
-      <label for="phone-number">Phone Number:</label>
-      <input type="tel" id="phone-number" name="phone-number" required placeholder="Enter your phone number" min="9" max="11" />
+        <label for="phone-number">Phone Number:</label>
+        <input type="tel" id="phone-number" name="phone-number" required placeholder="Enter your phone number" min="9" max="11" />
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required placeholder="Enter your email" />
-      <div id="IT-skills">
-        <label for="knowledge-level">IT Knowledge Level:</label>
-        <input type="range" id="knowledge-level" name="knowledge-level" min="1" max="10" value="5" required />
-      </div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email" />
+        <div id="IT-skills">
+          <label for="knowledge-level">IT Knowledge Level:</label>
+          <input type="range" id="knowledge-level" name="knowledge-level" min="1" max="10" value="5" required />
+        </div>
+      </fieldset>
 
-      <div id="group-numbers">
-        <label for="group-numbers">Group:</label>
-        <label><input type="radio" name="group-number" value="FEU 1gr" required />FEU 1 Grupe</label>
-        <label><input type="radio" name="group-number" value="FEU 2gr" required />FEU 2 Grupe</label>
-        <label><input type="radio" name="group-number" value="FEU 3gr" required />FEU 3 Grupe</label>
-        <label><input type="radio" name="group-number" value="FEU 4gr" required /> FEU 4 Grupe</label>
-      </div>
-
-      <div id="programming-languages">
-        <label for="programming-languages">Programming Languages:</label>
-        <label><input type="checkbox" name="programming-languages" value="JavaScript" />JavaScript</label>
-        <label><input type="checkbox" name="programming-languages" value="HTML" />Html</label>
-        <label><input type="checkbox" name="programming-languages" value="CSS" />CSS</label>
-        <label><input type="checkbox" name="programming-languages" value="React" />React</label>
-      </div>
+      <fieldset>
+        <legend>Group Number:</legend>
+        <div id="group-numbers">
+          <label><input type="radio" name="group-number" value="FEU 1gr" required checked />FEU 1 Grupe</label>
+          <label><input type="radio" name="group-number" value="FEU 2gr" required />FEU 2 Grupe</label>
+          <label><input type="radio" name="group-number" value="FEU 3gr" required />FEU 3 Grupe</label>
+          <label><input type="radio" name="group-number" value="FEU 4gr" required /> FEU 4 Grupe</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Programming Languages:</legend>
+        <div id="programming-languages">
+          <label><input type="checkbox" name="programming-languages" value="JavaScript" />JavaScript</label>
+          <label><input type="checkbox" name="programming-languages" value="HTML" />Html</label>
+          <label><input type="checkbox" name="programming-languages" value="CSS" />CSS</label>
+          <label><input type="checkbox" name="programming-languages" value="React" />React</label>
+        </div>
+      </fieldset>
       <button type="submit">submit</button>
     </form>
     <div id="students-list"></div>
