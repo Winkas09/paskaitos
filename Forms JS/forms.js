@@ -4,7 +4,7 @@ const knowledgeLevelInput = form.elements["knowledge-level"];
 const knowledgeLevelOutput = document.createElement("span");
 
 // Initial student data
-const initialStudents = [
+let initialStudents = [
   {
     name: "John",
     surname: "Doe",
@@ -55,7 +55,21 @@ const initialStudents = [
     groupNumber: "FEU 2 Grupe",
     programmingLanguages: ["JavaScript", "CSS", "HTML", "React"],
   },
+  // Add more students as needed
 ];
+
+// Load students from localStorage if available
+function loadStudentsFromLocalStorage() {
+  const storedStudents = localStorage.getItem("students");
+  if (storedStudents) {
+    initialStudents = JSON.parse(storedStudents);
+  }
+}
+
+// Save students to localStorage
+function saveStudentsToLocalStorage() {
+  localStorage.setItem("students", JSON.stringify(initialStudents));
+}
 
 // Function to update the span showing the knowledge level
 function updateKnowledgeLevelOutput() {
@@ -165,7 +179,7 @@ requiredFields.forEach((field) => {
 });
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault(); // preventina perkrovima
+  event.preventDefault(); // prevent page reload
 
   // Clear previous validation messages and styles
   const errorMessages = form.querySelectorAll(".error-message");
@@ -318,17 +332,32 @@ form.addEventListener("submit", (event) => {
   // Add the student item to the list
   studentsList.insertBefore(studentItem, studentsList.firstChild);
 
+  // Add new student to the initialStudents array
+  initialStudents.push({
+    name,
+    surname,
+    age,
+    phoneNumber,
+    email,
+    knowledgeLevel,
+    groupNumber,
+    programmingLanguages: programmingLanguages.split(", ").map((lang) => lang.trim()),
+  });
+
+  // Save students to localStorage
+  saveStudentsToLocalStorage();
+
   // Reset the form
   form.reset();
 
   // Update the knowledge level display after form reset
-  // Reset the knowledge level to its initial value
   knowledgeLevelInput.value = knowledgeLevelInput.defaultValue;
   updateKnowledgeLevelOutput();
 });
 
 // Function to display initial students
 function displayInitialStudents() {
+  loadStudentsFromLocalStorage();
   initialStudents.forEach((student) => {
     const studentItem = document.createElement("div");
     studentItem.classList.add("student-item");
@@ -367,6 +396,7 @@ function displayInitialStudents() {
     programmingLanguagesParagraph.textContent = `Programming Languages: ${student.programmingLanguages.join(", ")}`;
     studentItem.append(programmingLanguagesParagraph);
 
+    // Create and add show/hide buttons
     const showButton = document.createElement("button");
     showButton.textContent = "Rodyti asmens duomenis";
     showButton.classList.add("show-hide");
@@ -409,6 +439,10 @@ function displayInitialStudents() {
       setTimeout(() => {
         deleteNotification.remove();
       }, 5000);
+
+      // Remove student from initialStudents array
+      initialStudents = initialStudents.filter((s) => !(s.name === student.name && s.surname === student.surname));
+      saveStudentsToLocalStorage();
     });
 
     studentsList.append(studentItem);
@@ -417,7 +451,6 @@ function displayInitialStudents() {
 
 displayInitialStudents();
 
-// Step 1: Save Input Values to localStorage
 // Function to save input values to localStorage
 function saveToLocalStorage(id, event) {
   localStorage.setItem(id, event.target.value);
