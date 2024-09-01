@@ -3,8 +3,8 @@ const studentsList = document.getElementById("students-list");
 const knowledgeLevelInput = form.elements["knowledge-level"];
 const knowledgeLevelOutput = document.createElement("span");
 
-// Load initial students from localStorage or use default data
-let initialStudents = JSON.parse(localStorage.getItem("students")) || [
+// Initial student data
+const initialStudents = [
   {
     name: "John",
     surname: "Doe",
@@ -57,39 +57,7 @@ let initialStudents = JSON.parse(localStorage.getItem("students")) || [
   },
 ];
 
-// Load form data from localStorage
-function loadFormData() {
-  const formData = JSON.parse(localStorage.getItem("formData"));
-  if (formData) {
-    for (const [key, value] of Object.entries(formData)) {
-      const field = form.elements[key];
-      if (field) {
-        if (field.type === "checkbox" || field.type === "radio") {
-          field.checked = value;
-        } else {
-          field.value = value;
-        }
-      }
-    }
-    updateKnowledgeLevelOutput();
-  }
-}
-
-// Save form data to localStorage
-function saveFormData() {
-  const formData = {};
-  for (const field of form.elements) {
-    if (field.name) {
-      if (field.type === "checkbox" || field.type === "radio") {
-        formData[field.name] = field.checked;
-      } else {
-        formData[field.name] = field.value;
-      }
-    }
-  }
-  localStorage.setItem("formData", JSON.stringify(formData));
-}
-
+// Function to update the span showing the knowledge level
 function updateKnowledgeLevelOutput() {
   knowledgeLevelOutput.textContent = knowledgeLevelInput.value;
 }
@@ -108,7 +76,6 @@ function loadKnowledgeLevelFromLocalStorage() {
 }
 
 loadKnowledgeLevelFromLocalStorage();
-loadFormData(); // Load form data on page load
 
 // Update the element with the initial value of the range input
 updateKnowledgeLevelOutput();
@@ -119,7 +86,6 @@ knowledgeLevelInput.parentNode.insertBefore(knowledgeLevelOutput, knowledgeLevel
 // Add an event listener to update the span element as the range input value changes
 knowledgeLevelInput.addEventListener("input", () => {
   updateKnowledgeLevelOutput();
-  saveKnowledgeLevelToLocalStorage();
 });
 
 // Function to display error message
@@ -195,14 +161,11 @@ function validateField(field) {
 // Add input event listeners to required fields for real-time validation
 const requiredFields = form.querySelectorAll("[required]");
 requiredFields.forEach((field) => {
-  field.addEventListener("input", () => {
-    validateField(field);
-    saveFormData(); // Save form data on input change
-  });
+  field.addEventListener("input", () => validateField(field));
 });
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault(); // Prevent form from submitting
+  event.preventDefault(); // preventina perkrovima
 
   // Clear previous validation messages and styles
   const errorMessages = form.querySelectorAll(".error-message");
@@ -290,76 +253,221 @@ form.addEventListener("submit", (event) => {
   studentItem.append(emailParagraph);
 
   const knowledgeLevelParagraph = document.createElement("p");
-  knowledgeLevelParagraph.textContent = `Knowledge Level: ${knowledgeLevel}`;
+  knowledgeLevelParagraph.textContent = `IT Knowledge: ${knowledgeLevel}`;
   studentItem.append(knowledgeLevelParagraph);
 
   const groupNumberParagraph = document.createElement("p");
-  groupNumberParagraph.textContent = `Group Number: ${groupNumber}`;
+  groupNumberParagraph.textContent = `Group: ${groupNumber}`;
   studentItem.append(groupNumberParagraph);
 
   const programmingLanguagesParagraph = document.createElement("p");
   programmingLanguagesParagraph.textContent = `Programming Languages: ${programmingLanguages}`;
   studentItem.append(programmingLanguagesParagraph);
 
-  studentsList.append(studentItem); // Append new student data to the list
+  // Create and add show/hide buttons
+  const showButton = document.createElement("button");
+  showButton.textContent = "Rodyti asmens duomenis";
+  showButton.classList.add("show-hide");
+  studentItem.append(showButton);
 
-  // Save new student data to localStorage
-  initialStudents.push({
-    name,
-    surname,
-    age: parseInt(age, 10),
-    phoneNumber,
-    email,
-    knowledgeLevel: parseInt(knowledgeLevel, 10),
-    groupNumber,
-    programmingLanguages: programmingLanguages.split(", "),
+  const hideButton = document.createElement("button");
+  hideButton.textContent = "Slėpti asmens duomenis";
+  hideButton.classList.add("show-hide");
+  hideButton.style.display = "none";
+  studentItem.append(hideButton);
+
+  // Listener for show button
+  showButton.addEventListener("click", () => {
+    phoneNumberParagraph.textContent = `Phone: ${phoneNumberParagraph.dataset.phoneNumber}`;
+    emailParagraph.textContent = `Email: ${emailParagraph.dataset.email}`;
+    showButton.style.display = "none";
+    hideButton.style.display = "inline";
   });
 
-  localStorage.setItem("students", JSON.stringify(initialStudents));
+  // Listener for hide button
+  hideButton.addEventListener("click", () => {
+    phoneNumberParagraph.textContent = `Phone: *********`;
+    emailParagraph.textContent = `Email: *********`;
+    hideButton.style.display = "none";
+    showButton.style.display = "inline";
+  });
 
-  // Clear form
+  // Create and add delete button
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Remove the student";
+  deleteButton.classList.add("delete");
+  studentItem.append(deleteButton);
+
+  // Listener for delete button
+  deleteButton.addEventListener("click", () => {
+    studentItem.remove();
+
+    // Show deletion notification
+    const deleteNotification = document.createElement("span");
+    deleteNotification.textContent = `Student (${name} ${surname}) was successfully removed.`;
+    deleteNotification.style.color = "red";
+    deleteNotification.classList.add("notification");
+    form.append(deleteNotification);
+
+    // Remove the deletion notification after 5 seconds
+    setTimeout(() => {
+      deleteNotification.remove();
+    }, 5000);
+  });
+
+  // Add the student item to the list
+  studentsList.insertBefore(studentItem, studentsList.firstChild);
+
+  // Reset the form
   form.reset();
-  saveFormData(); // Save form data when form is reset
+
+  // Update the knowledge level display after form reset
+  // Reset the knowledge level to its initial value
+  knowledgeLevelInput.value = knowledgeLevelInput.defaultValue;
+  updateKnowledgeLevelOutput();
 });
 
-// Display initial students on page load
-initialStudents.forEach((student) => {
-  const studentItem = document.createElement("div");
-  studentItem.classList.add("student-item");
+// Function to display initial students
+function displayInitialStudents() {
+  initialStudents.forEach((student) => {
+    const studentItem = document.createElement("div");
+    studentItem.classList.add("student-item");
 
-  const nameParagraph = document.createElement("p");
-  nameParagraph.textContent = `Name: ${student.name}`;
-  studentItem.append(nameParagraph);
+    const nameParagraph = document.createElement("p");
+    nameParagraph.textContent = `Name: ${student.name}`;
+    studentItem.append(nameParagraph);
 
-  const surnameParagraph = document.createElement("p");
-  surnameParagraph.textContent = `Surname: ${student.surname}`;
-  studentItem.append(surnameParagraph);
+    const surnameParagraph = document.createElement("p");
+    surnameParagraph.textContent = `Surname: ${student.surname}`;
+    studentItem.append(surnameParagraph);
 
-  const ageParagraph = document.createElement("p");
-  ageParagraph.textContent = `Age: ${student.age}`;
-  studentItem.append(ageParagraph);
+    const ageParagraph = document.createElement("p");
+    ageParagraph.textContent = `Age: ${student.age}`;
+    studentItem.append(ageParagraph);
 
-  const phoneNumberParagraph = document.createElement("p");
-  phoneNumberParagraph.textContent = `Phone: *********`;
-  phoneNumberParagraph.dataset.phoneNumber = student.phoneNumber; // Store number
-  studentItem.append(phoneNumberParagraph);
+    const phoneNumberParagraph = document.createElement("p");
+    phoneNumberParagraph.textContent = `Phone: *********`;
+    phoneNumberParagraph.dataset.phoneNumber = student.phoneNumber;
+    studentItem.append(phoneNumberParagraph);
 
-  const emailParagraph = document.createElement("p");
-  emailParagraph.textContent = `Email: *********`;
-  emailParagraph.dataset.email = student.email; // Store email
-  studentItem.append(emailParagraph);
+    const emailParagraph = document.createElement("p");
+    emailParagraph.textContent = `Email: *********`;
+    emailParagraph.dataset.email = student.email;
+    studentItem.append(emailParagraph);
 
-  const knowledgeLevelParagraph = document.createElement("p");
-  knowledgeLevelParagraph.textContent = `Knowledge Level: ${student.knowledgeLevel}`;
-  studentItem.append(knowledgeLevelParagraph);
+    const knowledgeLevelParagraph = document.createElement("p");
+    knowledgeLevelParagraph.textContent = `IT Knowledge: ${student.knowledgeLevel}`;
+    studentItem.append(knowledgeLevelParagraph);
 
-  const groupNumberParagraph = document.createElement("p");
-  groupNumberParagraph.textContent = `Group Number: ${student.groupNumber}`;
-  studentItem.append(groupNumberParagraph);
+    const groupNumberParagraph = document.createElement("p");
+    groupNumberParagraph.textContent = `Group: ${student.groupNumber}`;
+    studentItem.append(groupNumberParagraph);
 
-  const programmingLanguagesParagraph = document.createElement("p");
-  programmingLanguagesParagraph.textContent = `Programming Languages: ${student.programmingLanguages.join(", ")}`;
-  studentItem.append(programmingLanguagesParagraph);
+    const programmingLanguagesParagraph = document.createElement("p");
+    programmingLanguagesParagraph.textContent = `Programming Languages: ${student.programmingLanguages.join(", ")}`;
+    studentItem.append(programmingLanguagesParagraph);
 
-  studentsList.append(studentItem); // Append existing student data to the list
+    const showButton = document.createElement("button");
+    showButton.textContent = "Rodyti asmens duomenis";
+    showButton.classList.add("show-hide");
+    studentItem.append(showButton);
+
+    const hideButton = document.createElement("button");
+    hideButton.textContent = "Slėpti asmens duomenis";
+    hideButton.classList.add("show-hide");
+    hideButton.style.display = "none";
+    studentItem.append(hideButton);
+
+    showButton.addEventListener("click", () => {
+      phoneNumberParagraph.textContent = `Phone: ${phoneNumberParagraph.dataset.phoneNumber}`;
+      emailParagraph.textContent = `Email: ${emailParagraph.dataset.email}`;
+      showButton.style.display = "none";
+      hideButton.style.display = "inline";
+    });
+
+    hideButton.addEventListener("click", () => {
+      phoneNumberParagraph.textContent = `Phone: *********`;
+      emailParagraph.textContent = `Email: *********`;
+      hideButton.style.display = "none";
+      showButton.style.display = "inline";
+    });
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Remove the student";
+    deleteButton.classList.add("delete");
+    studentItem.append(deleteButton);
+
+    deleteButton.addEventListener("click", () => {
+      studentItem.remove();
+
+      const deleteNotification = document.createElement("span");
+      deleteNotification.textContent = `Student (${student.name} ${student.surname}) was successfully removed.`;
+      deleteNotification.style.color = "red";
+      deleteNotification.classList.add("notification");
+      form.append(deleteNotification);
+
+      setTimeout(() => {
+        deleteNotification.remove();
+      }, 5000);
+    });
+
+    studentsList.append(studentItem);
+  });
+}
+
+displayInitialStudents();
+
+// Step 1: Save Input Values to localStorage
+// Function to save input values to localStorage
+function saveToLocalStorage(id, event) {
+  localStorage.setItem(id, event.target.value);
+}
+
+// Function to fill input elements with localStorage values
+function fillFromLocalStorage(id) {
+  if (localStorage.getItem(id)) {
+    document.getElementById(id).value = localStorage.getItem(id);
+  }
+}
+
+// Add event listeners to input elements
+document.getElementById("name").addEventListener("input", (event) => saveToLocalStorage("name", event));
+document.getElementById("surname").addEventListener("input", (event) => saveToLocalStorage("surname", event));
+document.getElementById("age").addEventListener("input", (event) => saveToLocalStorage("age", event));
+document.getElementById("phone-number").addEventListener("input", (event) => saveToLocalStorage("phone-number", event));
+document.getElementById("email").addEventListener("input", (event) => saveToLocalStorage("email", event));
+document.getElementById("knowledge-level").addEventListener("input", (event) => saveToLocalStorage("knowledge-level", event));
+
+document.querySelectorAll('input[name="group-number"]').forEach((radio) => {
+  radio.addEventListener("change", (event) => {
+    if (event.target.checked) {
+      localStorage.setItem("group-number", event.target.value);
+    }
+  });
 });
+
+document.querySelectorAll('input[name="programming-languages"]').forEach((checkbox) => {
+  checkbox.addEventListener("change", (event) => {
+    const selectedLanguages = Array.from(document.querySelectorAll('input[name="programming-languages"]:checked')).map((cb) => cb.value);
+    localStorage.setItem("programming-languages", JSON.stringify(selectedLanguages));
+  });
+});
+
+// Fill input elements with localStorage values on page load
+fillFromLocalStorage("name");
+fillFromLocalStorage("surname");
+fillFromLocalStorage("age");
+fillFromLocalStorage("phone-number");
+fillFromLocalStorage("email");
+fillFromLocalStorage("knowledge-level");
+
+if (localStorage.getItem("group-number")) {
+  document.querySelector(`input[name="group-number"][value="${localStorage.getItem("group-number")}"]`).checked = true;
+}
+
+if (localStorage.getItem("programming-languages")) {
+  const selectedLanguages = JSON.parse(localStorage.getItem("programming-languages"));
+  selectedLanguages.forEach((language) => {
+    document.querySelector(`input[name="programming-languages"][value="${language}"]`).checked = true;
+  });
+}
