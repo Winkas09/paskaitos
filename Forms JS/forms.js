@@ -3,7 +3,6 @@ const studentsList = document.getElementById("students-list");
 const knowledgeLevelInput = form.elements["knowledge-level"];
 const knowledgeLevelOutput = document.createElement("span");
 
-// Function to validate individual form fields
 function validateField(field) {
   let isValid = true;
   let errorMessageText = "";
@@ -49,20 +48,19 @@ function validateField(field) {
   return isValid;
 }
 
-// Function to save the student array to localStorage
+//studentu array i localStorage
 function saveStudentsToLocalStorage(students) {
   localStorage.setItem("students", JSON.stringify(students));
 }
 
-// Function to load the student array from localStorage
+// is local storage studentu arr
 function loadStudentsFromLocalStorage() {
   const storedStudents = localStorage.getItem("students");
   return storedStudents ? JSON.parse(storedStudents) : [];
 }
 
-// Function to display students
 function displayStudents(students) {
-  // Clear the existing list
+  // praclearina studentu lista
   while (studentsList.firstChild) {
     studentsList.removeChild(studentsList.firstChild);
   }
@@ -116,7 +114,6 @@ function displayStudents(students) {
     hideButton.style.display = "none";
     studentItem.append(hideButton);
 
-    // Listener for show button
     showButton.addEventListener("click", () => {
       phoneNumberParagraph.textContent = `Phone: ${phoneNumberParagraph.dataset.phoneNumber}`;
       emailParagraph.textContent = `Email: ${emailParagraph.dataset.email}`;
@@ -124,7 +121,6 @@ function displayStudents(students) {
       hideButton.style.display = "inline";
     });
 
-    // Listener for hide button
     hideButton.addEventListener("click", () => {
       phoneNumberParagraph.textContent = `Phone: *********`;
       emailParagraph.textContent = `Email: *********`;
@@ -132,29 +128,25 @@ function displayStudents(students) {
       showButton.style.display = "inline";
     });
 
-    // Create and add delete button
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Remove the student";
     deleteButton.classList.add("delete");
     studentItem.append(deleteButton);
 
-    // Listener for delete button
     deleteButton.addEventListener("click", () => {
       studentItem.remove();
 
-      // Show deletion notification
       const deleteNotification = document.createElement("span");
       deleteNotification.textContent = `Student (${student.name} ${student.surname}) was successfully removed.`;
       deleteNotification.style.color = "red";
       deleteNotification.classList.add("notification");
       form.append(deleteNotification);
 
-      // Remove the deletion notification after 5 seconds
       setTimeout(() => {
         deleteNotification.remove();
       }, 5000);
 
-      // Remove the student from the array and update localStorage
+      // istrina studenta is local storage
       let students = loadStudentsFromLocalStorage();
       students = students.filter((s) => s.id !== student.id);
       saveStudentsToLocalStorage(students);
@@ -164,7 +156,7 @@ function displayStudents(students) {
   });
 }
 
-// Load students from localStorage on page load
+// uzkrauna studs is local storage
 const students = loadStudentsFromLocalStorage();
 displayStudents(students);
 
@@ -172,17 +164,16 @@ function generateUniqueId() {
   return "_" + Math.random().toString(36).substr(2, 9);
 }
 
-// Handle form submission
 form.addEventListener("submit", (event) => {
-  event.preventDefault(); // Prevent form submission
+  event.preventDefault();
 
-  // Clear previous validation messages and styles
+  // isvalo validationus buvusius
   const errorMessages = form.querySelectorAll(".error-message");
   errorMessages.forEach((message) => message.remove());
   const errorFields = form.querySelectorAll(".error");
   errorFields.forEach((field) => field.classList.remove("error"));
 
-  // Validate all required fields
+  // validacija
   let isFormValid = true;
   const requiredFields = form.querySelectorAll("[required]");
   requiredFields.forEach((field) => {
@@ -192,7 +183,7 @@ form.addEventListener("submit", (event) => {
   });
 
   if (!isFormValid) {
-    // Display alert message if the form is not valid
+    // jei ne valid
     const existingAlert = form.querySelector(".alert-message");
     if (!existingAlert) {
       const alertMessage = document.createElement("div");
@@ -201,15 +192,14 @@ form.addEventListener("submit", (event) => {
       alertMessage.style.color = "red";
       form.insertBefore(alertMessage, form.firstChild);
 
-      // Remove the alert message after 5 seconds
       setTimeout(() => {
         alertMessage.remove();
       }, 5000);
     }
-    return; // Stop the form from being processed further
+    return;
   }
 
-  // Extract form data
+  // data is formos
   const name = form.elements["name"].value;
   const surname = form.elements["surname"].value;
   const age = form.elements["age"].value;
@@ -220,7 +210,7 @@ form.addEventListener("submit", (event) => {
   const languages = form.querySelectorAll('[name="programming-languages"]:checked');
   const programmingLanguages = Array.from(languages).map((language) => language.value);
 
-  // Create a new student object with a unique ID
+  // sukuria nauja studenta objekta su duomenimis is formos
   const newStudent = {
     id: generateUniqueId(),
     name,
@@ -233,40 +223,32 @@ form.addEventListener("submit", (event) => {
     programmingLanguages,
   };
 
-  // Load existing students from localStorage
   const students = loadStudentsFromLocalStorage();
 
-  // Add the new student to the beginning of the students array
+  // i prieki imeta studenta array
   students.unshift(newStudent);
 
-  // Save the updated students array to localStorage
   saveStudentsToLocalStorage(students);
 
-  // Update the student list
   displayStudents(students);
 
-  // Create and show notification
   const notification = document.createElement("span");
   notification.textContent = `Sukurtas studentas (${name} ${surname})`;
   notification.classList.add("notification");
   form.append(notification); // Append notification span after submit button
 
-  // Remove the notification after 5 seconds
   setTimeout(() => {
     notification.remove();
   }, 5000);
 
-  // Reset the form
   form.reset();
   updateKnowledgeLevelOutput();
 });
 
-// Function to update the span showing the knowledge level
 function updateKnowledgeLevelOutput() {
   knowledgeLevelOutput.textContent = knowledgeLevelInput.value;
 }
 
-// Function to save the knowledge level to localStorage
 function saveKnowledgeLevelToLocalStorage() {
   localStorage.setItem("knowledge-level", knowledgeLevelInput.value);
 }
@@ -281,18 +263,14 @@ function loadKnowledgeLevelFromLocalStorage() {
 
 loadKnowledgeLevelFromLocalStorage();
 
-// Update the element with the initial value of the range input
 updateKnowledgeLevelOutput();
 
-// Insert the element next to the range input field
 knowledgeLevelInput.parentNode.insertBefore(knowledgeLevelOutput, knowledgeLevelInput.nextSibling);
 
-// Add an event listener to update the span element as the range input value changes
 knowledgeLevelInput.addEventListener("input", () => {
   updateKnowledgeLevelOutput();
 });
 
-// Function to display error message
 function showError(field, message) {
   field.classList.add("error");
   field.style.border = "2px solid red";
@@ -306,7 +284,6 @@ function showError(field, message) {
   }
 }
 
-// Function to clear error message
 function clearError(field) {
   field.classList.remove("error");
   field.style.border = "";
@@ -316,25 +293,21 @@ function clearError(field) {
   }
 }
 
-// Add input event listeners to required fields for real-time validation
 const requiredFields = form.querySelectorAll("[required]");
 requiredFields.forEach((field) => {
   field.addEventListener("input", () => validateField(field));
 });
 
-// Function to save input values to localStorage
 function saveToLocalStorage(id, event) {
   localStorage.setItem(id, event.target.value);
 }
 
-// Function to fill input elements with localStorage values
 function fillFromLocalStorage(id) {
   if (localStorage.getItem(id)) {
     document.getElementById(id).value = localStorage.getItem(id);
   }
 }
 
-// Add event listeners to input elements
 document.getElementById("name").addEventListener("input", (event) => saveToLocalStorage("name", event));
 document.getElementById("surname").addEventListener("input", (event) => saveToLocalStorage("surname", event));
 document.getElementById("age").addEventListener("input", (event) => saveToLocalStorage("age", event));
@@ -357,7 +330,7 @@ document.querySelectorAll('input[name="programming-languages"]').forEach((checkb
   });
 });
 
-// Fill input elements with localStorage values on page load
+// uzpildo laukus is local storage
 fillFromLocalStorage("name");
 fillFromLocalStorage("surname");
 fillFromLocalStorage("age");
