@@ -129,101 +129,206 @@ function loadStudentsFromLocalStorage() {
 }
 
 function displayStudents(students) {
-  // praclearina studentu lista
+  // Clear the existing list
   while (studentsList.firstChild) {
     studentsList.removeChild(studentsList.firstChild);
   }
 
   students.forEach((student) => {
-    const studentItem = document.createElement("div");
-    studentItem.classList.add("student-item");
-
-    const nameParagraph = document.createElement("p");
-    nameParagraph.textContent = `Name: ${student.name}`;
-    studentItem.append(nameParagraph);
-
-    const surnameParagraph = document.createElement("p");
-    surnameParagraph.textContent = `Surname: ${student.surname}`;
-    studentItem.append(surnameParagraph);
-
-    const ageParagraph = document.createElement("p");
-    ageParagraph.textContent = `Age: ${student.age}`;
-    studentItem.append(ageParagraph);
-
-    const phoneNumberParagraph = document.createElement("p");
-    phoneNumberParagraph.textContent = `Phone: *********`;
-    phoneNumberParagraph.dataset.phoneNumber = student.phoneNumber;
-    studentItem.append(phoneNumberParagraph);
-
-    const emailParagraph = document.createElement("p");
-    emailParagraph.textContent = `Email: *********`;
-    emailParagraph.dataset.email = student.email;
-    studentItem.append(emailParagraph);
-
-    const knowledgeLevelParagraph = document.createElement("p");
-    knowledgeLevelParagraph.textContent = `IT Knowledge: ${student.knowledgeLevel}`;
-    studentItem.append(knowledgeLevelParagraph);
-
-    const groupNumberParagraph = document.createElement("p");
-    groupNumberParagraph.textContent = `Group: ${student.groupNumber}`;
-    studentItem.append(groupNumberParagraph);
-
-    const programmingLanguagesParagraph = document.createElement("p");
-    programmingLanguagesParagraph.textContent = `Programming Languages: ${student.programmingLanguages.join(", ")}`;
-    studentItem.append(programmingLanguagesParagraph);
-
-    const showButton = document.createElement("button");
-    showButton.textContent = "Rodyti asmens duomenis";
-    showButton.classList.add("show-hide");
-    studentItem.append(showButton);
-
-    const hideButton = document.createElement("button");
-    hideButton.textContent = "Slėpti asmens duomenis";
-    hideButton.classList.add("show-hide");
-    hideButton.style.display = "none";
-    studentItem.append(hideButton);
-
-    showButton.addEventListener("click", () => {
-      phoneNumberParagraph.textContent = `Phone: ${phoneNumberParagraph.dataset.phoneNumber}`;
-      emailParagraph.textContent = `Email: ${emailParagraph.dataset.email}`;
-      showButton.style.display = "none";
-      hideButton.style.display = "inline";
-    });
-
-    hideButton.addEventListener("click", () => {
-      phoneNumberParagraph.textContent = `Phone: *********`;
-      emailParagraph.textContent = `Email: *********`;
-      hideButton.style.display = "none";
-      showButton.style.display = "inline";
-    });
-
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Remove the student";
-    deleteButton.classList.add("delete");
-    studentItem.append(deleteButton);
-
-    deleteButton.addEventListener("click", () => {
-      studentItem.remove();
-
-      const deleteNotification = document.createElement("span");
-      deleteNotification.textContent = `Student (${student.name} ${student.surname}) was successfully removed.`;
-      deleteNotification.style.color = "red";
-      deleteNotification.classList.add("notification");
-      form.append(deleteNotification);
-
-      setTimeout(() => {
-        deleteNotification.remove();
-      }, 5000);
-
-      // istrina studenta is local storage
-      let students = loadStudentsFromLocalStorage();
-      students = students.filter((s) => s.id !== student.id);
-      saveStudentsToLocalStorage(students);
-    });
-
+    const studentItem = createStudentItem(student);
     studentsList.append(studentItem);
   });
 }
+
+function createStudentItem(student) {
+  const studentItem = document.createElement("div");
+  studentItem.classList.add("student-item");
+
+  studentItem.append(createParagraph(`Name: ${student.name}`));
+  studentItem.append(createParagraph(`Surname: ${student.surname}`));
+  studentItem.append(createParagraph(`Age: ${student.age}`));
+  studentItem.append(createPhoneNumberParagraph(student.phoneNumber));
+  studentItem.append(createEmailParagraph(student.email));
+  studentItem.append(createParagraph(`IT Knowledge: ${student.knowledgeLevel}`));
+  studentItem.append(createParagraph(`Group: ${student.groupNumber}`));
+  studentItem.append(createParagraph(`Programming Languages: ${student.programmingLanguages.join(", ")}`));
+
+  const { showButton, hideButton } = createShowHideButtons(studentItem);
+  studentItem.append(showButton);
+  studentItem.append(hideButton);
+
+  const deleteButton = createDeleteButton(student, studentItem);
+  studentItem.append(deleteButton);
+
+  return studentItem;
+}
+
+function createParagraph(text) {
+  const paragraph = document.createElement("p");
+  paragraph.textContent = text;
+  return paragraph;
+}
+
+function createPhoneNumberParagraph(phoneNumber) {
+  const phoneNumberParagraph = createParagraph(`Phone: *********`);
+  phoneNumberParagraph.dataset.phoneNumber = phoneNumber;
+  return phoneNumberParagraph;
+}
+
+function createEmailParagraph(email) {
+  const emailParagraph = createParagraph(`Email: *********`);
+  emailParagraph.dataset.email = email;
+  return emailParagraph;
+}
+
+function createShowHideButtons(studentItem) {
+  const showButton = document.createElement("button");
+  showButton.textContent = "Rodyti asmens duomenis";
+  showButton.classList.add("show-hide");
+
+  const hideButton = document.createElement("button");
+  hideButton.textContent = "Slėpti asmens duomenis";
+  hideButton.classList.add("show-hide");
+  hideButton.style.display = "none";
+
+  showButton.addEventListener("click", () => {
+    const phoneNumberParagraph = studentItem.querySelector("[data-phone-number]");
+    const emailParagraph = studentItem.querySelector("[data-email]");
+    phoneNumberParagraph.textContent = `Phone: ${phoneNumberParagraph.dataset.phoneNumber}`;
+    emailParagraph.textContent = `Email: ${emailParagraph.dataset.email}`;
+    showButton.style.display = "none";
+    hideButton.style.display = "inline";
+  });
+
+  hideButton.addEventListener("click", () => {
+    const phoneNumberParagraph = studentItem.querySelector("[data-phone-number]");
+    const emailParagraph = studentItem.querySelector("[data-email]");
+    phoneNumberParagraph.textContent = `Phone: *********`;
+    emailParagraph.textContent = `Email: *********`;
+    hideButton.style.display = "none";
+    showButton.style.display = "inline";
+  });
+
+  return { showButton, hideButton };
+}
+
+function createDeleteButton(student, studentItem) {
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Remove the student";
+  deleteButton.classList.add("delete");
+
+  deleteButton.addEventListener("click", () => {
+    studentItem.remove();
+
+    const deleteNotification = document.createElement("span");
+    deleteNotification.textContent = `Student (${student.name} ${student.surname}) was successfully removed.`;
+    deleteNotification.style.color = "red";
+    deleteNotification.classList.add("notification");
+    form.append(deleteNotification);
+
+    setTimeout(() => {
+      deleteNotification.remove();
+    }, 5000);
+
+    // Remove the student from local storage
+    let students = loadStudentsFromLocalStorage();
+    students = students.filter((s) => s.id !== student.id);
+    saveStudentsToLocalStorage(students);
+  });
+
+  return deleteButton;
+}
+
+//   students.forEach((student) => {
+//     const studentItem = document.createElement("div");
+//     studentItem.classList.add("student-item");
+
+//     const nameParagraph = document.createElement("p");
+//     nameParagraph.textContent = `Name: ${student.name}`;
+//     studentItem.append(nameParagraph);
+
+//     const surnameParagraph = document.createElement("p");
+//     surnameParagraph.textContent = `Surname: ${student.surname}`;
+//     studentItem.append(surnameParagraph);
+
+//     const ageParagraph = document.createElement("p");
+//     ageParagraph.textContent = `Age: ${student.age}`;
+//     studentItem.append(ageParagraph);
+
+//     const phoneNumberParagraph = document.createElement("p");
+//     phoneNumberParagraph.textContent = `Phone: *********`;
+//     phoneNumberParagraph.dataset.phoneNumber = student.phoneNumber;
+//     studentItem.append(phoneNumberParagraph);
+
+//     const emailParagraph = document.createElement("p");
+//     emailParagraph.textContent = `Email: *********`;
+//     emailParagraph.dataset.email = student.email;
+//     studentItem.append(emailParagraph);
+
+//     const knowledgeLevelParagraph = document.createElement("p");
+//     knowledgeLevelParagraph.textContent = `IT Knowledge: ${student.knowledgeLevel}`;
+//     studentItem.append(knowledgeLevelParagraph);
+
+//     const groupNumberParagraph = document.createElement("p");
+//     groupNumberParagraph.textContent = `Group: ${student.groupNumber}`;
+//     studentItem.append(groupNumberParagraph);
+
+//     const programmingLanguagesParagraph = document.createElement("p");
+//     programmingLanguagesParagraph.textContent = `Programming Languages: ${student.programmingLanguages.join(", ")}`;
+//     studentItem.append(programmingLanguagesParagraph);
+
+//     const showButton = document.createElement("button");
+//     showButton.textContent = "Rodyti asmens duomenis";
+//     showButton.classList.add("show-hide");
+//     studentItem.append(showButton);
+
+//     const hideButton = document.createElement("button");
+//     hideButton.textContent = "Slėpti asmens duomenis";
+//     hideButton.classList.add("show-hide");
+//     hideButton.style.display = "none";
+//     studentItem.append(hideButton);
+
+//     showButton.addEventListener("click", () => {
+//       phoneNumberParagraph.textContent = `Phone: ${phoneNumberParagraph.dataset.phoneNumber}`;
+//       emailParagraph.textContent = `Email: ${emailParagraph.dataset.email}`;
+//       showButton.style.display = "none";
+//       hideButton.style.display = "inline";
+//     });
+
+//     hideButton.addEventListener("click", () => {
+//       phoneNumberParagraph.textContent = `Phone: *********`;
+//       emailParagraph.textContent = `Email: *********`;
+//       hideButton.style.display = "none";
+//       showButton.style.display = "inline";
+//     });
+
+//     const deleteButton = document.createElement("button");
+//     deleteButton.textContent = "Remove the student";
+//     deleteButton.classList.add("delete");
+//     studentItem.append(deleteButton);
+
+//     deleteButton.addEventListener("click", () => {
+//       studentItem.remove();
+
+//       const deleteNotification = document.createElement("span");
+//       deleteNotification.textContent = `Student (${student.name} ${student.surname}) was successfully removed.`;
+//       deleteNotification.style.color = "red";
+//       deleteNotification.classList.add("notification");
+//       form.append(deleteNotification);
+
+//       setTimeout(() => {
+//         deleteNotification.remove();
+//       }, 5000);
+
+//       // istrina studenta is local storage
+//       let students = loadStudentsFromLocalStorage();
+//       students = students.filter((s) => s.id !== student.id);
+//       saveStudentsToLocalStorage(students);
+//     });
+
+//     studentsList.append(studentItem);
+//   });
+// }
 
 // uzkrauna studs is local storage
 const students = loadStudentsFromLocalStorage();
@@ -236,13 +341,29 @@ function generateUniqueId() {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  // isvalo validationus buvusius
+  clearValidationErrors();
+
+  if (!validateForm()) {
+    showAlertMessage("Ne visi laukeliai yra užpildyti.");
+    return;
+  }
+
+  const newStudent = createStudentFromForm();
+  saveStudent(newStudent);
+  displayStudents(loadStudentsFromLocalStorage());
+  showNotification(`Sukurtas studentas (${newStudent.name} ${newStudent.surname})`);
+  form.reset();
+  updateKnowledgeLevelOutput();
+});
+
+function clearValidationErrors() {
   const errorMessages = form.querySelectorAll(".error-message");
   errorMessages.forEach((message) => message.remove());
   const errorFields = form.querySelectorAll(".error");
   errorFields.forEach((field) => field.classList.remove("error"));
+}
 
-  // validacija
+function validateForm() {
   let isFormValid = true;
   const requiredFields = form.querySelectorAll("[required]");
   requiredFields.forEach((field) => {
@@ -250,25 +371,25 @@ form.addEventListener("submit", (event) => {
       isFormValid = false;
     }
   });
+  return isFormValid;
+}
 
-  if (!isFormValid) {
-    // jei ne valid
-    const existingAlert = form.querySelector(".alert-message");
-    if (!existingAlert) {
-      const alertMessage = document.createElement("div");
-      alertMessage.textContent = "Ne visi laukeliai yra užpildyti.";
-      alertMessage.classList.add("alert-message");
-      alertMessage.style.color = "red";
-      form.insertBefore(alertMessage, form.firstChild);
+function showAlertMessage(message) {
+  const existingAlert = form.querySelector(".alert-message");
+  if (!existingAlert) {
+    const alertMessage = document.createElement("div");
+    alertMessage.textContent = message;
+    alertMessage.classList.add("alert-message");
+    alertMessage.style.color = "red";
+    form.insertBefore(alertMessage, form.firstChild);
 
-      setTimeout(() => {
-        alertMessage.remove();
-      }, 5000);
-    }
-    return;
+    setTimeout(() => {
+      alertMessage.remove();
+    }, 5000);
   }
+}
 
-  // data is formos
+function createStudentFromForm() {
   const name = form.elements["name"].value;
   const surname = form.elements["surname"].value;
   const age = form.elements["age"].value;
@@ -279,8 +400,7 @@ form.addEventListener("submit", (event) => {
   const languages = form.querySelectorAll('[name="programming-languages"]:checked');
   const programmingLanguages = Array.from(languages).map((language) => language.value);
 
-  // sukuria nauja studenta objekta su duomenimis is formos
-  const newStudent = {
+  return {
     id: generateUniqueId(),
     name,
     surname,
@@ -291,28 +411,105 @@ form.addEventListener("submit", (event) => {
     groupNumber,
     programmingLanguages,
   };
+}
 
+function saveStudent(student) {
   const students = loadStudentsFromLocalStorage();
-
-  // i prieki imeta studenta array
-  students.unshift(newStudent);
-
+  students.unshift(student);
   saveStudentsToLocalStorage(students);
+}
 
-  displayStudents(students);
-
+function showNotification(message) {
   const notification = document.createElement("span");
-  notification.textContent = `Sukurtas studentas (${name} ${surname})`;
+  notification.textContent = message;
   notification.classList.add("notification");
-  form.append(notification); // Append notification span after submit button
+  form.append(notification);
 
   setTimeout(() => {
     notification.remove();
   }, 5000);
+}
 
-  form.reset();
-  updateKnowledgeLevelOutput();
-});
+// form.addEventListener("submit", (event) => {
+//   event.preventDefault();
+
+//   // isvalo validationus buvusius
+//   const errorMessages = form.querySelectorAll(".error-message");
+//   errorMessages.forEach((message) => message.remove());
+//   const errorFields = form.querySelectorAll(".error");
+//   errorFields.forEach((field) => field.classList.remove("error"));
+
+//   // validacija
+//   let isFormValid = true;
+//   const requiredFields = form.querySelectorAll("[required]");
+//   requiredFields.forEach((field) => {
+//     if (!validateField(field)) {
+//       isFormValid = false;
+//     }
+//   });
+
+//   if (!isFormValid) {
+//     // jei ne valid
+//     const existingAlert = form.querySelector(".alert-message");
+//     if (!existingAlert) {
+//       const alertMessage = document.createElement("div");
+//       alertMessage.textContent = "Ne visi laukeliai yra užpildyti.";
+//       alertMessage.classList.add("alert-message");
+//       alertMessage.style.color = "red";
+//       form.insertBefore(alertMessage, form.firstChild);
+
+//       setTimeout(() => {
+//         alertMessage.remove();
+//       }, 5000);
+//     }
+//     return;
+//   }
+
+//   // data is formos
+//   const name = form.elements["name"].value;
+//   const surname = form.elements["surname"].value;
+//   const age = form.elements["age"].value;
+//   const phoneNumber = form.elements["phone-number"].value;
+//   const email = form.elements["email"].value;
+//   const knowledgeLevel = form.elements["knowledge-level"].value;
+//   const groupNumber = form.elements["group-number"].value;
+//   const languages = form.querySelectorAll('[name="programming-languages"]:checked');
+//   const programmingLanguages = Array.from(languages).map((language) => language.value);
+
+//   // sukuria nauja studenta objekta su duomenimis is formos
+//   const newStudent = {
+//     id: generateUniqueId(),
+//     name,
+//     surname,
+//     age,
+//     phoneNumber,
+//     email,
+//     knowledgeLevel,
+//     groupNumber,
+//     programmingLanguages,
+//   };
+
+//   const students = loadStudentsFromLocalStorage();
+
+//   // i prieki imeta studenta array
+//   students.unshift(newStudent);
+
+//   saveStudentsToLocalStorage(students);
+
+//   displayStudents(students);
+
+//   const notification = document.createElement("span");
+//   notification.textContent = `Sukurtas studentas (${name} ${surname})`;
+//   notification.classList.add("notification");
+//   form.append(notification); // Append notification span after submit button
+
+//   setTimeout(() => {
+//     notification.remove();
+//   }, 5000);
+
+//   form.reset();
+//   updateKnowledgeLevelOutput();
+// });
 
 function updateKnowledgeLevelOutput() {
   knowledgeLevelOutput.textContent = knowledgeLevelInput.value;
