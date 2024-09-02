@@ -3,40 +3,70 @@ const studentsList = document.getElementById("students-list");
 const knowledgeLevelInput = form.elements["knowledge-level"];
 const knowledgeLevelOutput = document.createElement("span");
 
+// function validateField(field) {
+//   let isValid = true;
+//   let errorMessageText = "";
+
+//   if (field.value.trim() === "") {
+//     isValid = false;
+//     errorMessageText = "Šis laukelis yra privalomas";
+//   } else if (field.name === "name" && field.value.trim().length < 3) {
+//     isValid = false;
+//     errorMessageText = "Vardas privalo būti bent 3 simbolių ilgumo";
+//   } else if (field.name === "surname" && field.value.trim().length < 3) {
+//     isValid = false;
+//     errorMessageText = "Pavardė privalo būti bent 3 simbolių ilgumo";
+//   } else if (field.name === "age") {
+//     const age = parseInt(field.value.trim(), 10);
+//     if (isNaN(age) || age < 1) {
+//       isValid = false;
+//       errorMessageText = "Amžius privalo būti teigiamas skaičius arba didesnis už 0";
+//     } else if (age > 100) {
+//       isValid = false;
+//       errorMessageText = "Įvestas amžius yra per didelis";
+//     }
+//   } else if (field.name === "phone-number") {
+//     const phoneNumberLength = field.value.trim().length;
+//     if (phoneNumberLength < 9 || phoneNumberLength > 13) {
+//       isValid = false;
+//       errorMessageText = "Įvestas telefono numeris yra neteisingas";
+//     }
+//   } else if (field.name === "email") {
+//     const email = field.value.trim();
+//     if (email.length < 8 || !email.includes("@") || !email.includes(".")) {
+//       isValid = false;
+//       errorMessageText = "Įvestas elektroninis paštas yra neteisingas";
+//     }
+//   }
+
+//   if (isValid) {
+//     clearError(field);
+//   } else {
+//     showError(field, errorMessageText);
+//   }
+
+//   return isValid;
+// }
+
 function validateField(field) {
   let isValid = true;
   let errorMessageText = "";
 
-  if (field.value.trim() === "") {
+  const value = field.value.trim();
+
+  if (value === "") {
     isValid = false;
     errorMessageText = "Šis laukelis yra privalomas";
-  } else if (field.name === "name" && field.value.trim().length < 3) {
-    isValid = false;
-    errorMessageText = "Vardas privalo būti bent 3 simbolių ilgumo";
-  } else if (field.name === "surname" && field.value.trim().length < 3) {
-    isValid = false;
-    errorMessageText = "Pavardė privalo būti bent 3 simbolių ilgumo";
+  } else if (field.name === "name") {
+    ({ isValid, errorMessageText } = validateName(value));
+  } else if (field.name === "surname") {
+    ({ isValid, errorMessageText } = validateSurname(value));
   } else if (field.name === "age") {
-    const age = parseInt(field.value.trim(), 10);
-    if (isNaN(age) || age < 1) {
-      isValid = false;
-      errorMessageText = "Amžius privalo būti teigiamas skaičius arba didesnis už 0";
-    } else if (age > 100) {
-      isValid = false;
-      errorMessageText = "Įvestas amžius yra per didelis";
-    }
+    ({ isValid, errorMessageText } = validateAge(value));
   } else if (field.name === "phone-number") {
-    const phoneNumberLength = field.value.trim().length;
-    if (phoneNumberLength < 9 || phoneNumberLength > 13) {
-      isValid = false;
-      errorMessageText = "Įvestas telefono numeris yra neteisingas";
-    }
+    ({ isValid, errorMessageText } = validatePhoneNumber(value));
   } else if (field.name === "email") {
-    const email = field.value.trim();
-    if (email.length < 8 || !email.includes("@") || !email.includes(".")) {
-      isValid = false;
-      errorMessageText = "Įvestas elektroninis paštas yra neteisingas";
-    }
+    ({ isValid, errorMessageText } = validateEmail(value));
   }
 
   if (isValid) {
@@ -46,6 +76,45 @@ function validateField(field) {
   }
 
   return isValid;
+}
+
+function validateName(name) {
+  if (name.length < 3) {
+    return { isValid: false, errorMessageText: "Vardas privalo būti bent 3 simbolių ilgumo" };
+  }
+  return { isValid: true, errorMessageText: "" };
+}
+
+function validateSurname(surname) {
+  if (surname.length < 3) {
+    return { isValid: false, errorMessageText: "Pavardė privalo būti bent 3 simbolių ilgumo" };
+  }
+  return { isValid: true, errorMessageText: "" };
+}
+
+function validateAge(age) {
+  const ageNumber = parseInt(age, 10);
+  if (isNaN(ageNumber) || ageNumber < 1) {
+    return { isValid: false, errorMessageText: "Amžius privalo būti teigiamas skaičius arba didesnis už 0" };
+  } else if (ageNumber > 100) {
+    return { isValid: false, errorMessageText: "Įvestas amžius yra per didelis" };
+  }
+  return { isValid: true, errorMessageText: "" };
+}
+
+function validatePhoneNumber(phoneNumber) {
+  const phoneNumberLength = phoneNumber.length;
+  if (phoneNumberLength < 9 || phoneNumberLength > 13) {
+    return { isValid: false, errorMessageText: "Įvestas telefono numeris yra neteisingas" };
+  }
+  return { isValid: true, errorMessageText: "" };
+}
+
+function validateEmail(email) {
+  if (email.length < 8 || !email.includes("@") || !email.includes(".")) {
+    return { isValid: false, errorMessageText: "Įvestas elektroninis paštas yra neteisingas" };
+  }
+  return { isValid: true, errorMessageText: "" };
 }
 
 //studentu array i localStorage
